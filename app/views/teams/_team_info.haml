@@ -1,0 +1,40 @@
+%section.team_inf
+  .ttl_pad
+    %a.team_logo{href: ""}
+      =image_tag "league_img.jpg", size: "80x68"
+    %h3.clrd_bg СЕЗОН 2013 – 2014 /  ЗИМА
+    .tags_list
+      %ul
+        %li.active
+          %a{href: ""} Все
+        %li
+          %a{href: ""} Вратари
+        %li
+          %a{href: ""} Полузащитники
+        %li
+          %a{href: ""} Нападающие
+        %li
+          %a{href: ""} Защитники
+  .list
+    .fll
+      -if @coach
+        =link_to @coach, class: 'player' do
+          =show_main_image(@coach, "68x68", @coach.full_name)
+          %span.name
+            %strong>
+              =@coach.full_name
+            (Гл.тренер)
+    .flr
+      .car_wr.jcarousel-skin-default
+        .jcarousel2
+          %ul
+            -@persons.each do |person|
+              %li
+                =link_to person, class: 'player' do
+                  =show_main_image(person, "68x68", person.full_name)
+                  %strong=person.full_name
+                  %span{style: 'font-size:12px;'}=person.character.title
+
+        %a.car_btn.lbtn{href: "#", onclick: "$(this).parent().children('.jcarousel2').jcarousel('scroll', '-=1'); return false;"}
+        %a.car_btn.rbtn{href: "#", onclick: "$(this).parent().children('.jcarousel2').jcarousel('scroll', '+=1'); return false;"}
+    .clr

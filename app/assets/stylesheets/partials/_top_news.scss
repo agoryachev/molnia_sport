@@ -1,0 +1,92 @@
+.top_news{
+  margin: 0 -20px;
+  .tags_list{
+    padding: 6px 22px 15px;
+    li{
+      display: inline;
+      margin-right: 18px;
+    }
+    a{
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+
+      font-size: 16px;
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover{
+        color: #cccccc;
+      }
+    }
+    .active a{
+      font-weight: 800;
+    }
+  }
+
+  .item{
+    display:b lock;
+    float: left;
+    width: 194px;
+    margin-left: 3px;
+    position: relative;
+    color: #fff;
+    z-index: 4;
+    &:hover .second-overlay{
+      opacity: 1;
+    }
+    &:first-child{
+      margin-left: 0;
+    }
+    &:before{
+      content: "";
+      position: absolute;
+      z-index: 3;
+      display: block;
+      top: 50%;
+      bottom: 0px;
+      left: 10px;
+      right: 10px;
+      -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      -moz-box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      -moz-border-radius: 100px / 10px;
+      border-radius: 100px / 10px;
+    }
+    .inf_pad{
+      position: absolute;
+      display: block;
+      bottom: 0px;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      padding: 8px 11px 9px;
+      line-height: 14px;
+      font-size: 12px;
+      z-index: 1000;
+    }
+    .first-overlay{
+      @extend %first-overlay;
+    }
+    .second-overlay{
+      @extend %second-overlay;
+    }
+    .top-news-overlay{
+      @extend %top-news-overlay;
+    }
+    img{
+      display: block;
+      position: relative;
+      z-index: 4;
+    }
+    .txt1{
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      text-shadow: 0 1px 1px black;
+    }
+    .txt2{
+      font-size: 11px;
+      font-family: 'Roboto', sans-serif;
+      text-shadow: 0 1px 1px black;
+    }
+  }
+}

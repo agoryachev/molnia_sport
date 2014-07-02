@@ -1,0 +1,17 @@
+- tweet_data = JSON.load(tweet.data)
+%tr{class: tweet.is_published? ? '' : 'muted', data: {id: tweet.id}}
+  %td= tweet.id
+  %td
+    - unless tweet_data.nil?
+      = tweet_data['user']['screen_name']
+    - else
+      = 'Нет данных'
+  %td{width: '50%'}
+    - unless tweet_data.nil?
+      - text = (tweet_data['text'].length > 50) ? tweet_data['text'][1..50]+'...' : tweet_data['text']
+      = link_to(text, edit_backend_tweet_path(tweet))
+    - else
+      = link_to('Нет данных', edit_backend_tweet_path(tweet))
+  %td= dt(tweet.published_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: tweet, field: :is_published
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: tweet

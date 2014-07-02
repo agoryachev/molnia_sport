@@ -1,0 +1,7 @@
+%tr{class: !inside.is_published? ? 'muted' : nil}
+  %td= link_to inside.id, [:edit, :backend, inside]
+  %td=strip_tags inside.content
+
+
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: inside, field: :is_published
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: inside

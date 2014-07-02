@@ -1,0 +1,86 @@
+section.social_tabs{
+  @include size(288px, 45px);
+  margin-top: 1px;
+  float: left;
+  ul.stars-socials-menu {
+    @include size(inherit);
+    padding: 0px;
+
+    li {
+      list-style: none;
+      float: left;
+      cursor: pointer;
+      color: #456991;
+      border-bottom: 2px solid #f1f1f1;
+      padding: 10px 25px 1px 25px;
+      height: 40px;
+      a{
+        text-decoration: none;
+        color: #456991;
+      }
+      &:hover, &.current{
+        a{
+          color: #ae0000;
+        }
+        .fa.fa-instagram{
+          &:before{
+            color: #ae0000;
+          }
+        }
+      }
+
+      span.twit-img.fa.fa-twitter {
+        width: 25px;
+        height: 19px;
+        position: relative;
+        display: inline-block;
+        color: #456991;
+        font-family: FontAwesome;
+        font-size: 20px;
+        border-right: none;
+
+        &:before{
+          position: absolute;
+          top: -11px;
+          left: 0;
+        }
+      }
+      &:hover, &.current {
+        cursor: pointer;
+        color: #ae0000;
+        border-bottom: 2px solid #ae0000;
+        .fa-twitter:before{
+          color: #ae0000;
+        }
+      }
+      span {
+        height: 19px;
+        vertical-align: top;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        margin: 2px;
+        font-weight: 500;
+
+        &.fa.fa-instagram{
+          position: relative;
+          font-size: 20px;
+
+          &:before{
+            position: absolute;
+            top: -11px;
+            left: 0;
+          }
+        }
+      }
+      span.in-img.fa.fa-instagram {
+        color: #456991;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        font-family: FontAwesome;
+      }
+      &:hover span.in-img.fa.fa-instagram, &.current span.in-img.fa.fa-instagram {
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+development:
+  mysql41: 9306
+  enable_star: 1
+  min_prefix_len: 3
+test:
+  mysql41: 10003
+  enable_star: 1
+  min_prefix_len: 3
+production:
+  mysql41: 9307
+  enable_star: 1
+  min_prefix_len: 3
+staging:
+  mysql41: 9308
+  enable_star: 1
+  min_prefix_len: 3  

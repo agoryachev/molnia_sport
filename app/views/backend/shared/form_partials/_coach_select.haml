@@ -1,0 +1,3 @@
+.form-group
+  = f.label :coach_id
+  = f.collection_select :coach_id, Person.is_published.order(:name_first), :id, :full_name, {:include_blank => t('label.autocomplete'), selected: (@team.coach_id.nil? ? -1 : @team.coach_id)}, multiple: false, class: 'form-control persons-selectize'

@@ -1,0 +1,23 @@
+= render 'backend/shared/messages'
+
+.container-content
+  = form_for([:backend, @match], html: {class: :form}) do |f|
+    %fieldset
+      %ul.nav.nav-tabs.tabs
+        %li.active
+          %a{href:'#tab1', data: {toggle: 'tab'} }
+            Общие
+        %li
+          %a{href:'#tab3', data: {toggle: 'tab'} }
+            Команды
+        %li
+          %a{href:'#tab4', data: {toggle: 'tab'} }
+            Сео
+
+      .tab-content
+        #tab1.tab-pane.active= render 'tab1', f: f
+        #tab3.tab-pane= render 'tab3', f: f
+        #tab4.tab-pane= render 'backend/shared/nested/seo', f: f
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      

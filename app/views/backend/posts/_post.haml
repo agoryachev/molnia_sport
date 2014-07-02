@@ -1,0 +1,14 @@
+%tr{class: !post.is_published? ? 'muted' : nil, data: {id: post.id}}
+  %td= main_image_backend post
+  %td= post.id
+  %td{width: '45%'}
+    = publication_options(post)
+    = link_to post.title, edit_backend_post_path(post)
+  %td
+    %span{class: "badge #{post.category.color}"}
+      = link_to post.category.title, edit_backend_category_path(post.category), class: 'white-text'
+  %td= link_to post.country.title, edit_backend_country_path(post.country) if post.country.present?
+  %td= dt(post.published_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: post, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: post, field: :is_comments_enabled
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: post

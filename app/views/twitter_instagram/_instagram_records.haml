@@ -1,0 +1,19 @@
+- content_for :title, "Instagram | #{Setting.site_name}"
+
+%section.box.instagram-page-container.stars-socials-tab
+  - model.each do |instagram|
+    .instagram-box
+      %a{href: "#{instagram['link']}", target: "_blank"}
+        .instagram-image
+          =image_tag instagram['url'], size: '180x180'
+        .instagram-footer
+          .instagram-user-name
+            =instagram['username']
+          .instagram-likes
+            - likes = (instagram['likes'].nil?) ? 0 : instagram['likes']
+            - likes = (likes > 1000) ? "#{likes.fdiv(1000).round 1}K" : likes
+            = likes
+            .likes_instatop
+          .clr
+          -if instagram['caption']
+            .instagram-caption=instagram['caption']

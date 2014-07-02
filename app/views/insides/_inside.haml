@@ -1,0 +1,19 @@
+%article
+  .player
+    .date
+      %span=inside.published_at.strftime("%d")
+      %span=Russian.strftime(inside.published_at, "%B")
+      %span=inside.published_at.strftime("%H:%m")
+    .image
+      =show_main_image inside.person, '60x60', inside.person.full_name
+    .name
+      =link_to inside.person.full_name, person_path(inside.person)
+      -# %span (#{inside.person.team})
+  .article=simple_format inside.content
+  .status
+    %span{class: inside.inside_status.try(:color)}=inside.inside_status.try(:title)
+  .source
+    -if inside.source.at('http://')
+      =link_to inside.source.gsub('http://', '').gsub('www.', ''), inside.source
+    -else
+      =inside.source

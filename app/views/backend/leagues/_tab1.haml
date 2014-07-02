@@ -1,0 +1,24 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :category_id
+      %select{name: 'league[category_id]', class: 'form-control', id: 'league_category_id'}
+        %option{value: ''}
+          Выберите
+        -@categories.each do |category|
+          %option{value: category.id, selected: @league.category_id == category.id ? true : false }
+            =category.title
+    .form-group
+      = f.label :country_id
+      =f.collection_select :country_id, Country.order(:title), :id, :title, {}, {class: 'form-control'}
+  .col-md-6
+    .checkbox
+      = f.label :is_leagues_group_slider
+      = f.check_box :is_leagues_group_slider
+
+=render 'backend/shared/form_partials/textarea', f: f

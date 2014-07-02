@@ -1,0 +1,10 @@
+- content_for :title, "Календарь ЧМ-2014 | #{Setting.site_name}"
+
+%section.search_pad
+  .search_pad_shadow
+%section.calendar
+  -if @played_matches && @played_matches.count > 0
+    %h2.last-results Результаты последних матчей
+    =render 'shared/played_matches'
+  %h2 Турнирная таблица
+  =render 'calendars/tournaiments_block'

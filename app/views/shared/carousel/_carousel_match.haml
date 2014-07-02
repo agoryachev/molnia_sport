@@ -1,0 +1,14 @@
+%a.match_pad{href: ""}
+  %span.event_date
+    %span.day> #{Russian::strftime(match.start_at, '%a')}
+    =match.start_at.strftime("%d.%m")
+  %span.players
+    %span.player
+      %span.name
+        %strong=match.team_home.title
+      %span.count
+        %strong=match.count_home || '-'
+    %span.player
+      %span.name=match.team_guest.title
+      %span.count=match.count_guest || '-'
+  %span.clr

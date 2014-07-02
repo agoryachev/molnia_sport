@@ -1,0 +1,44 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :subtitle
+      = f.text_area :subtitle, class: 'form-control', rows: 3, maxlength: 255
+    .form-group
+      = f.label :country_id
+      %select{name: 'post[country_id]', class: 'form-control', id: 'post_country_id'}
+        %option{value: ''}
+          Выберите:
+        -Country.all.each do |country|
+          %option{value: country.id, selected: @post.country_id == country.id && true}
+            =country.title
+    .form-group
+      =render 'backend/shared/form_partials/datetimepicker', f: f, field: :published_at, model: @post, format: "DD/MM/YYYY HH:mm"
+    .form-group
+      = f.label :category_id
+      %select{name: 'post[category_id]', class: 'form-control', id: 'post_category_id'}
+        %option{value: ''}
+          Выберите
+        -@categories.each do |category|
+          %option{value: category.id, selected: @post.category_id == category.id ? true : false }
+            =category.title
+    .form-group
+      = f.label :post_status_id
+      %select{name: 'post[post_status_id]', class: 'form-control', id: 'post_post_status_id'}
+        %option{value: ''}
+          Выберите
+        -@post_statuses.each do |post_status|
+          %option{value: post_status.id, selected: @post.post_status_id == post_status.id ? true : false }
+            =post_status.title
+  .col-md-6
+    =render 'backend/shared/form_partials/checkbox', f: f, field: :is_exclusive
+    =render 'backend/shared/form_partials/checkbox', f: f, field: :is_top
+    =render 'backend/shared/form_partials/checkbox', f: f, field: :is_breaknews
+  =render 'backend/shared/form_partials/tags', f: f
+
+  .col-md-12=render 'backend/shared/form_partials/persons_select', f: f
+  .col-md-12=render 'backend/shared/form_partials/teams_select', f: f
+=render 'backend/shared/form_partials/textarea', f: f

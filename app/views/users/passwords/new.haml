@@ -1,0 +1,10 @@
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: :sign_in_form }) do |f|
+  %h2 Забыли пароль?
+  = devise_error_messages!
+  %fieldset
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  %fieldset
+    = f.submit 'Переслать'
+= render 'users/shared/links'

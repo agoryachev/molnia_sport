@@ -1,0 +1,12 @@
+=render 'shared/meta/meta_block', model: @insides.first
+%section.inside
+  %section.insides
+    %header
+      .player Игрок
+      .article Новость
+      .status Статус
+      .source Источник
+    %section
+      =render @insides
+
+=render 'shared/infinite_button', content: @insides

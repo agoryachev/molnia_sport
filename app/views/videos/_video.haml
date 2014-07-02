@@ -1,0 +1,8 @@
+%article.video-article
+  =render 'shared/info', model: video
+  %a.img{href: ""}
+    =link_to polymorphic_url([video.category, video]), class: :img do
+      =show_main_image(video, '300x200', video.title)
+      %span.video_pic
+      .overlay
+  %h3=link_to truncate(video.title, length: 37), polymorphic_url([video.category, video])

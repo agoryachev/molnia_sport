@@ -1,0 +1,46 @@
+%article.stars-socials{id: 'stars-socials-tabs'}
+  .stars-socials-red-header
+  .stars-socials-menu-back
+  %ul.stars-socials-menu
+    %li
+      %a{href: '#tabs-instagram', data:{tab: '.instagram-container'}}
+        %span.in-img.fa.fa-instagram
+        %span Инстаграм
+    %li
+      %a{href: '#tabs-tweet',  data:{tab: '.tweet-container'}}
+        %span.twit-img.fa.fa-twitter
+        %span Твиттер
+  .instagram-container.stars-socials-tab{id: 'tabs-instagram'}
+    - instagrams.each do |instagram|
+      .instagram-box
+        %a{href: "#{instagram['link']}", target: "_blank"}
+          .instagram-image{style: "background-image: url(#{instagram['url']})"}
+            .instagram-footer
+              .instagram-user-name
+                = "#{instagram['username']}"
+              .instagram-likes
+                - likes = (instagram['likes'].nil?) ? 0 : instagram['likes']
+                - likes = (likes > 1000) ? "#{likes.fdiv(1000).round 1}K" : likes
+                = likes
+                .likes_instatop
+  .tweet-container.stars-socials-tab.hidden{id: 'tabs-tweet'}
+    - tweets.each do |tweet|
+      .tweet-box
+        .tweet-user-info
+          %a{href: "https://twitter.com/#{tweet['user']['screen_name']}", target: "_blank"}
+            .tweet-user-ava{style: "background-image: url(#{tweet['user']['profile_image_url']})"}
+          %a{href: "https://twitter.com/#{tweet['user']['screen_name']}", target: "_blank"}
+            .tweet-user
+              .tweet-user-name
+                = truncate(tweet['user']['name'], length: 20)
+              .tweet-user-screenname
+                = "@#{tweet['user']['screen_name']}"
+        .tweet-text
+          = tweet['text'].html_safe
+        - media = tweet['media']
+        - unless media.nil?
+          .tweet-btn-show-media
+            Показать каринку
+          %a.hid{href: "https://twitter.com/#{tweet['user']['screen_name']}/status/#{tweet['id']}", target: "_blank"}
+            .tweet-image.hidden{style: "background-image: url(#{media[0]['media_url']})"}
+      .tweet-box-separator

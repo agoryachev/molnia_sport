@@ -1,0 +1,21 @@
+%section.big_slider_wr
+  .grad
+  .slides
+    -@photos_videos_for_slider.limit(16).each_with_index do |photo_video, i|
+      .slide{class: "slide_#{i + 1}", data:{category: photo_video.feedable.category.id, type: photo_video.feedable_type.downcase.pluralize, id: photo_video.feedable_id}}
+        =show_main_image(photo_video.feedable, '620x345', photo_video.feedable.title, 'big')
+        =show_main_image(photo_video.feedable, '93x57', photo_video.feedable.title, 'small')
+        .info
+          %p.p1 #{photo_video.feedable.category.title} / #{d(photo_video.feedable.published_at)}
+          - if photo_video.feedable.class.name == 'Gallery'
+            .photo_pic.nobg
+          - else
+            .video_pic.nobg
+          =link_to polymorphic_url([photo_video.feedable.category, photo_video.feedable]) do
+            %p.p2=photo_video.feedable.title
+        - if photo_video.feedable.class.name == 'Gallery'
+          .photo_pic
+        - else
+          .video_pic
+  = link_to '', '#', class: 'slider_btn lbtn'
+  = link_to '', '#', class: 'slider_btn rbtn'

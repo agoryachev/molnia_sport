@@ -1,0 +1,14 @@
+%tr{class: !category.is_published? && :muted, data: {id: category.id}, id: "category_#{category.id}"}
+  %td{width: '5%'}
+    .handle.glyphicon.glyphicon-sort
+  %td
+  %td= category.id
+  %td.centered= category.placement_index
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: category, field: :is_published
+  %td.centered= link_to category.title, edit_backend_category_path(category)
+  %td.centered
+    %span{class: "badge #{category.color}"}= t("colors.#{category.color}")
+  %td
+    %a.btn.btn-small{href: edit_backend_category_path(category)}
+      %i.icon-pencil
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: category

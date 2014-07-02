@@ -1,0 +1,9 @@
+%tr
+  %td=year.id
+  %td=link_to year.league_year, edit_backend_year_path(year), target: :_blank
+  %td
+    .btn-group.pull-right
+      %a.btn.btn-sm.btn-primary.w-c{ href: polymorphic_path([:edit, :backend, year]), target: :_blank }
+        %span.glyphicon.glyphicon-pencil
+      %a.btn.btn-danger.btn-sm.w-c{ href: polymorphic_path([:backend, year]), data: { confirm: t('msg.confirm'), method: :delete } }
+        %span.glyphicon.glyphicon-trash

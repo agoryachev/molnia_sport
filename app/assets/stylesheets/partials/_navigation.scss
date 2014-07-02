@@ -1,0 +1,355 @@
+$green: #009035;
+$red: #ae0000;
+$blue: #0b0060;
+$hover-active: #ccc;
+
+.clearfix{ clear: both; }
+
+body#red_page{
+  nav ul > li > a:hover, nav ul > li > a.active{
+    background: $red;
+  }
+}
+
+body#green_page{
+  nav ul > li > a:hover, nav ul > li > a.active{
+    background: $green;
+  }
+  nav ul > li > .submenu-box{
+    background: $green;
+  }
+  .controls{
+    .prev:hover, .next:hover{
+      color: $green;
+    }
+  }
+  .controls{
+    a:hover{
+      &:before,
+      &:after{
+        @include transition(background-color, .2s, ease-in-out);
+        background-color: $green;
+      }
+    }
+  }
+  section.tag-list-box{
+    a.tag:hover{
+    color: $green;
+    }
+  }
+}
+
+body#blue_page{
+  nav ul > li > a:hover, nav ul > li > a.active{
+    background: $blue;
+  }
+  nav ul > li > .submenu-box{
+    background: $blue;
+  }
+
+  .controls{
+    a:hover{
+      &:before,
+      &:after{
+        @include transition(background-color, .2s, ease-in-out);
+        background-color: $blue;
+      }
+    }
+  }
+
+  section.tag-list-box{
+    a.tag:hover{
+    color: $blue;
+    }
+  }
+}
+
+nav{
+  width: 980px;
+  height: 45px;
+  margin: {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: -20px !important;
+  }
+  background: #f1f1f1;
+  position: relative;
+  z-index: 100;
+  ul{
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    list-style: none;
+    li{
+      float: left;
+      &:hover{
+        // & > .submenu-box{
+        //   height: 243px;
+        // }
+      }
+      > a{
+        @include font(Roboto, 16px, #151515, bold);
+        text: {
+          transform: uppercase;
+          decoration: none;
+        }
+        line-height: 45px;
+        display: block;
+        padding: 0 20px;
+        @include transition(background color box-sizing, .2s, ease-in-out);
+        @include box-sizing;
+        &:hover,
+        &.active{
+          color: #fff;
+        }
+      }
+
+      .submenu-box{
+        overflow: hidden;
+        @include box-sizing;
+        width: 100%;
+        height: 0;
+        padding: 0 20px;
+        position: absolute;
+        top: 44px;
+        left: 0;
+        background: $green;
+        
+        .menu-slider{
+          height: 50px;
+          border-bottom: 1px solid #74bc8f;
+          .list-wrapper{
+            width: 783px;
+            height: 51px;
+            overflow: hidden;
+            float: left;
+          }
+          ul.list{
+            left: 0;
+            position: relative;
+            @include transition(left, .2s, ease-out);
+            height: inherit;
+            li{
+              &.active a{
+                color: $hover-active;
+              }
+              padding: 0;
+              a{
+                line-height: 50px;
+                padding: 0 10px;
+                color: #fff;
+                &:first-child{
+                  padding-left: 0;
+                }
+                @include font(Roboto, 16px, white);
+                &:hover{
+                  color: $hover-active;
+                }
+                text-transform: none;
+              }
+            }
+          }
+          .controls{
+            float: left;
+            width: 70px;
+            margin-top: 15px;
+            margin-left: 87px;
+
+            %common-controls-params{
+              @include border-radius;
+              display: block;
+              width: 29px;
+              height: 20px;
+              border: 1px solid #dcdcdc;
+              position: relative;
+              @include transition(background color, .2s, ease-in-out);
+              &:hover{
+                cursor: pointer;
+                background: #fff;
+                color: $green;
+                &:before,
+                &:after{
+                  @include transition(background-color, .2s, ease-in-out);
+                  background-color: $hover-active;
+                }
+              }
+              &:before{
+                content: '';
+                width: 1px;
+                height: 8px;
+                background-color: #fff;
+                position: absolute;
+              }
+              &:after{
+                content: '';
+                width: 1px;
+                height: 8px;
+                background-color: #fff;
+                position: absolute;
+              }
+            }
+            .prev{
+              @extend %common-controls-params;
+              float: left;
+              &:before{
+                @include transform(40deg);
+                top: 3px;
+                left: 13px;
+              }
+              &:after{
+                @include transform(-40deg);
+                top: 9px;
+                left: 13px;
+              }
+            }
+            .next{
+              @extend %common-controls-params;
+              float: right;
+              &:before{
+                @include transform(-40deg);
+                top: 3px;
+                left: 13px;
+              }
+              &:after{
+                @include transform(40deg);
+                top: 9px;
+                left: 13px;
+              }
+            }
+          }
+        }
+        article.main-article{
+          width: 455px;
+          height: 116px;
+          margin-top: 18px;
+          border-right: 1px solid $hover-active;
+          padding-right: 23px;
+          float: left;
+          figure{
+            width: 171px;
+            height: 115px;
+            float: left;
+            margin: 0;
+            padding: 0;
+            img{
+              width: inherit;
+              height: inherit;
+            }
+          }
+          .content{
+            float: right;
+            height: 115px;
+            width: 263px;
+            h1{
+              margin: 0;
+              padding: 0;
+              line-height: 18px;
+              a{
+                text-decoration: none;
+                color: #fff;
+                @include transition(color, .2s, ease-in-out);
+                &:hover{
+                  color: $hover-active;
+                }
+              }
+              font: {
+                family: 'PT Sans';
+                size: 18.2px;
+                weight: bold;
+              }
+            }
+            p{
+              color: #fff;
+              margin: 0;
+              padding: 0;
+              font: {
+                family: 'PT Sans';
+                size: 14px;
+              }
+              line-height: 16px;
+              margin-top: 10px;
+            }
+          }
+        }
+        section.last-articles{
+          width: 460px;
+          ul{
+            width: 417px;
+            height: inherit;
+            overflow: hidden;
+          }
+          li{
+            width: inherit;
+            margin-bottom: 14px;
+          }
+          @include box-sizing;
+          width: 460px;
+          height: 116px;
+          float: left;
+          padding-left: 27px;
+          padding-right: 16px;
+          padding-top: 20px;
+          time{
+            width: 10%;
+            color: $hover-active;
+            float: left;
+            margin-right: 10px;
+            font: {
+              family: 'PT Sans';
+              size: 14px;
+            }
+          }
+          a{
+            width: 85%;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            float: left;
+            text-decoration: none;
+            @include transition(color, .2s, ease-in-out);
+            &:hover{
+              color: $hover-active;
+              box-shadow: none;
+            }
+            text-transform: none;
+            line-height: 14px;
+            font: {
+              family: 'PT Sans';
+              size: 14px;
+              weight: normal;
+            }
+          }
+        }
+        section.tag-list-box{
+          width: inherit;
+          height: 20px;
+          margin-top: 20px;
+          a.tag{
+            display: block;
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #fff;
+            margin-right: 7px;
+            @include transition(color background border, .2s, ease-in-out);
+            @include border-radius();
+            &:hover{
+              color: $green;
+              background-color: #fff;
+              border-color: #fff;
+            }
+            font: {
+              family: 'PT Sans';
+              size: 12px;
+              weight: normal;
+            }
+            color: #fff;
+            text-decoration: none;
+            padding: 0 8px
+          }
+        }
+      }
+    }
+  }
+}

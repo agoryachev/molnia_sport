@@ -1,0 +1,17 @@
+%article.side_news.side_pad.right_panel_widget#main_news_panel
+  %h3.side_title
+    %strong ГЛАВНЫЕ НОВОСТИ
+  %ul.tags_list.top_news_links
+    -params[:type] = 'last'
+    %li.active=link_to 'СВЕЖИЕ', posts_top_path(params)
+    -params[:type] = 'popular'
+    %li=link_to 'ПОПУЛЯРНЫЕ', posts_top_path(params)
+    -params[:type] = 'discussed'
+    %li=link_to 'ОБСУЖДАЕМЫЕ', posts_top_path(params)
+  %ul.list
+    -popular_posts.each do |post|
+      -post = post.feedable if post.respond_to?(:feedable)
+      %li
+        =link_to polymorphic_url([post.category, post]) do
+          %span.time=post.published_at.strftime('%H:%M')
+          %span.txt=post.title

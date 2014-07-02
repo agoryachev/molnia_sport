@@ -1,0 +1,3 @@
+- if @current_employee.can_update_flags?
+  =form_for model, url: backend_update_flag_path(model.class.name, model.id, field), method: :put, html: {remote: true, class: :ajax} do |f|
+    = f.check_box field

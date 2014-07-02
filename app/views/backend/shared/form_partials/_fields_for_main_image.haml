@@ -1,0 +1,34 @@
+= f.fields_for :main_image do |img_form|
+  %h4 Изображение-заставка
+  .row
+    .col-md-5
+      .form-group
+        = img_form.label :file, nil, skip_check: true
+        %br/
+        .progress.upload-progress-bar#upload_image
+          .progress-bar.progress-bar-info.upload-label 5%
+          %div{class: "progress progress-striped active"}
+            .bar
+          .upload-progress
+          .clearfix
+          %br
+          %br
+          %button.btn.btn-danger.js-stop-upload Стоп
+        %button.btn.btn-info.js-start-upload#upload_image_button Выберите файл
+        %p.help-block
+          %small
+            * Максимальный размер файла - #{Setting.backend_max_image_size.gsub('mb', 'Мб')}.
+      .clearfix
+
+    .col-md-5
+      #image_block{data: {container: :upload_image, url: url_for([:backend, model]), max: {size: Setting.backend_max_image_size}, chunk: { size: Setting.backend_chunk_size_image}, filter: { title: 'Image'}, filter: {extensions: Setting.image_extensions}, runtimes: :html5, entity: :video}}
+        - unless img_form.object.new_record?
+          = image_tag img_form.object.file(:_90x90), class: :thumbnail
+        - unless img_form.object.new_record?
+          %label.checkbox
+            %span.glyphicon.glyphicon-trash
+            = img_form.check_box :_destroy, skip_check: true
+        -else 
+          %label.checkbox.hide
+            %span.glyphicon.glyphicon-trash
+            = img_form.check_box :_destroy, skip_check: true

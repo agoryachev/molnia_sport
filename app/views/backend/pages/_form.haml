@@ -1,0 +1,19 @@
+= render 'backend/shared/messages'
+
+.container-content
+  = form_for([:backend, @page], html: {class: :form}) do |f|
+    %fieldset
+      %ul.nav.nav-tabs.tabs
+        %li.active
+          %a{href:'#tab1', data: {toggle: 'tab'} }
+            Общие
+        %li
+          %a{href:'#tab2', data: {toggle: 'tab'} }
+            Сео
+      .tab-content
+        #tab1.tab-pane.active= render 'tab1', f: f
+        #tab2.tab-pane= render 'backend/shared/nested/seo', f: f
+    .form-actions
+      = f.submit t('label.save'), class: 'btn btn-primary'
+      = f.submit t('label.save_and_exit'), class: 'btn btn-primary'
+      = link_to 'Удалить', backend_page_path(@page), method: :delete , class: 'btn btn-danger' unless @page.new_record?

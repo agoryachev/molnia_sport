@@ -1,0 +1,16 @@
+//=require_tree ./vendor
+//=require select-theme-default
+//=require style
+//=require jquery.ui.tabs
+
+.select-theme-default{
+  z-index: 10;
+  width: 106px
+}
+
+.select-target{
+  width: 172px
+}
+.select-options, .select-content{
+  width: 172px
+}

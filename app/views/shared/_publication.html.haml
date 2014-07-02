@@ -1,0 +1,11 @@
+%article{data: { published: {at: publication.published_at.to_time.to_i, id: publication.id}}}
+  =render 'shared/info', model: publication
+  =link_to polymorphic_url([publication.category, publication]), class: :img do
+    =show_main_image(publication, "300x200", publication.title)
+    %span.photo_pic
+    .overlay
+  %h3=link_to publication.title, polymorphic_url([publication.category, publication])
+  -if publication.respond_to? :subtitle
+    %p=publication.subtitle
+  -else
+    %p=truncate(publication.content, length: 100)

@@ -1,0 +1,5 @@
+%section.search_pad
+  .search_pad_shadow
+
+=render 'twitter_instagram/instagram_records', model: @instagrams if @instagrams.present?
+=render 'twitter_instagram/twitter_records', model: @tweets if @tweets.present?

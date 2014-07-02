@@ -1,0 +1,52 @@
+.tournaiments_list{
+  @include box-sizing();
+
+  margin:0 0 14px;
+  width: 929px;
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    color:#000;
+
+    thead{
+      tr:nth-child(odd){
+        background: #f1f1f1;
+      }
+    }
+    tbody{
+      tr:nth-child(even){
+        background: #f1f1f1;
+      }
+    }
+  }
+
+  th{
+    border-left: 1px solid #dcdcdc;
+    padding: 1px 0 2px;
+    font-weight: bold;
+    font-size: 12px;
+    &:first-child{
+      border-left: none;
+    }
+  }
+  td{
+    border-left:1px solid #dcdcdc;
+    padding: 5px;
+    text-align: center;
+
+    &:first-child{
+      border-left:none;
+    }
+  }
+
+  .pad{
+    width:929px;
+    background:#fff;
+    position:relative;
+    padding:11px 10px;
+    box-shadow:2px 2px 5px rgba(199,199,199,0.3);
+
+    @include box-sizing();
+  }
+}

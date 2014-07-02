@@ -1,0 +1,143 @@
+.place
+  position: relative
+  width: 943px
+  height: 105px
+  background: url('0.png') no-repeat
+  outline: 1px solid green
+  top: 104px
+  left: 240px
+  opacity: 0
+
+%table-reset
+  border: none
+  border-collapse: collapse
+  border-spacing: 0
+
+
+section.group-slider
+  width: 940px
+  height: 110px
+  position: relative
+  margin: 0 auto
+  margin-bottom: 20px
+  .list-wrapper
+    width: 890px
+    overflow: hidden
+    margin-left: 31px
+  ul
+    width: inherit
+    height: 110px
+    margin: 0
+    position: relative
+    left: 0
+    padding: 0
+    list-style: none
+    +transition(left, .4s, ease-in-out)
+    li
+      +box-sizing
+      font:
+        family: 'PT Sans', sans-serif
+        size: 10px
+      &:nth-child(4n)
+        border-right: none
+      color: #444444
+      width: 212px
+      height: inherit
+      float: left
+      border-right: 1px solid #e8e8e8
+      margin-right: 14px
+      padding-right: 12px
+      &:first-child
+        padding-left: 0
+      table
+        @extend %table-reset
+        margin: 0
+        padding: 0
+        thead
+          tr
+            margin: 0
+            padding: 0
+            vertical-align: top
+          th
+            vertical-align: top
+            margin: 0
+            padding: 0
+            text-transform: uppercase
+            &:nth-child(1)
+              font-size: 12px
+              font-weight: bold
+            &:nth-child(1), &:nth-child(3), &:nth-child(4)
+              text-align: center
+            &:nth-child(2)
+              padding-left: 5px
+            &:nth-child(3)
+              padding-left: 30px
+            &:nth-child(4)
+              padding-left: 11px
+        tbody
+          font-size: 12px
+          td
+            vertical-align: top
+            margin: 0
+            padding: 0
+            height: 17px
+            &:nth-child(1), &:nth-child(3), &:nth-child(4)
+              text-align: center
+              img
+                border: 1px #ccc solid
+            &:nth-child(2)
+              padding-left: 5px
+            &:nth-child(3)
+              padding-left: 30px
+            &:nth-child(4)
+              padding-left: 11px
+  section.controls
+    .control-wrapper
+      position: absolute
+      top: 50px
+      &:first-child
+        left: -7px
+      &:last-child
+        right: 4px
+    %default-control-params
+      width: 11px
+      height: 24px
+      display: block
+      cursor: pointer
+      position: relative
+      &:before
+        content: ''
+        width: 1px
+        height: 11px
+        position: absolute
+        top: 7px
+        right: 0
+        background: #cccccc
+      &:after
+        content: ''
+        width: 1px
+        height: 11px
+        position: absolute
+        top: 0
+        right: 0
+        background: #cccccc
+    a.next
+      @extend %default-control-params
+      &:after
+        +transform(-45deg)
+      &:before
+        +transform(45deg)
+      &:hover:after
+        background: #b13431
+      &:hover:before
+        background: #b13431
+    a.prev
+      @extend %default-control-params
+      &:after
+        +transform(45deg)
+      &:before
+        +transform(-45deg)
+      &:hover:after
+        background:  #b13431
+      &:hover:before
+        background:  #b13431

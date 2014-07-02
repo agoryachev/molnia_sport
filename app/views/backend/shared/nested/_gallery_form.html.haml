@@ -1,0 +1,19 @@
+- unless item.gallery.nil?
+  %h4 Галерея
+  %table.table.table-condensed.table-striped
+    %tbody
+      %tr
+        %td.span1
+          %label.checkbox
+            %i.icon.icon-trash
+            = f.check_box :delete_gallery
+        %td
+          = item.gallery.title
+%h4 Добавить(изменить) галерею:
+%table.table.table-condensed.table-striped#gallery-datatable{data: {source: backend_datatable_galleries_path(item.gallery_id.to_i, item.class.to_s, format: "json") }}
+  %thead
+    %th#th1{style: "width: 30px !important;"}
+      %i.icon-ok
+    %th{style: "width: 60px !important;"} #
+    %th Заголовок
+.clearfix

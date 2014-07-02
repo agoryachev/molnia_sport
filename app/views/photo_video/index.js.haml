@@ -1,0 +1,11 @@
+var container = $('section.news_list')
+-@photos_videos.each do |fv|
+  var $item = $("#{j render(fv.feedable)}");
+  container.append($item);
+
+-if @photos_videos.next_page
+  $('.pagination').replaceWith("#{j will_paginate(@photos_videos)}");
+  $('.pagination').hide()
+-else
+  $('.pagination').remove();
+  $('.more').remove();

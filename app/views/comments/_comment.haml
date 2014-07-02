@@ -1,0 +1,14 @@
+%article
+  .img=show_main_image(comment.user, '35x35', comment.user.full_name)
+  .inf_pad
+    .comnt_rate_pad
+      -if current_user && current_user.id != comment.user_id
+        -unless current_user.voted_for? comment
+          =link_to '', "/comments/#{comment.id}/update_vote/like", remote: true, class: 'up_rate'
+          =link_to '', "/comments/#{comment.id}/update_vote/dislike", remote: true, class: 'down_rate'
+      %p.rate_val #{comment.likes.size-comment.dislikes.size}
+    %h3
+      =comment.user.nickname
+      = time_tag comment.created_at, time_ago_in_words(comment.created_at) + ' назад'
+    %p=simple_format(comment.content)
+  .clr

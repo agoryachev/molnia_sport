@@ -1,0 +1,37 @@
+.card-match{class: "side-#{side} stage-#{stage} card-match-#{pos}"}
+  .team-home
+    - unless match.nil?
+      - unless stage.zero?
+        .flag
+          =show_main_image match.team_home, '22x13', match.team_home.try(:title)
+      .title
+        - t = stage.zero? ? match.team_home.title.mb_chars.upcase : match.team_home.title
+        %a{href: national_teams_path(match.team_home.id)}
+          = (t.size > 9 && !stage.zero?) ? t[0..9]+"." : t
+      .score
+        = match.count_home
+    - else
+      .title.no-player
+        =stage.zero? ? 'КОМАНДА 1' : 'Команда 1'
+  .time-start
+    .time-part
+      = match_time[:time]
+    .date-part
+      = match_time[:date]
+  .team-guest
+    - unless match.nil?
+      - unless stage.zero?
+        .flag
+          =show_main_image match.team_guest, '22x13', match.team_guest.try(:title)
+      .title
+        - t = stage.zero? ? match.team_guest.title.upcase : match.team_guest.title
+        %a{href: national_teams_path(match.team_guest.id)}
+          = (t.size > 9 && !stage.zero?) ? t[0..9]+"." : t
+      .score
+        = match.count_guest
+    - else
+      .title.no-player
+        =stage.zero? ? 'КОМАНДА 2' : 'Команда 2'
+  - if stage == 1
+    .stage
+      3 место

@@ -1,0 +1,11 @@
+%tr{class: !team.is_published? && 'muted'}
+  %td= main_image_backend team
+  %td= team.id
+  %td
+    = link_to team.title, edit_backend_team_path(team)
+  %td
+    %span{class: "badge #{team.category.color}"}
+      = link_to team.category.title, edit_backend_category_path(team.category), class: 'white-text'
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: team, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: team, field: :is_comments_enabled
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: team

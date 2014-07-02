@@ -1,0 +1,26 @@
+%br/
+.row
+  .col-md-12
+    =render 'backend/shared/form_partials/persons_select', f: f
+
+  .col-md-12.persons
+    .row
+      -@team.persons.each do |person|
+        .col-md-2.person{data:{id: person.id}}
+          %button.close.remove-person{aria: {hidden: "true"}, style:"margin-top: 0px;margin-right: 5px;"} &times;
+          = check_box_tag '', person.id, false, name: 'destroy_selected[]', class: 'hidden'
+          .thumbnail{style: 'margin-bottom: 0px;'}
+            =main_image_backend person
+            .caption
+              %p.centered{style: 'mardin: 0;'}=link_to person.full_name, edit_backend_person_path(person), target: :_blank
+
+=content_for :templates do
+  %script{type:"text/template", id: 'person-template'}
+    .col-md-2.person{data: {id: "{{id}}"}}
+      %button.close.remove-person{aria: {hidden: "true"}, style:"margin-top: 0px;margin-right: 5px;"} &times;
+      %input.hidden{id: "", name: "destroy_selected[]", type: "checkbox", value: "{{id}}"}
+      .thumbnail{style: 'margin-bottom: 0px;'}
+        %img.thumbnail{alt: "_90x90", height: "90", src: "{{main_image}}", width: "90"}
+        .caption
+          %p.centered{style: 'mardin: 0;'}
+            %a{href: "/backend/persons/{{id}}/edit", target: :_blank} {{name_first}} {{name_last}}

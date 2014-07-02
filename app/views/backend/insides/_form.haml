@@ -1,0 +1,27 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @inside], html: {class: "form"}) do |f|
+    %fieldset
+      %br
+      .row
+        .col-md-6
+          .form-group
+            = f.label :source
+            = f.text_field :source, class: 'form-control', maxlength: 255
+
+          .form-group
+            = f.label :inside_status_id
+            =f.collection_select :inside_status_id, InsideStatus.all, :id, :title, {}, class: 'form-control'
+
+          .form-group
+            = f.label :person_id
+            =f.collection_select :person_id, Person.all, :id, :full_name, {}, class: 'form-control'
+
+          .form-group
+            =render 'backend/shared/form_partials/datetimepicker', f: f, field: :published_at, model: @inside, format: "DD/MM/YYYY HH:mm"
+
+      =render 'backend/shared/form_partials/textarea', f: f
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      = f.submit t("label.save_and_exit"), class: "btn btn-primary"
+      = link_to "Удалить #{@inside.is_published ? 'Инсайд' : 'Черновик'}", [:backend, @inside], data: { confirm: t("msg.confirm"), method: :delete }, class: "btn btn-danger"

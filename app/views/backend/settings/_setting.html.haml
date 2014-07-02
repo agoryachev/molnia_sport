@@ -1,0 +1,7 @@
+%tr
+  %td
+  %td
+    = t("parameters.#{setting.name}")
+  %td{style: "word-break: break-all;"}
+    = setting.content
+  %td=render "backend/shared/blocks/edit_buttons", model: setting

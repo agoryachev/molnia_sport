@@ -1,0 +1,4 @@
+.form-group
+  = f.label :team_ids
+  = f.collection_select :team_ids, Team.is_published.order(:title), :id, :title, {}, multiple: true, class: 'form-control teams-selectize'
+  %p.help-block=t('label.autocomplete')

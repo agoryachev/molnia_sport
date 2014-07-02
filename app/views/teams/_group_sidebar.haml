@@ -1,0 +1,24 @@
+.team-group
+  .border-line
+    %h3.title
+      Группа H
+    %table
+      %tr.title
+      %tr.one
+        %th М
+        %th Сборная
+        %th ЗГ
+        %th ПГ
+        %th И
+        %th О
+      - @league_group.leagues_statistics.order("points DESC, goals_diff DESC").each_with_index do |statistic, index|
+        %tr.two{class: (statistic.team.id == @team.id ? 'current' : '')}
+          %td=index + 1
+          %td
+            =show_main_image statistic.team, '30x17', statistic.team.title
+            %a{href: national_teams_path(statistic.team.id)}
+              =statistic.team.try(:title)
+          %td=statistic.goals_win
+          %td=statistic.goals_fail
+          %td=statistic.matches
+          %td=statistic.points

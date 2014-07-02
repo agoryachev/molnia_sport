@@ -1,0 +1,24 @@
+= render 'subnav', columnist_id: params[:columnist_id]
+= render 'backend/shared/blocks/filter', model: :columnist_columnist_posts
+- if @columnist_posts && @columnist_posts.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th #
+        %th Новость
+        %th Категория
+        %th Дата публикации
+        %th.centered
+          %span.glyphicon.glyphicon-eye-open
+        %th.centered
+          %span.glyphicon.glyphicon-comment
+        %th
+    %tbody=render @columnist_posts
+  .help-block
+    %small
+      %span.label.label-default &nbsp;&nbsp;&nbsp; 
+      Не опубликовано  
+    = will_paginate(@columnist_posts, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'
+

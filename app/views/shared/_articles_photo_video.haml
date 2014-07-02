@@ -1,0 +1,23 @@
+%section.news_list.news_list2
+  -if @last_post.present?
+    .big_post.little
+      .post_inf
+        %time{datetime: @last_post.published_at}=dt(@last_post.published_at)
+      %h3=link_to @last_post.title, category_post_path(@last_post.category, @last_post)
+      =link_to category_post_path(@last_post.category, @last_post), class: :img do
+        =show_main_image(@last_post, '300x200', @last_post.title)
+        .overlay
+      %p=raw truncate(@last_post.cut_depricated_tags_from_content, length: 400)
+      %p.detail=link_to 'Читать полностью', category_post_path(@last_post.category, @last_post)
+%section.news_list.news_list2
+  .fll
+    -if @posts.present? && @posts.length > 0
+      -@posts.each do |post|
+        %article.little
+          =link_to category_post_path(post.category, post), class: :img do
+            =show_main_image(post, '105x70', post.title)
+            .overlay
+          .post_inf
+            %time{datetime: post.published_at}=d(post.published_at)
+          %h3=link_to post.title, category_post_path(post.category, post)
+          %p=truncate(post.subtitle, length: 80)

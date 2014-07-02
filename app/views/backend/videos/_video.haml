@@ -1,0 +1,16 @@
+%tr{class: video.is_published? ? "" : "muted", data: {id: video.id}}
+  %td= main_image_backend video
+  %td= video.id
+  %td
+    = publication_options(video)
+    = link_to video.title, edit_backend_video_path(video)
+  %td
+    -if video.category.present?
+      %span{class: "badge #{video.category.color}"}
+        = link_to video.category.title, edit_backend_category_path(video.category), class: 'white-text'
+  %td
+    %small= video.employee.try(:full_name)
+  %td= dt(video.published_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: video, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: video, field: :is_comments_enabled
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: video

@@ -1,0 +1,15 @@
+%tr
+  %td= author.id
+  %td= link_to author.name, edit_backend_author_path(author)
+  %td= author.employee.try(:nickname)
+  %td.centered
+    %small
+      %span.badge
+        Новостей:
+        = author.posts_count
+  %td
+    .btn-group.pull-right
+      %a.btn.btn-sm.btn-primary.w-c{ href: edit_backend_author_path(author) }
+        %span.glyphicon.glyphicon-pencil
+      %a.btn.btn-danger.btn-sm.w-c{ href: backend_author_path(author), data: { confirm: t('msg.confirm'), method: :delete } }
+        %span.glyphicon.glyphicon-trash

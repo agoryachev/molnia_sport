@@ -1,0 +1,5 @@
+%section.clubs_list
+  -teams.each do |team|
+    =link_to team do
+      =show_main_image(team, '65x65', team.title)
+  .clr

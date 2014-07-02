@@ -1,0 +1,6 @@
+%tr{class: tactical_scheme.is_published ? '' : 'muted', data: {id: tactical_scheme.id}}
+  %td= tactical_scheme.id
+  %td{width: '80%'}= link_to tactical_scheme.description, edit_backend_tactical_scheme_path(tactical_scheme)
+  %td.centered
+    =render "backend/shared/blocks/publish_checkbox", model: tactical_scheme, field: :is_published
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: tactical_scheme

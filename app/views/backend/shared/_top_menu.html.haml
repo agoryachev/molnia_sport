@@ -1,0 +1,95 @@
+%ul.nav.navbar-nav
+  %li{class: params[:controller] == 'backend/backend' && :active}
+    =link_to backend_root_path do
+      %i.glyphicon.glyphicon-th-large
+
+  - if current_employee.partial_abilities.exists?(context: "partials.menu.content")
+    %li.dropdown
+      =link_to '#', class: 'dropdown-toggle', data: { hover: :dropdown } do
+        Содержимое
+        %b.caret
+      %ul.dropdown-menu
+        %li{class: current_page?(backend_categories_path) && 'active'}
+          =link_to 'Категории', backend_categories_path
+        %li{class: current_page?(backend_posts_path) && 'active'}
+          =link_to 'Новости', backend_posts_path
+        %li{class: current_page?([:backend, :insides]) && 'active'}
+          =link_to 'Инсайды', [:backend, :insides]
+        %li{class: current_page?(backend_galleries_path) && 'active'}
+          =link_to 'Фотогалереи', backend_galleries_path
+        %li{class: current_page?(backend_videos_path) && 'active'}
+          =link_to 'Видеоролики', backend_videos_path
+        %li{class: current_page?(backend_tweets_path) && 'active'}
+          =link_to 'Твиты', backend_tweets_path
+        %li{class: current_page?(backend_instagram_records_path) && 'active'}
+          =link_to 'Инстаграмы', backend_instagram_records_path
+        %li{class: current_page?(backend_twitter_persons_path) && 'active'}
+          =link_to 'Пользователи твиттера', backend_twitter_persons_path
+        %li{class: current_page?(backend_instagram_persons_path) && 'active'}
+          =link_to 'Пользователи инстаграма', backend_instagram_persons_path
+
+  - if current_employee.partial_abilities.exists?(context: "partials.menu.users")
+    %li.dropdown
+      =link_to '#', class: 'dropdown-toggle', data: { hover: :dropdown } do
+        Пользователи
+        %b.caret
+      %ul.dropdown-menu
+        %li{class: current_page?(backend_users_path) && 'active'}
+          =link_to 'Управление', backend_users_path
+
+        %li{class: current_page?(backend_comments_path) && 'active'}
+          =link_to 'Комментарии', backend_comments_path
+
+  - if current_employee.partial_abilities.exists?(context: "partials.menu.settings")
+    %li.dropdown
+      =link_to '#', class: 'dropdown-toggle', data: { hover: :dropdown } do
+        Настройки
+        %b.caret
+      %ul.dropdown-menu
+        %li{class: current_page?(backend_pages_path) && :active}
+          =link_to 'Страницы', backend_pages_path
+
+        %li{class: current_page?(backend_authors_path) && :active}
+          =link_to 'Авторы', backend_authors_path
+
+        %li{class: current_page?(backend_employees_path) && :active}
+          =link_to 'Сотрудники', backend_employees_path
+
+        %li{class: current_page?(backend_groups_path) && :active}
+          =link_to 'Группы и доступ', backend_groups_path
+
+        %li{class: current_page?(backend_settings_path) && :active}
+          =link_to 'Параметры сайта', backend_settings_path
+
+  - if current_employee.partial_abilities.exists?(context: 'partials.menu.sport')
+    %li.dropdown
+      =link_to '#', class: 'dropdown-toggle', data: { hover: :dropdown } do
+        Спорт
+        %b.caret
+      %ul.dropdown-menu
+        %li{class: current_page?(backend_countries_path) && :active}
+          =link_to 'Страны', backend_countries_path
+        %li{class: current_page?(backend_leagues_path) && :active}
+          =link_to 'Лиги', backend_leagues_path
+        %li{class: current_page?(backend_teams_path) && :active}
+          =link_to 'Команды', backend_teams_path
+        %li{class: current_page?(backend_persons_path) && :active}
+          =link_to 'Игроки', backend_persons_path
+        %li{class: current_page?(backend_columnists_path) && :active}
+          =link_to 'Колумнисты', backend_columnists_path
+        %li{class: current_page?(backend_characters_path) && :active}
+          =link_to 'Амплуа', backend_characters_path
+        %li{class: current_page?(backend_transfers_path) && :active}
+          =link_to 'Трансферы', backend_transfers_path
+        %li{class: current_page?(backend_tactical_schemes_path) && :active}
+          =link_to 'Тактические схемы', backend_tactical_schemes_path
+
+%ul.nav.navbar-nav.navbar-right
+  %li
+    =link_to backend_employee_path(current_employee) do
+      %span.glyphicon.glyphicon-user
+      = current_employee.try(:full_name)
+  %li
+    =link_to '<span class="glyphicon glyphicon-log-out"></span> Выйти'.html_safe, destroy_employee_session_path, method: :delete
+  %li
+    =link_to '<span class="glyphicon glyphicon-home"></span> Главная'.html_safe, root_url

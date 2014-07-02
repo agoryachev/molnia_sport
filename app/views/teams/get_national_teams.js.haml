@@ -1,0 +1,8 @@
+var $items = $("#{j render(partial:'article_little', collection: @related_posts)}");
+$('.tab.active section.news_list .fll').append($items);
+-if @related_posts.next_page
+  $('.pagination').replaceWith("#{j will_paginate(@related_posts)}");
+  $('.pagination').hide()
+-else
+  $('.pagination').remove();
+  $('.more').remove();

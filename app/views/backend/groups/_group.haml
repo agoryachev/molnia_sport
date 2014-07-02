@@ -1,0 +1,9 @@
+%tr{data: {id: group.id}}
+  %td= group.id
+  %td.centered= link_to group.title, edit_backend_group_path(group)
+  %td.centered
+    %small
+      %span.label.label-default
+        %span.glyphicon.glyphicon-user
+        = group.employees_count
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: group

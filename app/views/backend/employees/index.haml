@@ -1,0 +1,20 @@
+= render 'backend/shared/blocks/subnav', model: 'employees'
+
+- if @employees && @employees.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th
+        %th #
+        %th Имя
+        %th Группа
+        %th Email
+        %th Последний вход
+        %th.centered Кол-во входов
+        %th
+    %tbody
+      =render @employees
+
+  = will_paginate(@employees, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'

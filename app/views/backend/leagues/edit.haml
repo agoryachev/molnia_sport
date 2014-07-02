@@ -1,0 +1,14 @@
+%h3=@league.title
+= render 'subnav', model: 'leagues'
+
+/ breadcrumbs
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Страны', backend_countries_path
+      %li=link_to @league.country.title, edit_backend_country_path(@league.country) if @league.country.present?
+      %li=link_to 'Лиги', backend_leagues_path
+      %li.active=@league.title
+/ end breadcrumbs
+
+= render 'form'

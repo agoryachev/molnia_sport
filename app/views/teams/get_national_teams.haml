@@ -1,0 +1,53 @@
+=render 'shared/meta/meta_block', model: @team
+.national-team
+  =render 'teams/teams_selector'
+  .main-content
+    %section.lc
+      .team-info
+        .team-left-column
+          .flag
+            =show_main_image @team, '102x69', @team.try(:title)
+        .team-right-column
+          %h2
+            =@team.subtitle
+          .info-lines
+            - unless @year_of_foundation.nil?
+              .info-line
+                %span.title
+                  Дата основания:
+                %span.dta
+                  =@team.year_of_foundation
+            - unless @coach.nil?
+              .info-line
+                %span.title
+                  Тренер:
+                %span.dta
+                  %a{href: person_path(@coach.id)}
+                    =@coach.full_name
+            -# .info-line.hidden
+            -#  %span.title
+            -#    Местоположение:
+            -#  %span.dta
+            -#    =@team.country.title
+            -#.info-line.hidden
+            -#  %span.title
+            -#    Арены/стадионы:
+            -#  %span.dta
+          .info-description
+            =@team.content.html_safe
+          .social= render 'shared/blocks/socials'
+      .news-block.tabs
+        %ul.tabs-news.tab-links
+          %li.active
+            %a{href: "#tab-news"} Новости
+          %li
+            %a{href: "#tab-infogr"} Инфографика
+        .tab-content
+          .box.tab#tab-news.active
+            =render 'shared/team_tabs/post_tab', model: @team, related_posts_last: @related_posts_last, related_posts: @related_posts, with_paginate: true
+          .box.tab#tab-infogr
+            =render 'shared/team_tabs/post_tab', model: @team, related_posts_last: @infographics_last, related_posts: @infographics, with_paginate:false
+    %aside.rc
+      =render 'teams/group_sidebar'
+      =render 'teams/matches_sidebar'
+      %section.accordion.soc_pad=render 'shared/aside/social_accordion'

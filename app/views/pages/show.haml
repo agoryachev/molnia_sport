@@ -1,0 +1,15 @@
+=render 'shared/meta/meta_block', model: @page
+.page-header-margin
+%section.lc
+  %article.det_post.page-content
+    %br/
+    %h1=@page.title
+    .text
+      =simple_format(@page.content)
+    =render 'shared/blocks/socials', model: @page
+
+    .clr
+    =render 'shared/comments/comments', comments: @comments if @page.is_comments_enabled
+=render 'shared/aside/aside'
+- if Rails.env.test?
+  .pages-for-specs

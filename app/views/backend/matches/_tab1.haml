@@ -1,0 +1,44 @@
+%br
+.row
+  .col-md-6
+    %input{type: "hidden", class: 'leagues-group-field', name: 'leagues_group[league_id]', value: @match.try(:leagues_group).try(:league).try(:id)}/
+    %input{type: "hidden", class: 'year-field', name: 'leagues_group[year_id]', value: @match.try(:leagues_group).try(:year).try(:id)}/
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :referee_id
+      = f.select :referee_id, [[@match.try(:referee).try(:full_name), @match.try(:referee).try(:id)]], {}, class: 'form-control selectize'
+
+  .col-md-6
+    =render 'backend/shared/form_partials/published_comments', f: f
+    .checkbox
+      = f.label :is_show_in_sidebar
+      = f.check_box :is_show_in_sidebar
+
+  .col-md-12
+    .row
+      .col-md-4
+        .form-group
+          = f.label :date_at
+          .datetimepicker.input-group.date{data: {date: {format: "YYYY-MM-DD"}}}
+            =f.text_field :date_at, class: 'form-control'
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+      .col-md-4
+        .form-group
+          = f.label :start_at
+          .datetimepicker_time.input-group.date{data: {date: {format: "HH:mm"}}}
+            =f.text_field :start_at, class: 'form-control', value: (@match.try(:start_at)) ? @match.start_at.strftime("%H:%M") : ''
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-clock
+
+      .col-md-4
+        .form-group
+          = f.label :finish_at
+          .datetimepicker_time.input-group.date{data: {date: {format: "HH:mm"}}}
+            =f.text_field :finish_at, class: 'form-control', value: (@match.try(:finish_at)) ? @match.finish_at.strftime("%H:%M") : ''
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-clock
+
+=render 'backend/shared/form_partials/textarea', f: f

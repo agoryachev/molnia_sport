@@ -1,0 +1,14 @@
+%section.teams-selector
+  .group-header
+    - @all_groups.each do |group|
+      .title
+        = "Группа #{group.title}"
+  .group-body
+    - @all_groups.each do |group, index|
+      .group-column
+        - group.leagues_statistics.order('points DESC, goals_diff DESC').each do |statistic|
+          %div.group-row{class: (statistic.team.id==@team.id) ? 'current' : ''}
+            %a{href: national_teams_path(statistic.team.id)}
+              .team-flag=show_main_image statistic.team, '30x17', statistic.team.try(:title)
+              .team-name
+                =statistic.team.try(:title)

@@ -1,0 +1,12 @@
+.subnav
+  .navbar.navbar-default
+    .navbar-inner
+      %ul.nav.navbar-nav
+        %li{class: current_page?(backend_leagues_path) && :active }
+          %a{href: backend_leagues_path} 
+            %span.glyphicon.glyphicon-th-list
+            = t 'actions.index'
+        %li{class: current_page?(new_backend_league_path) && :active }
+          %a{href: new_backend_league_path} 
+            %span.glyphicon.glyphicon-pencil
+            = t 'actions.new'

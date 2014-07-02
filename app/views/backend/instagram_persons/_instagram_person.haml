@@ -1,0 +1,7 @@
+%tr
+  %td= instagram_person.id
+  %td= instagram_person.name
+  %td{width: '50%'}
+    =link_to(instagram_person.link, edit_backend_twitter_person_path(instagram_person))
+  %td= dt(instagram_person.created_at)
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: instagram_person

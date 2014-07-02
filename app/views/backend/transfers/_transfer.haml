@@ -1,0 +1,12 @@
+%tr{class: !transfer.is_published? && 'muted'}
+  %td= link_to transfer.id, edit_backend_transfer_path(transfer)
+  %td= transfer.person.try(:full_name)
+  %td= transfer.team_from.try(:title)
+  %td= transfer.team_to.try(:title)
+  %td= dt(transfer.start_at)
+  %td= dt(transfer.finish_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: transfer, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: transfer, field: :is_comments_enabled
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: transfer, field: :state
+  %td
+    %td=render "backend/shared/blocks/delete_edit_buttons", model: transfer

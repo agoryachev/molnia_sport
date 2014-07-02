@@ -1,0 +1,13 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+
+%hr
+.row
+  .col-md-12
+    .form-group
+      = f.label :content
+      = f.text_area :content, class: 'tinymce-content form-control', style: 'height: 300px;'

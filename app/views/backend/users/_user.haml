@@ -1,0 +1,18 @@
+%tr
+  %td= main_image_backend user
+  %td= user.id
+  %td.centered= user.full_name
+  %td.centered= user.email
+  %td.centered
+    - if user.last_sign_in_at.nil? 
+      Никогда
+    - else 
+      = dt(user.last_sign_in_at) unless user.last_sign_in_at.nil? 
+      = "#{user.sign_in_count} раз"
+  %td.centered=user.is_active ? 'Да' : 'Нет'
+  %td
+    .btn-group.pull-right
+      %a.btn.btn-sm.btn-primary.w-c{ href: edit_backend_user_path(user) }
+        %span.glyphicon.glyphicon-pencil
+      %a.btn.btn-danger.btn-sm.w-c{ href: backend_user_path(user), data: { confirm: t("msg.confirm"), method: :delete } }
+        %span.glyphicon.glyphicon-trash 

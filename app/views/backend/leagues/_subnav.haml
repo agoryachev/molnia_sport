@@ -1,0 +1,13 @@
+.subnav
+  .navbar.navbar-default
+    .navbar-inner
+      %ul.nav.navbar-nav
+        %li{class: current_page?(polymorphic_path([:backend, model])) && :active}
+          %a{href: polymorphic_url([:backend, model])} 
+            %span.glyphicon.glyphicon-th-list
+            = t "actions.index"
+        %li{class: current_page?(polymorphic_path([:new, :backend, model.singularize])) && :active}
+          %a{href: polymorphic_url([:new, :backend, model.singularize])} 
+            %span.glyphicon.glyphicon-pencil
+            = t "actions.new"
+      = render "backend/shared/navbar_search_form", form_url: polymorphic_path([:backend, model])

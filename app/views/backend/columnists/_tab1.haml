@@ -1,0 +1,16 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :name_first
+      = f.text_field :name_first, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :name_last
+      = f.text_field :name_last, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :name_v
+      = f.text_field :name_v, class: 'form-control', maxlength: 255
+
+=render 'backend/shared/form_partials/textarea', f: f

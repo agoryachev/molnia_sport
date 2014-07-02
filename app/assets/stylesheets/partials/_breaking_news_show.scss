@@ -1,0 +1,41 @@
+.breaking-news-show{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  z-index: 9999;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  background-color: #ae0000;
+  opacity: 0;
+
+  &:hover{
+    background-color: #ae0000;
+  }
+  .news {
+    margin: 0 5px;
+    text-align: center;
+    font: {
+      size: 16px;
+      family: Arial, Helvetica, sans-serif;
+    }
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: top;
+    a {
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  .space {
+    width: 23px;
+    height: 28px;
+    display: inline-block;
+    background: url("/assets/molnia-sep.png") no-repeat;
+    background-size: cover;
+    margin: 5px 20px 0 20px;
+  }
+}

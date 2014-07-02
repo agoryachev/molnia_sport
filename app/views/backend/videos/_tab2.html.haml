@@ -1,0 +1,52 @@
+=render 'backend/shared/form_partials/fields_for_main_image', f:f, model: @video
+%hr
+.clearfix
+= f.fields_for :clip do |clip_form|
+  %h4 Видеофайл
+  .row
+    .col-md-6
+      .form-group
+        = clip_form.label :file, nil, skip_check: true
+        .progress.upload-progress-bar#upload_video
+          .progress-bar.progress-bar-info.upload-label 5%
+          %div{class: "progress progress-striped active"}
+            .bar
+          .upload-progress
+          .clearfix
+          %br
+          %br
+          %button.btn.btn-danger.js-stop-upload Стоп
+        %button.btn.btn-info.js-start-upload#upload_video_button Выберите файл
+        %p.help-block
+          %small
+            * Поддерживаются: #{Setting.video_extensions}
+    .col-md-6
+      .control-group
+        .control-label
+          = label_tag :snapshot_time, "Время кадра"
+        .controls
+          = text_field_tag :snapshot_time, nil, placeholder: '0 секунд', class: 'form-control'
+          .help-block
+            %small
+              * Укажите секунду кадра, для создания из него главного изображения.
+              %strong Только при загрузке файла.
+    .clearfix
+    %hr
+    .col-md-6
+      %p
+        - unless @video.new_record? && @video.clip.blank?
+          = available_video_files @video
+    .clearfix
+    %hr
+    .col-md-6
+      #video_block.well{data: {container: 'upload_video', url: url_for([:backend, @video]), chunk: {size: Setting.backend_chunk_size_video}, filter: {title: 'Image'}, filter: {extensions: Setting.video_extensions}, runtimes: 'html5', entity: 'video'}}
+        - unless clip_form.object.new_record?
+          .js-video{data: {file: clip_form.object.file}}
+          %label.checkbox
+            %span.glyphicon.glyphicon-trash
+            = clip_form.check_box :_destroy, skip_check: true
+        - else
+          %label.checkbox.hide
+            %span.glyphicon.glyphicon-trash
+            = clip_form.check_box :_destroy, skip_check: true
+.clearfix

@@ -1,0 +1,14 @@
+---
+port: 8081
+rackup: api.ru
+timeout: 30
+wait: 30
+log: log/thin.log
+pid: tmp/pids/thin.pid
+max_conns: 2048
+environment: production
+max_persistent_conns: 1024
+servers: 1
+threaded: true
+no-epoll: true
+daemonize: true

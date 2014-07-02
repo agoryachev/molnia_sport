@@ -1,0 +1,13 @@
+- content_for :title, "Видео новости | #{Setting.site_name}"
+%section.search_pad
+  .search_pad_shadow
+=render 'big_slider'
+=form_tag photo_video_path, class: :news_filter, method: :get do
+  = select_tag :category_id, content_tag(:option, 'Выберите категорию', value:'') + options_from_collection_for_select( Category.is_published, :id, :title, params[:category_id])
+  .tags_list
+    =link_to 'НОВОЕ', photo_video_path, class: params[:filter] == 'new' && :active
+    =link_to 'ПОПУЛЯРНОЕ', photo_video_path, class: params[:filter] == 'popular' && :active
+.clr
+=render partial: 'shared/photos_videos_list'
+.clr
+=render 'shared/infinite_button', content: @photos_videos

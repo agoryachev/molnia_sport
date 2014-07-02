@@ -1,0 +1,9 @@
+-@broadcast_messages.order("timestamp desc").each do |message|
+  -if message.content.present?
+    .event-row
+      %strong
+        #{message.timestamp}’
+        -if message.event.present?
+          %br/
+          =image_tag message.event.image_url
+      %p=message.content

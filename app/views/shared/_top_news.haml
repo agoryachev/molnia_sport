@@ -1,0 +1,16 @@
+%section.top_news.bg_grad
+  .top_news_list
+    -unless @last_five_posts.nil?
+      -@last_five_posts.each do |post|
+        =link_to category_post_path(post.category, post), class: :item do
+          =show_main_image(post, '194x147', post.title)
+          .top-news-overlay
+          %span.inf_pad
+            %span.txt1{title: post.title}=truncate(post.title, length: 60)
+          -# .first-overlay
+          .second-overlay
+      .clr
+  =render 'shared/tags_list'
+
+
+

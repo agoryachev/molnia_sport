@@ -1,0 +1,24 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :category_id
+      /= f.collection_select :category_id, Category.select([:id, :title]), :id, :title
+      %select{name: 'video[category_id]', class: 'form-control', id: 'video_category_id'}
+        %option{value: ''}
+          Выберите
+        -@categories.each do |category|
+          %option{value: category.id, selected: @video.category_id == category.id ? true : false }
+            =category.title
+
+  .col-md-6
+    .form-group
+      =render 'backend/shared/form_partials/datetimepicker', f: f, field: :published_at, model: @video, format: "DD/MM/YYYY HH:mm"
+  =render 'backend/shared/form_partials/tags', f: f
+  .col-md-12=render 'backend/shared/form_partials/persons_select', f: f
+  .col-md-12=render 'backend/shared/form_partials/teams_select', f: f
+
+=render 'backend/shared/form_partials/textarea', f: f

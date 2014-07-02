@@ -1,0 +1,30 @@
+development: &defaults
+  host:                               "molniasport.ru"
+  site_name:                          "Молния Спорт"
+  site_description:                   "Ежедневное интернет-издание о спорте. Свежие спортивные новости, обзор спортивных событий, эксклюзивные интервью со спортсменами и комментарии"
+  site_keywords:                      "молния, новости спорта, футбол, чемпионат мира"
+  # Токен для взаимодействия с api oauth-admin.life.ru
+  oauth_api_signature_code:           "20372aa322c9884d1227c5ea77a5ad18aff8d8b62be749f185b2bb9df49bc0e5d6e45b4806293a53cd00ca1dedd299c96d964980778a4964415b521adf4feb3e"
+
+  # Размер загружаемых файлов
+  backend_max_image_size:             '2mb'
+  max_image_size:                     '10mb'
+  image_extensions:                   'jpg,jpeg,gif,png'
+  video_extensions:                   'mp4,flv,m4v,avi,webm'
+  max_unsuccess_attempts:             5
+  backend_max_uploaded_image_size:    10
+
+  records_per_page:                   20
+  # Количество отображаемых комментариев
+  comments_per_page:                  10
+  # Не публиковать комментарии, премодерация
+  moderate_comment:                   0
+  # минимальное количество блоков для отрисовки сетки (иначе двухколоночная верстка)
+  # 6 => 3 ряда по 2 блока.
+  min_blocks_count_in_grid:           6
+staging:
+  <<: *defaults
+production:
+  <<: *defaults
+test:
+  <<: *defaults

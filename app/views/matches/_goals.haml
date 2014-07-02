@@ -1,0 +1,9 @@
+-if @events_count > 3
+  %button.spoiler.spoiler_open
+.outer-goals
+  .goals-js
+    -@broadcast_messages.each do |message|
+      -if message.event.present? && message.event.type == 'Event::Goal'
+        %span.text
+          %strong #{message.timestamp}’
+          #{message.event.player.full_name} – #{@match.count_home}:#{@match.count_guest} (#{message.event.team.title})

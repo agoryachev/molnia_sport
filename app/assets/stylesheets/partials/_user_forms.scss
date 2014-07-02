@@ -1,0 +1,132 @@
+@each $width in 100, 150, 300, 400, 618 {
+  %_#{$width} {
+    width: #{$width}px;
+    input{
+      width: #{$width}px;
+    }
+  }
+}
+
+
+// temp sign_in_form styles
+.modal-header{
+  position: relative;
+}
+.sign_in_form{
+
+}
+.sign_in_form{
+  input{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+  }
+  label{
+    color: #888;
+    font-family: 'Roboto';
+  }
+  fieldset._300{ @extend %_300; }
+  fieldset._400{ @extend %_400; }
+  fieldset._618{ @extend %_618; }
+  fieldset._150{
+    @extend %_150;
+    &.name_last_fieldset{
+      margin-left: 70px;
+    }
+  }
+  input{
+    display: block;
+    float: left;
+    height: 40px;
+    padding: 0 10px;
+    line-height: 28px;
+    border: 1px solid #cbcbcb;
+    margin-bottom: 20px;
+  }
+  input[type=submit]{
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    float: right;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    @include gradient(#A8A6A7, #999999);
+
+    &:hover{
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A8A6A7),
+        color-stop(1, #7B7C7C)
+      );
+      @include gradient(#A8A6A7, #7B7C7C)
+    }
+  }
+  label{
+    font-size: 16px; 
+  }
+  input[type=checkbox]{
+    margin-top: 0px;
+    width: 20px;
+    box-shadow: none;
+  }
+  .remeber_me{
+    height: 30px;
+    label{
+      line-height: 42px;
+      float: left;
+    }
+  }
+}
+
+.sign_in_text{
+  margin-top: -48px !important;
+  a{
+    font-family: 'Roboto';
+    color: #3366cc;
+    text-decoration: none;
+  }
+}
+
+// tem flsh errors
+.errors{
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  z-index: 10041;
+  .alert{
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    color: #FFF;
+    background-color: #9f0000;
+    border-color: #EED3D7;
+  }
+  .notice{
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    color: #FFF;
+    background-color: green;
+    border-color: #D6E9C6;
+  }
+}
+
+
+.sign_in_form.login_form{
+  width: 400px;
+  margin: 0 auto;
+  input[type=text], input[type=password]{
+    width: 400px;
+  }
+   + p{
+    width: 200px;
+    margin-left: 110px;
+    margin-top: -55px !important;
+  }
+}

@@ -1,0 +1,16 @@
+= content_for :title do
+  = "#{@category.title} | #{Setting.site_name}"
+
+%section.search_pad
+  .search_pad_shadow
+%section.match_car=render 'shared/carousel/carousel', matches: @matches if @matches.present?
+
+%section.lc
+  =render 'shared/last_four_posts', post: @last_post, last_four_posts: @last_four_posts if @last_post && @last_four_posts
+  %section.news_list
+    .loading
+=render partial: 'shared/aside/aside'
+.clr
+%section.news_list_wide
+.clr
+=render 'shared/infinite_button', content: @posts if @posts.present?

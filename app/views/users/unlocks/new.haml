@@ -1,0 +1,9 @@
+= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: :sign_in_form }) do |f|
+  %h2 Выслать инструкции по разблокировке аккаунта
+  = devise_error_messages!
+  %fieldset
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  %fieldset= f.submit 'Выслать инструкции'
+= render 'users/shared/links'

@@ -1,0 +1,20 @@
+%br/
+= form.fields_for :replacement do |f|
+  / .form-group
+  /   = f.label :player_in_id, "Покидает поле"
+  /   = f.select :player_in_id, @match.players.map { |player| [player.full_name, player.id] }, {}, class: 'form-control'
+
+  .form-group
+    = f.label :player_out_id, "Покидает поле"
+    %select#broadcast_message_replacement_player_out_id.form-control{name: "broadcast_message[replacement][player_out_id]"}
+
+      -select_option_with_optgroup(@match.team_home)
+      -select_option_with_optgroup(@match.team_guest)
+
+
+  .form-group
+    = f.label :player_out_id, "Выходит на поле"
+    %select#broadcast_message_replacement_player_in_id.form-control{name: "broadcast_message[replacement][player_in_id]"}
+
+      -select_option_with_optgroup(@match.team_home)
+      -select_option_with_optgroup(@match.team_guest)

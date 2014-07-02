@@ -1,0 +1,34 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @group], html: {class: :form}) do |f|
+    %fieldset
+      .row
+        .col-md-6
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: 'form-control', maxlength: 255
+        .col-md-6
+          .form-group
+            = f.label :description
+            =f.text_area :description, class: 'form-control col-md-4', rows: 5
+        .clearfix
+      %hr
+      .row
+        .col-md-12
+          .row
+            .col-md-12
+              = hidden_field_tag 'group[ability_ids][]'
+              =link_to 'Выбрать все', '#', id: 'js-check-all', data:{target: 'group[ability_ids][]'}
+            -@abilities.each do |title, abilities|
+              .col-md-4
+                %h4.label.label-success=t("controllers.backend.#{title}", locale: :ru)
+                -abilities.each do |ability|
+                  %label.checkbox{style: 'margin: 0 !important'}
+                    = check_box_tag 'group[ability_ids][]', ability.id, @group.ability_ids.include?(ability.id)
+                    %span.label.label-info= t(ability.context, locale: :context)
+    .form-actions
+      %br/
+      = f.submit t("label.save"), class: 'btn btn-primary'
+      = f.submit t("label.save_and_exit"), class: 'btn btn-primary'
+      - unless @group.new_record?
+        = link_to 'Удалить', backend_group_path(@group), data: { confirm: t('msg.confirm'), method: :delete }, class: 'btn btn-danger'

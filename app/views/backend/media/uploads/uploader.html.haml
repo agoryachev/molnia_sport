@@ -1,0 +1,131 @@
+!!! 5
+%html
+  %head
+    %title #{Setting.site_name} :: Менеджер файлов
+    %link{href: "/kcfinder/css/files.css?v=1", rel: "stylesheet", type: "text/css"}
+    %link{href: "/kcfinder/themes/oxygen/style.css?v=1", rel: "stylesheet", type: "text/css"}
+    %script{src: "/kcfinder/js/jquery-1.7.min.js", type: "text/javascript"}
+    - if assetsPath.present?
+      %script{src: "#{assetsPath}/jquery.nmdVideoPlayerJw.js", type: "text/javascript"}
+    %script{src: "/kcfinder/js/jquery.rightClick.js", type: "text/javascript"}
+    %script{src: "/kcfinder/js/jquery.drag.js", type: "text/javascript"}
+    %script{src: "/kcfinder/js/jquery.autocomplete.js", type: "text/javascript"}
+    %script{src: "/kcfinder/js/helper.js", type: "text/javascript"}
+    %script{src: "/kcfinder/js/browser.js?v=2", type: "text/javascript"}
+    %script{src: "/kcfinder/js/ru.js?v=2", type: "text/javascript"}
+    %script{src: "/kcfinder/themes/oxygen/init.js", type: "text/javascript"}
+    :javascript
+      browser.version = "2.51";
+      browser.support.chromeFrame = false;
+      browser.support.zip = true;
+      browser.support.check4Update = true;
+      browser.lang = "ru";
+      browser.type = "files";
+      browser.theme = "oxygen";
+      browser.access = {"files":{"upload":true,"delete":true,"copy":true,"move":true,"rename":true},"dirs":{"create":true,"delete":true,"rename":true}};
+      
+      browser.dir = "#{Setting.backend_tinymce_dir}";
+      browser.uploadURL = "#{FILE_STORAGE['sftp']['url']}";
+      browser.thumbsURL = browser.uploadURL;
+
+      browser.cms = "";
+      _.kuki.domain = "";
+      _.kuki.path = "/";
+      _.kuki.prefix = "KCFINDER_";
+      $(document).ready(function() {
+        browser.resize();
+        browser.init();
+        $('#all').css('visibility', 'visible');
+      });
+      $(window).resize(browser.resize);
+%body
+  :javascript
+    $('body').noContext();
+  #resizer
+  #shadow
+  #dialog
+  #alert
+  #clipboard
+  #all
+    #left
+      #folders
+    #right
+      #toolbar
+        %div
+          %a{href: "kcact:upload"} Загрузить
+          %a{href: "kcact:refresh"} Обновить
+          %a{href: "kcact:settings"} Установки
+          %a{href: "kcact:search"} Поиск
+          #loading
+      #search
+        %div
+          %form#searchForm
+            %fieldset
+              %input{name: "seach", type: "text", value: "", placeholder: "Строка для поиска..."}
+      #settings
+        %div
+          %fieldset
+            %legend Просмотр:
+            %table#view{summary: "view"}
+              %tr
+                %th
+                  %input#viewThumbs{name: "view", type: "radio", value: "thumbs"}
+                %td
+                  %label{for: "viewThumbs"}  Миниатюры
+                  \ 
+                %th
+                  %input#viewList{name: "view", type: "radio", value: "list"}
+                %td
+                  %label{for: "viewList"}  Список
+        %div
+          %fieldset
+            %legend Показывать:
+            %table#show{summary: "show"}
+              %tr
+                %th
+                  %input#showName{name: "name", type: "checkbox"}
+                %td
+                  %label{for: "showName"}  Имя
+                  \ 
+                %th
+                  %input#showSize{name: "size", type: "checkbox"}
+                %td
+                  %label{for: "showSize"}  Размер
+                  \ 
+                %th
+                  %input#showTime{name: "time", type: "checkbox"}
+                %td
+                  %label{for: "showTime"}  Дата
+        %div
+          %fieldset
+            %legend Упорядочить по:
+            %table#order{summary: "order"}
+              %tr
+                %th
+                  %input#sortName{name: "sort", type: "radio", value: "name"}
+                %td
+                  %label{for: "sortName"}  Имя
+                  \ 
+                %th
+                  %input#sortType{name: "sort", type: "radio", value: "type"}
+                %td
+                  %label{for: "sortType"}  Тип
+                  \ 
+                %th
+                  %input#sortSize{name: "sort", type: "radio", value: "size"}
+                %td
+                  %label{for: "sortSize"}  Размер
+                  \ 
+                %th
+                  %input#sortTime{name: "sort", type: "radio", value: "date"}
+                %td
+                  %label{for: "sortTime"}  Дата
+                  \ 
+                %th
+                  %input#sortOrder{name: "desc", type: "checkbox"}
+                %td
+                  %label{for: "sortOrder"}  По убыванию
+      #files
+        #content
+    #status
+      %span#fileinfo

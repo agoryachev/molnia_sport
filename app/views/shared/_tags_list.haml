@@ -1,0 +1,25 @@
+%ul.tags_list
+  - tmp = current_page?(post_status_path(post_status: 'Live'))
+  %li{class: tmp && :active}
+    =link_to (tmp ? 'Live из Бразилии'.mb_chars().upcase : 'Live из Бразилии'), post_status_path(post_status: 'Live')
+  - tmp = current_page?(post_status_path(post_status: 'Stadiums'))
+  %li{class: tmp && :active}
+    =link_to (tmp ? 'Стадионы'.mb_chars().upcase : 'Стадионы'), post_status_path(post_status: 'Stadiums')
+  - tmp = current_page?(post_status_path(post_status: 'Judges'))
+  %li{class: tmp && :active}
+    =link_to (tmp ? 'Судьи'.mb_chars().upcase : 'Судьи'), post_status_path(post_status: 'Judges')
+  - tmp = current_page?(photo_video_path)
+  %li{class: tmp && :active}
+    =link_to (tmp ? 'Видео'.mb_chars().upcase : 'Видео'), photo_video_path(category_id: @category && @category.id)
+  -unless current_page?(root_path)
+    %li
+      =render 'shared/search_form'
+  -# %li=link_to 'Новости', @category.present? && category_path(@category) || root_path
+  -# %li{class: current_page?(insides_path) && :active}
+  -#   =link_to 'Инсайды', insides_path
+  -# %li{class: current_page?(photo_video_path) && :active}
+  -#   =link_to 'Фото и видео', photo_video_path(category_id: @category && @category.id)
+  -# %li{class: current_page?(calendars_path) && :active}
+  -#   =link_to 'Календарь', calendars_path
+  / %li{class: current_page?(transfers_path) && :active}
+  /   =link_to 'Трансферы', (@category.presence) ?  transfers_category_path(@category.id) : transfers_path

@@ -1,0 +1,15 @@
+%br/
+.row
+  .col-md-12
+    =link_to 'Создать новый тур', new_backend_popup_leagues_group_path, data:{league_id: @year.try(:league).try(:id), year_id: @year.id}, class: 'btn btn-primary new-leagues-group'
+  
+  .col-md-12
+    %table.table.table-condensed.table-striped.leagues-groups-table
+      %thead
+        %tr
+          %th #
+          %th Название
+          %th Дата
+          %th
+      %tbody
+        =render partial: 'leagues_group', collection: @year.leagues_groups if @year.leagues_groups.present?

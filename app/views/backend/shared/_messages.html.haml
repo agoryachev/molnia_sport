@@ -1,0 +1,6 @@
+// Model errors output
+- unless @errors.nil?
+  .alert.alert-danger
+    %a.close{data: {dismiss: "alert"}, href: "#"}×
+    - @errors.each do |message|
+      %p= message

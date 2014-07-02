@@ -1,0 +1,9 @@
+%aside.rc
+  .banner
+    =link_to post_status_path(post_status: 'Infographics') do
+      =image_tag 'banner.jpg', size: '300x465'
+  =render 'shared/aside/standings'
+  %section.photo_video_box=render 'shared/aside/photo_video_box'
+  %section.accordion.soc_pad=render 'shared/aside/social_accordion'
+  =render 'shared/aside/sport_today'
+.clr

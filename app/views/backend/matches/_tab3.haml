@@ -1,0 +1,17 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :team_home_id
+      = f.select :team_home_id, [[@match.try(:team_home).try(:title), @match.try(:team_home).try(:id)]], {}, class: 'form-control selectize'
+    .form-group
+      = f.label :count_home
+      = f.number_field :count_home, class: 'form-control'
+
+  .col-md-6
+    .form-group
+      = f.label :team_guest_id
+      = f.select :team_guest_id, [[@match.try(:team_guest).try(:title), @match.try(:team_guest).try(:id)]], {}, class: 'form-control selectize'
+    .form-group
+      = f.label :count_guest
+      = f.number_field :count_guest, class: 'form-control'

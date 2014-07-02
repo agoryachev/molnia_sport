@@ -1,0 +1,14 @@
+<form name="reply-form" accept-charset="UTF-8" action="/comments" class="comment-form js-comment-form" method="post" url="/comments">
+  <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓">
+    <input name="authenticity_token" type="hidden" value="zgUk3bb7IVSIEN2ZMGuWk/oBEcn7L9wdOdHCd/kdsrg=">
+  </div>
+  <input id="commentable_type" name="commentable_type" type="hidden" value="{{type}}">
+  <input id="commentable_id" name="commentable_id" type="hidden" value="{{id}}">
+  {{#parent_id}}
+    <input id="parent_id" name="parent_id" type="hidden" value="{{parent_id}}">
+  {{/parent_id}}
+  <textarea id="content" name="content" placeholder="Текст комментария..."></textarea>
+  <div class="clearfix"></div>
+  <input type="submit" value="{{text.submitButton}}">
+</form>
+<div class="clearfix"></div>

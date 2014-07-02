@@ -1,0 +1,26 @@
+= f.fields_for :main_image do |img_form|
+  %h4=title
+  .row
+    .col-md-5
+      .form-group
+        = img_form.label :file, nil, skip_check: true
+        .progress.upload-progress-bar#upload_image
+          .progress-bar.progress-bar-info.upload-label 5%
+          %div{class: "progress progress-striped active"}
+            .bar
+          .upload-progress
+          .clearfix
+          %br
+          %br
+          %button.btn.btn-danger.js-stop-upload Стоп
+        %button.btn.btn-info.js-start-upload#upload_image_button Выберите файл
+        %p.help-block
+          %small
+            * Максимальный размер файла - #{Setting.backend_max_image_size.gsub('mb', 'Мб')}.
+    .col-md-5
+      #image_block{data: {container: :upload_image, url: url_for([:backend, model]), max: {size: Setting.backend_max_image_size}, chunk: {size: Setting.backend_chunk_size_image}, filter: {extensions: Setting.image_extensions, title: 'Image' }, runtimes: :html5, entity: model.class.name.parameterize}}
+        - unless img_form.object.new_record?
+          = image_tag img_form.object.file(:_90x90), class: "thumbnail"
+          %label.checkbox
+            %span.glyphicon.glyphicon-trash
+            = img_form.check_box :_destroy, skip_check: true

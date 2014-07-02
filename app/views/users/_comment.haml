@@ -1,0 +1,14 @@
+%article.comment
+  .comment_content
+    %p=comment.content
+    =time_tag comment.created_at
+  .comment_rating
+    %p{class: :red }=comment.cached_weighted_score
+  .comment_post
+    .post_inf
+      %p{class: "p1 #{comment.commentable.category_color}"}=link_to comment.commentable.category_title, category_path(comment.commentable.category)
+      %time{datetime: comment.commentable.created_at}
+        \/
+        =comment.commentable.created_at.strftime('%d.%m')
+    %p.title=link_to comment.commentable.title, [comment.commentable.category, comment.commentable]
+.clr

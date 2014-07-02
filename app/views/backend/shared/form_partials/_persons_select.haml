@@ -1,0 +1,4 @@
+.form-group
+  = f.label :person_ids
+  = f.collection_select :person_ids, Person.is_published.order(:name_first), :id, :full_name, {}, multiple: true, class: 'form-control persons-selectize'
+  %p.help-block=t('label.autocomplete')

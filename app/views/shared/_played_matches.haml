@@ -1,0 +1,25 @@
+-if @played_matches && @played_matches.count > 0
+  .calendar-slider
+    %a.prev-slide.click{href: "#", data: {dir: 'prev'}}
+    .slider-fix-width
+      .slider-fix-height
+        -@played_matches.each do |match|
+          .row-slide
+            .date
+              %span.day
+                -if match.date_at.present?
+                  =Russian::strftime(match.date_at, '%a')
+              %span.time
+                -if match.date_at.present?
+                  =match.date_at.strftime("%d.%m")
+            .country
+              %span
+                =show_main_image(match.team_home, '30x17', match.team_home.title)
+                %h4{title: match.team_home.title}=match.team_home.title
+                %span.score=match.count_home
+                %span
+                  =show_main_image(match.team_guest, '30x17', match.team_guest.title)
+                  %h4{title: match.team_guest.title}=match.team_guest.title
+                  %span.score=match.count_guest
+
+    %a.next-slide.click{href: "#", data: {dir: 'next'}}

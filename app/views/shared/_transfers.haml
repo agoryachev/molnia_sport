@@ -1,0 +1,15 @@
+%section.side_pad
+  %h3.side_title
+    %strong ПЕРЕХОДЫ
+  .transfers_list
+    .pane
+      .list
+        -transfers.each do |transfer|
+          =link_to transfer.person, class: :player do
+            %span.img
+              =show_main_image(transfer.person, '48x48', transfer.person.full_name)
+            %span.name=transfer.person.full_name
+            %span.txt
+              =transfer.team_from.title
+              =image_tag 'img_arw.png', size: '8x11'
+              =transfer.team_to.title

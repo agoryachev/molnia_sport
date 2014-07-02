@@ -1,0 +1,23 @@
+= render 'backend/shared/blocks/subnav', model: 'teams'
+= render 'backend/shared/blocks/filter', model: :teams
+- if @teams && @teams.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th.col-md-1
+        %th #
+        %th Заголовок
+        %th Категория
+        %th.centered
+          %span.glyphicon.glyphicon-eye-open
+        %th.centered
+          %span.glyphicon.glyphicon-comment
+        %th
+    %tbody=render @teams
+  .help-block 
+    %small
+      %span.label.label-default &nbsp;&nbsp;&nbsp; 
+      Не опубликовано  
+  = will_paginate(@teams, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'

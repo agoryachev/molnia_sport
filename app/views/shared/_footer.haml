@@ -1,0 +1,29 @@
+%footer
+  .wrap
+    .ft_pad
+      .soc_links
+        %p
+        %ul
+          %li
+            =link_to 'http://vk.com/molniasport' do
+              =image_tag 'vk_icon.png', size:'25x24'
+          %li
+            =link_to 'https://twitter.com/molnia_sport' do
+              =image_tag 'twitter_icon.png', size:'25x24'
+          %li
+            =link_to 'https://www.facebook.com/molniasport' do
+              =image_tag 'facebook_icon.png', size:'25x24'
+          %li
+            =link_to 'http://instagram.com/molniasport' do
+              =image_tag 'instagram_icon.png', size:'25x24'
+      %ul.ft_menu
+        -@pages.each do |page|
+          =render 'pages/page', page: page
+      .clr
+    .seo_text
+      %p &copy; #{Time.now.year} "Молния Спорт". Ежедневное интернет-издание о спорте. Использование материалов "Молния Спорт" разрешено только с согласия правообладателей. Сайт может содержать контент, не предназначенный для лиц младше 14 лет.
+    %p.web_dev
+      Идея и разработка:
+      =link_to 'http://go-promo.ru/' do
+        =image_tag 'go_promo_logo.png', size: '150x21'
+    .clr

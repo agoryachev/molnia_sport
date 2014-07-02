@@ -1,0 +1,9 @@
+%h3= t "controllers.backend.#{controller.controller_name}"
+.subnav
+  .navbar.navbar-default
+    .navbar-inner
+      %ul.nav.navbar-nav
+        %li{class: current_page?(polymorphic_path([:backend, model])) && :active}
+          %a{href: polymorphic_url([:backend, model])}
+            %span.glyphicon.glyphicon-th-list
+            = t "actions.index"

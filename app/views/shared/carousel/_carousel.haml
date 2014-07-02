@@ -1,0 +1,24 @@
+.jcarousel-skin-default
+  #jcarousel.jcarousel
+    %ul
+      -matches.each do |match|
+        %li
+          %span.match_pad{href: ""}
+            %span.event_date.football=match.start_at && match.start_at.strftime("%d.%m")
+            %span.players
+              %span.player
+                =show_main_image(match.team_home, '38x22', match.team_home.title)
+
+                %span.name{title: match.team_home.title}
+                  =link_to truncate(match.team_home.title, length: 10), team_path(match.team_home)
+                %span.count
+                  %strong=match.count_home
+              %span.player
+                =show_main_image(match.team_guest, '38x22', match.team_guest.title)
+                %span.name=link_to truncate(match.team_guest.title, length: 10), team_path(match.team_guest)
+                %span.count
+                  %strong=match.count_guest
+            %span.clr
+
+  %a.car_btn.lbtn{href: "#", onclick: "$(this).parent().children('.jcarousel').jcarousel('scroll', '-=1'); return false;"}
+  %a.car_btn.rbtn{href: "#", onclick: "$(this).parent().children('.jcarousel').jcarousel('scroll', '+=1'); return false;"}

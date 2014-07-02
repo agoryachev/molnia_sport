@@ -1,0 +1,17 @@
+%section.side_results.side_pad
+  %h3.side_title
+    %strong КАЛЕНДАРЬ И РЕЗУЛЬТАТЫ
+  .list
+    %table
+      %tbody
+        -matches.each do |match|
+          %tr
+            %td.td1=match.start_at.strftime('%d.%m')
+            %td.td2 #{match.team_home.title} - #{match.team_guest.title}
+            %td.td3
+              %strong #{match.count_home || '-'} : #{match.count_guest || '-'}
+            %td.td4=match.team_home.id == team.id ? "Д" : "Г"
+        
+  %a.open_btn{href: ""}
+    %span.txt1 РАЗВЕРНУТЬ
+    %span.txt2 Свернуть

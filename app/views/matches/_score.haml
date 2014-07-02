@@ -1,0 +1,16 @@
+-time = Time.parse("#{@match.date_at} #{@match.start_at}").localtime - 4.hours
+
+.row-team.score-js
+  =show_main_image(@match.team_home, '70x40', @match.team_home.title)
+  .schet
+    - minutes = ((Time.now.utc - time) / 60).to_i
+    %span.count-home-js #{@match.count_home || 0}:
+    - if (minutes > 0)
+      %span.sub-text #{minutes}'
+    -else
+      %span.sub-text.hidden
+    %span.count-guest-js #{@match.count_guest || 0}
+  =show_main_image(@match.team_guest, '70x40', @match.team_guest.title)
+.team-name
+  %h3{title: @match.team_home.title }= @match.team_home.title
+  %h3{title: @match.team_guest.title }= @match.team_guest.title

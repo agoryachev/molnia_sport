@@ -1,0 +1,15 @@
+.gallery-init
+  .main-gallery-image
+    #bowlG
+      #bowl_ringG
+        .ball_holderG
+          .ballG
+    %img{src: '', width: 620, height: 380}
+  .gallery-previews
+    .gallery-previews-inner
+      -model.gallery_files.each do |file|
+        %a.preview{href: file.gallery_image.file.url('_620x380')}
+          =image_tag file.gallery_image.file.url('_115x80')
+
+  %a{href: '#', class: 'click slider_btn lbtn', data:{dir: :prev}}
+  %a{href: '#', class: 'click slider_btn rbtn', data:{dir: :next}}

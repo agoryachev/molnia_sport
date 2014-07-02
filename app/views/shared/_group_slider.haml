@@ -1,0 +1,24 @@
+%section.group-slider
+  .list-wrapper
+    %ul.list
+      -leagues_groups.each do |group|
+        %li 
+          %table
+            %thead
+              %tr
+                %th{width: 30}=group.title
+                %th{width: 100} Страна
+                %th{width: 38} Игры
+                %th{width: 32} Очки
+            %tbody
+              -group.leagues_statistics.order('points DESC, goals_diff DESC').each do |statistic|
+                %tr
+                  %td=show_main_image statistic.team, '30x17', statistic.team.try(:title)
+                  %td=statistic.team.try(:title)
+                  %td=statistic.matches
+                  %td=statistic.points
+  %section.controls
+    .control-wrapper
+      %a.prev{"data-dir" => "prev"}
+    .control-wrapper
+      %a.next{"data-dir" => "next"}

@@ -1,0 +1,98 @@
+section.columnists{
+  width: 300px;
+  height: 518px;
+  margin-bottom: 20px;
+  border: {
+    top: 5px solid #ae0000;
+    right: 1px solid #e8e8e8;
+    bottom: 1px solid #e8e8e8;
+    left: 1px solid #e8e8e8;
+  }
+  .side_title{
+    margin-bottom: 17px;
+  }
+
+  .columnists-box{
+    height: 452px;
+    overflow: scroll;
+  }
+  @include box-sizing;
+
+  article{
+    width: 260px;
+    height: 210px;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0px auto 15px auto;
+    &:nth-child(3){
+      border: none;
+    }
+
+    figure{
+      width: 70px;
+      height: 70px;
+      float: left;
+      img{
+        border-radius: 100px;
+      }
+    }
+    header{
+      @include box-sizing;
+      width: 190px;
+      height: 70px;
+      float: right;
+      padding-left: 11px;
+      padding-top: 8px;
+      p.p1{
+        a{
+          text-decoration: none;
+        }
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+      h4{
+        a{
+          font: {
+            family: Roboto, sans-serif;
+            size: 15px;
+            weight: normal;
+          }
+          color: #212121;
+          text-transform: uppercase;
+          text-decoration: none;
+        }
+      }
+    }
+    section{
+      margin-top: 13px;
+      width: inherit;
+      height: 96px;
+      h3{
+        font: {
+          family: Roboto, sans-serif;
+        }
+        a{
+          text-decoration: none;
+          color: #212121;
+          font-size: 14px;
+          font-weight: normal;
+        }
+      }
+    }
+    footer{
+      height: 12px;
+      width: inherit;
+      span.comnts_num{
+        padding-left: 26px;
+        margin-right: 12px;
+        background: url(/assets/comnt_pics.png) 0 0px no-repeat;
+        font: {
+          family: 'PT Sans';
+          size: 12px;
+        }
+        color: #cccccc;
+        line-height: 12px;
+      }
+    }
+  }
+}

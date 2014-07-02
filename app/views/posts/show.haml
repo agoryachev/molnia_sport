@@ -1,0 +1,23 @@
+=render 'shared/meta/meta_block', model: @post
+%section.search_pad
+  .search_pad_shadow
+=render partial: 'shared/aside/banner' if Setting.show_sidebar_banner?
+=render partial: 'shared/aside/match_live', locals: {match: @match} if Setting.show_match_live?
+%section.lc
+  %article.det_post
+    .text
+      - if @post.is_exclusive
+        #exclusive
+      =show_main_image(@post, '620x345', @post.title)
+      =render 'shared/model_header_content', model: @post
+      %br/
+      =render 'shared/authors', model: @post if @post.authors.present?
+      =render 'shared/blocks/socials', model: @post
+      =render 'shared/tags', model: @post if @post.tags.present?
+      =render 'another_posts', model: @post if !@persons.empty? || !@common_posts.empty?
+    .clr
+  / =render 'shared/comments', comment: @comment, comments: @comments if @post.is_comments_enabled
+  =render 'shared/comments/comments', comments: @comments if @post.is_comments_enabled
+=render 'shared/aside/aside'
+- if Rails.env.test?
+  .posts-for-specs

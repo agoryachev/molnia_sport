@@ -1,0 +1,10 @@
+$('section.news_list').append("#{j render(@publications)}");
+-if @is_more
+  link = $('.pagination').find('.next_page').attr('href').split('/')
+  link.pop()
+  link.push(#{@page} + 1)
+  $('.pagination').find('.next_page').attr('href', link.join('/'))
+  $('.pagination').hide()
+-else
+  $('.pagination').remove();
+  $('.more').remove();

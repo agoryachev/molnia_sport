@@ -1,0 +1,22 @@
+%article.photo_video_box.right_panel_widget
+  %ul.photo-video-box-menu
+    %li
+      %a{href: '#tabs-photo-box'}
+        %span Фото
+    %li
+      %a{href: '#tabs-video-box'}
+        %span Видео
+  .photo-box-container.photo-video-box-tab{id: 'tabs-photo-box'}
+    - unless @galleries.nil?
+      - @galleries.each do |gallery|
+        .photo-box
+          %a{href: category_gallery_path(gallery.category.id, gallery.id)}
+            =show_main_image(gallery, '300x200', gallery.title)
+            .overlay
+  .video-box-container.photo-video-box-tab.hidden{id: 'tabs-video-box'}
+    - unless @videos.nil?
+      - @videos.each do |video|
+        .video-box
+          %a{href: category_video_path(video.category.id, video.id)}
+            =show_main_image(video, '300x200', video.title)
+            .overlay

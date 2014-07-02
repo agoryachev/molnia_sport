@@ -1,0 +1,21 @@
+%br
+%button.btn.btn-primary.open-modal{data: {target: '#myModal'}} Добавить год
+%table.table.table-condensed.table-striped.years-js-table
+  %thead
+    %tr
+      %th #
+      %th Год
+      %th
+  %tbody=render partial: 'year', collection: @league.years.order("league_year DESC")
+
+=content_for :templates do
+  .modal.fade#myModal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{aria: {hidden: "true"}, data: {dismiss: "modal"}, type: "button"} &times;
+          %h4.modal-title Добавление года
+        .modal-body
+          =render 'backend/shared/nested/modal_form', modal: Year, hidden_fied_value: @league.id
+        .modal-footer
+          %button.btn.btn-primary{data: {dismiss: "modal"}, type: :button} Закрыть

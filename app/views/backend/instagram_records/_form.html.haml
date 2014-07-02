@@ -1,0 +1,13 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @instagram_record], html: {class: "form"}) do |f|
+    %fieldset
+      .row
+        .col-md-12
+          .form-group
+            = f.label :link
+            = f.text_field :link, class: 'form-control', maxlength: 255
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      = f.submit t("label.save_and_exit"), class: "btn btn-primary"
+      = link_to "Удалить #{@instagram_record.is_published ? 'фото' : 'черновик'}", backend_instagram_record_path(@instagram_record), data: { confirm: t("msg.confirm"), method: :delete }, class: "btn btn-danger"

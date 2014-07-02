@@ -1,0 +1,5 @@
+%tr
+  %td= leagues_group.id
+  %td.centered= link_to leagues_group.title, edit_backend_leagues_group_path(leagues_group)
+  %td.centered= link_to leagues_group.league.title, edit_backend_league_path(leagues_group.league)
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: leagues_group

@@ -1,0 +1,31 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @tactical_scheme], html: {class: "form"}) do |f|
+    %fieldset
+      .row
+        .col-md-6
+          .form-group
+            = f.label :forward, 'Нападающие'
+            = f.text_field :forward, class: 'form-control', maxlength: 2
+          .form-group
+            = f.label :defender, 'Защитники'
+            = f.text_field :defender, class: 'form-control', maxlength: 2
+          .form-group
+            = f.check_box :in_detail
+            = f.label :in_detail, '- детально (указать амплуа полузащитников)'
+        .col-md-6
+          .halfback-js
+            .form-group
+              = f.label :halfback, 'Полузащитники'
+              = f.text_field :halfback, class: 'form-control', maxlength: 2
+          .halfback-detail-js.hidden
+            .form-group
+              = f.label :forward_halfback, 'Атакующие полузащитники'
+              = f.text_field :forward_halfback, class: 'form-control', maxlength: 2
+            .form-group
+              = f.label :defender_halfback, 'Опорные полузащитники'
+              = f.text_field :defender_halfback, class: 'form-control', maxlength: 2
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      = f.submit t("label.save_and_exit"), class: "btn btn-primary"
+      = link_to "Удалить #{@tactical_scheme.is_published ? 'схему' : 'черновик'}", backend_tactical_scheme_path(@tactical_scheme), data: { confirm: t("msg.confirm"), method: :delete }, class: "btn btn-danger" if @tactical_scheme.persisted?

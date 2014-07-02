@@ -1,0 +1,12 @@
+%tr{class: gallery.is_published? ? '' : 'muted'}
+  %td= main_image_backend gallery
+  %td=gallery.id
+  %td=link_to gallery.title, edit_backend_gallery_path(gallery)
+  %td
+    %span{class: "badge #{gallery.category.color}"}
+      = link_to gallery.category.title, edit_backend_category_path(gallery.category), class: 'white-text'
+  %td.centered=gallery.gallery_photos_count
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: gallery, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: gallery, field: :is_comments_enabled
+  %td=dt(gallery.created_at)
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: gallery

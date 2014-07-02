@@ -1,0 +1,19 @@
+.line
+  .comanda.one{data: { team_id: @match.team_home_id }}
+    = show_main_image @match.team_home, '38x22', @match.team_home.title, 'home-flag'
+    .events
+      - @broadcast_messages.each do |message|
+        - if message.event.present? && message.event.team_id == @match.team_home.id
+          .event{style: "left: #{(message.event.timestamp.to_i*10) + 23}px;"}= image_tag message.event.image_url
+
+  .separate-line
+  - ['zero', 'ten', 'twelwe', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'].each_with_index do |time, index|
+    %div{class: "time #{time}-minutes"}= index * 10
+
+  .comanda.two{data: { team_id: @match.team_guest_id }}
+    = show_main_image @match.team_guest, '38x22', @match.team_guest.title, 'guest-flag'
+    .events
+      -@broadcast_messages.each do |message|
+        -if message.event.present? && message.event.team_id == @match.team_guest.id
+          .event{style: "left: #{(message.event.timestamp.to_i*10) + 23}px;"}= image_tag message.event.image_url
+      .event{style: "left: 923px;"}=image_tag 'matches/svist.png'

@@ -1,0 +1,22 @@
+%section.another_posts
+  .fll
+    %h3
+      -unless @persons.empty?
+        В ЭТОЙ СТАТЬЕ
+    -@persons.each do |person|
+      %article
+        =link_to person, class: :img do
+          =show_main_image(person, '68x68', person.full_name)
+        %h3.name=link_to person.full_name, person
+        .clr
+  .flr
+    %h3
+      -unless @common_posts.empty?
+        ССЫЛКИ ПО ТЕМЕ
+    %ul
+      -@common_posts.each do |post|
+        %li
+          =link_to category_post_path(post.category, post) do
+            =post.title
+          %br/
+          %span.tim=dt(post.published_at)

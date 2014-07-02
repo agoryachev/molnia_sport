@@ -1,0 +1,15 @@
+%tr{data: {id: employee.id}}
+  %td
+  -# %td= avatar_for_user(employee)
+  %td= employee.id
+  %td
+    = link_to employee.full_name, edit_backend_employee_path(employee)
+    (#{employee.nickname})
+  %td
+    = employee.group.title
+    %a{href:edit_backend_group_path(employee.group.id)}
+      %span.glyphicon.glyphicon-pencil
+  %td= employee.email
+  %td= employee.last_sign_in_at.nil? ? 'Никогда' : dt(employee.last_sign_in_at)
+  %td.centered= employee.sign_in_count
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: employee

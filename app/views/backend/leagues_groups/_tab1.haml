@@ -1,0 +1,20 @@
+%br
+.row
+  .col-md-6
+    %input{type: "hidden", class: 'leagues-group-field', name: 'leagues_group[league_id]', value: @leagues_group.try(:league).try(:id)}/
+    %input{type: "hidden", class: 'year-field', name: 'leagues_group[year_id]', value: @leagues_group.try(:year).try(:id)}/
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :date_at
+      #datetimepicker_time.input-group.date{ data: {date: {format:'YYYY-MM-DD'}}}
+        =f.text_field :date_at, class: 'form-control'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+    .form-group
+      = f.label :round_type
+      = f.select :round_type, options_for_select(LeaguesGroup::ROUND_TYPES_KEYS, @leagues_group.round_type), {}, class: 'form-control'
+    .form-group{class: (@leagues_group.round_type.zero? ? 'hidden' : '')}
+      = f.label :start_stage
+      = f.select :start_stage, options_for_select(LeaguesGroup::START_STAGE_KEYS, @leagues_group.start_stage), {:include_blank => 'Выберите'}, class: 'form-control'

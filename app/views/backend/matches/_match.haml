@@ -1,0 +1,15 @@
+%tr{class: !match.is_published? && 'muted'}
+  %td= link_to match.id, backend_match_path(match)
+  %td= link_to match.title, edit_backend_team_path(match)
+  %td.centered
+    = link_to match.team_home.title, edit_backend_team_path(match.team_home)
+    \/
+    = link_to match.team_guest.title, edit_backend_team_path(match.team_guest)
+  %td.centered
+    = match.count_home
+    \/
+    = match.count_guest
+  %td.centered= dt(match.start_at)
+  %td.centered= dt(match.finish_at)
+  %td.centered=render 'backend/shared/blocks/publish_checkbox', model: match, field: 'is_published'
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: match

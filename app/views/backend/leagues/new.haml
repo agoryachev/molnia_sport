@@ -1,0 +1,13 @@
+%h3=t("controllers.backend.#{controller.controller_name}")
+= render 'subnav', model: 'leagues'
+
+/ breadcrumbs
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Станы', backend_countries_path
+      %li=link_to 'Лиги', backend_leagues_path
+      %li.active Создание новой лиги
+/ end breadcrumbs
+
+= render 'form'

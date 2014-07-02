@@ -1,0 +1,59 @@
+=render 'backend/shared/form_partials/fields_for_main_image', f:f, model: @gallery
+.clearfix
+%hr
+.control-group
+  .control-label
+    = f.label :add_gallery_files
+  .controls
+    .plupload-control#queue_plupload{data: {container: 'queue_plupload', url: url_for([:backend, @gallery]), max: {size: Setting.backend_max_image_size}, chunk: {size: Setting.backend_chunk_size_image}, filter: {title: 'Image', extensions: Setting.image_extensions}, runtimes: 'html5', entity: 'gallery'}}
+    %p.help-block
+      %small
+        * Максимальный размер каждого файла - #{Setting.backend_max_image_size.gsub('mb', 'Мб')}
+    %button.btn.btn-danger.js-stop-upload.hide Стоп
+.clearfix
+%hr
+
+
+= f.label :gallery_files
+.controls#image_files 
+  - counter = 0
+  %ul.thumbnails
+    = f.fields_for :gallery_files do |ff|
+      - counter += 1
+      %li.thumbnail_with_descr
+        .thumbnail
+          = image_tag ff.object.gallery_image.file(:_90x90)
+        .descr
+          .form-group.col-md-5
+            =f.label :description
+            = ff.text_area :description, class: "form-control", rows: 2
+          .form-group.col-md-5
+            =f.label :placement_index
+            = ff.number_field :placement_index, class: "form-control", placeholder: "Позиция"
+          .form-group.col-md-2
+            %a.btn.btn-danger.trash-button{href: "", style: 'margin-top:25px;'}
+              %span.glyphicon.glyphicon-trash{title: 'Удалить изображение'}
+              = ff.hidden_field :_destroy, skip_check: true, class: :destroy_image
+        .clearfix
+.clearfix
+%hr
+
+
+=content_for :templates do
+  %script{type:'text/template', id: 'gallries-foto-template'}
+    %li.thumbnail_with_descr
+      .thumbnail
+        %img{src: "{{file_url}}"}/
+      .descr
+        .form-group.col-md-5
+          %label{for: 'gallery_gallery_files_attributes_{{gallery_files_id}}_description'} Описание
+          %textarea{id: 'gallery_gallery_files_attributes_{{gallery_files_id}}_description', rows: 2, class: 'form-control', name: 'gallery[gallery_files_attributes][{{gallery_files_id}}][description]'} 
+        .form-group.col-md-5
+          %label{for: "{{type}}_{{type}}_files_attributes_{{position}}_placement_index"} Позиция
+          %input{type: "number", value: 0, class: 'form-control', name: '{{type}}[{{type}}_files_attributes][{{gallery_files_id}}][placement_index]'}/
+        .form-group.col-md-2
+          %input{type: "hidden", value: "{{gallery_files_id}}", name: '{{type}}[{{type}}_files_attributes][{{gallery_files_id}}][id]'}/
+          %a.btn.btn-danger.trash-button{href: "#", style: 'margin-top:25px;'}
+            %span.glyphicon.glyphicon-trash{title: 'Удалить изображение'}
+            %input#gallery_gallery_files_attributes_0__destroy.destroy_image{name: "{{type}}[{{type}}_files_attributes][{{gallery_files_id}}][_destroy]", skip_check: true, type: :hidden, value: 0}
+      .clearfix

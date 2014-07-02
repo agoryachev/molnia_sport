@@ -1,0 +1,23 @@
+/ :javascript
+
+/   /* 
+/    * Глобальный объект backend
+/    */
+/   if (typeof window.backend == 'undefined') {
+/     window.backend = {};
+/   }
+/   window.backend.current_path = "#{request.path}";
+  
+/   /* 
+/    * Отображение ошибок и нотайсов
+/    */
+/   $(function(){
+/     var notices = "#{flash.each.map{|type,msg| msg if type == :notice}.join}";
+/     if(notices != ""){
+/       showNotices([notices]);
+/     }
+/     var errors = "#{flash.each.map{|type,msg| msg if type == :alert || type == :error}.join}";
+/     if(errors != ""){
+/       showErrors([errors]);
+/     }
+/   });

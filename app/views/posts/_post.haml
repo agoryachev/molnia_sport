@@ -1,0 +1,7 @@
+%article.post-article
+  =render 'shared/info', model: post
+  =link_to polymorphic_url([post.category, post]), class: :img do
+    =show_main_image(post, "300x200", post.title)
+    .overlay
+  %h3=link_to post.title, [post.category, post]
+  %p=truncate(post.subtitle, length: 160)

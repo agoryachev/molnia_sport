@@ -1,0 +1,23 @@
+.team-matches
+  .border-line
+    %h3.title
+      Матчи
+    - matches = Match.where("(team_home_id = #{@team.id}) OR (team_guest_id = #{@team.id})").is_published.order('date_at DESC, start_at DESC').limit(3).reverse
+      - matches.each do |match|
+      .row-match
+        .match-date
+          = Russian::strftime(match.date_at, "%a %d %b")
+          = Russian::strftime(match.start_at,"%H:%M")
+        %span.country-team.team-home
+          %a{href: national_teams_path(match.team_home.id)}
+            =match.team_home.try(:title)
+          = show_main_image(match.team_home, '30x17', match.team_home.title)
+        .match-score
+          %span= (match.count_home.nil? ? '-' : match.count_home)
+          %span :
+          %span= (match.count_guest.nil? ? '-' : match.count_guest)
+        %span.country-team.team-guest
+          = show_main_image(match.team_guest, '30x17', match.team_guest.title)
+          %span
+            %a{href: national_teams_path(match.team_guest.id)}
+              =match.team_guest.try(:title)

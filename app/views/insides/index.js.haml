@@ -1,0 +1,9 @@
+var $items = $("#{j render(@insides)}");
+
+$('section.insides section').append($items)
+-if @insides.next_page
+  $('.pagination').replaceWith("#{j will_paginate(@insides)}");
+  $('.pagination').hide()
+-else
+  $('.pagination').remove();
+  $('.more').remove();

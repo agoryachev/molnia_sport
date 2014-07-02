@@ -1,0 +1,3 @@
+.form-group
+  = label_tag "#{label}"
+  = select_tag "#{side}[#{key}]", options_from_collection_for_select(data, :id, :full_name, TeamFormation.where(match_id: match_id, team_id: team_id, person_type: TeamFormation::TEAM_FORMATION_KEYS[key.to_sym]).pluck(:person_id)), multiple:true, prompt: "#{label}", class: 'form-control persons-selectize'

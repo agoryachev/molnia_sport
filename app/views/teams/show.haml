@@ -1,0 +1,42 @@
+=render 'shared/meta/meta_block', model: @team
+=render 'shared/club_list', teams: @teams if @teams.presence
+%br/
+%section.lc
+  %article.club_detail
+    %section.inf_pad
+      .fll
+        %a.img{href: ""}
+          =show_main_image(@team, "150x150", @team.title)
+        .soc_links.club_soc
+          %ul
+            %li
+              %a{href: ""}
+                =image_tag "soc001.png", size: "23x18"
+                %span 11 301 357
+            %li
+              %a{href: ""}
+                =image_tag "soc002.png", size: "19x18"
+                %span 11 74 1851
+            %li
+              %a{href: ""}
+                =image_tag "soc003.png", size: "20x18"
+                %span 1 90 8 887
+      .flr
+        %h1=@team.title
+        %h2=@team.subtitle
+        .player_inf=simple_format(@team.content)
+        =render 'shared/blocks/socials'
+
+      .clr
+    =render 'team_info'
+
+  =render 'shared/articles_photo_video', model: @team
+%aside.rc
+  =render 'shared/aside/standings', teams: @tour_table
+  
+  =render 'shared/calendar_results', matches: @matches, team: @team if @matches.present?
+  =render 'shared/transfers', transfers: @transfers if @transfers.present?
+  %section.accordion.soc_pad=render 'shared/aside/social_accordion'
+.clr
+- if Rails.env.test?
+  .teams-for-specs

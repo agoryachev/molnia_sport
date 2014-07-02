@@ -1,0 +1,9 @@
+%article.gallery
+  =render 'shared/info', model: gallery
+  %a.img{href: ""}
+    =link_to polymorphic_url([gallery.category, gallery]), class: :img do
+      =show_main_image(gallery, '300x200', gallery.title)
+      %span.photo_pic
+      .overlay
+  %h3=link_to truncate(gallery.title, length: 37), polymorphic_url([gallery.category, gallery])
+  %p=truncate(gallery.content, length: 100)

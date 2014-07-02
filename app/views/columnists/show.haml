@@ -1,0 +1,20 @@
+=render 'shared/meta/meta_block', model: @columnist
+%br/
+%section.lc
+  %article.sportsmen_detail
+    %section.inf_pad
+      .fll
+        %a.img{href: ""}
+          =show_main_image(@columnist, "150x150", @columnist.full_name)
+      .flr
+        %h1=@columnist.full_name
+        %h2 #{@columnist.full_name.strip.to_ascii}
+        =simple_format(@columnist.content)
+        =render 'shared/blocks/socials', publication: @columnist
+      .clr
+  %section.news_list=render @columnist_posts
+  .clr
+
+=render 'shared/aside/aside'
+- if Rails.env.test?
+  .columnists-for-specs

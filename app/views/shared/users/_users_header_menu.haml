@@ -1,0 +1,14 @@
+- if user_signed_in?
+  %ul.hd_links
+    %li.users_header_menu
+      =show_main_image(current_user, '35x35', current_user.full_name)
+      =link_to current_user.full_name, '#', class: 'user_show_menu_link up_arrow uppercase'
+  %ul.user_nested_header_menu
+    %li=link_to 'КАБИНЕТ', show_user_path, class: 'uppercase'
+    %li=link_to 'РЕДАКТИРОВАТЬ', '#registration-modal', class: 'uppercase cabinet'
+    %li=link_to 'ВЫХОД', destroy_user_session_path, method: "delete", class: 'uppercase'
+- else
+  %ul.hd_links.not_signin
+    %li=link_to 'РЕГИСТРАЦИЯ', '#registration-modal', class: :reg
+    .separator
+    %li=link_to 'ВОЙТИ', '#registration-modal', class: :login

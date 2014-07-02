@@ -1,0 +1,28 @@
+class Broadcast.Controllers.BroadcastController
+
+  constructor: ->
+    _.extend @, Backbone.Events
+    @listenTo Broadcast.Dispatcher, 'fetch:events', @fetchEvents, @
+    @listenTo Broadcast.Dispatcher, 'fetch:done', @createViews, @
+    @listenTo @, 'start:websockets', @startWebSockets, @
+
+  createViews: (collection) ->
+    new Broadcast.Views.Scores   {collection}
+    new Broadcast.Views.Goals    {collection}
+    new Broadcast.Views.Messages {collection}
+    new Broadcast.Views.TimeLine {collection}
+
+  fetchEvents: (id) ->
+    window.teams  = new Broadcast.Collections.Teams  initial_teams
+    window.events = new Broadcast.Collections.Events initial_events
+    Broadcast.Dispatcher.trigger 'fetch:done', events
+    @trigger 'start:websockets', id
+
+  startWebSockets: (id) ->
+    stream = new WebSocket "ws://molniasport.ru/ws/api/broadcasts/connect/#{id}"
+    stream.onmessage = (e) ->
+      data = JSON.parse(e.data)
+      switch data.action
+        when 'create' then events.add    data
+        when 'delete' then events.remove data.id
+

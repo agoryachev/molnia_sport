@@ -1,0 +1,19 @@
+%article.accordion.soc_pad.right_panel_widget
+  %div
+    %h3.fc Facebook
+    .box
+      %iframe{allowtransparency: "true", frameborder: "0", scrolling: "no", src: "//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fmolniasport&width=300&height=258&colorscheme=light&show_faces=true&header=false&stream=false&show_border=false", style: "overflow:hidden; width:300px; height:258px;"}
+  %div
+    %h3.vk Вконтакте
+    .box{style: 'height: 253px;'}
+      #vk_groups{style: 'margin-top: -34px;'}
+  %div
+    %h3.inst Instagram
+    .box{style: 'margin-left:17px; margin-top:10px;'}
+      %iframe{allowTransparency: "true", frameborder: "0", scrolling: "no", src: "http://www.intagme.com/in/?u=bW9sbmlhc3BvcnR8aW58ODV8M3wzfHx5ZXN8M3x1bmRlZmluZWR8bm8=", style: "border:none; overflow:hidden; width:300px; height: 270px"}
+  %div
+    %h3.twtr.active Twitter
+    .box
+      %a.twitter-timeline{data: {widget: {id: "472286330706096128"}}, href: "https://twitter.com/molnia_sport", height: "250"} Твиты пользователя @molnia_sport
+      :javascript
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

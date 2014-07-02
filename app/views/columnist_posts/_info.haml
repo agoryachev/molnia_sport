@@ -1,0 +1,4 @@
+%p{class: "p1 #{model.category_color}"}=link_to model.category_title, category_path(model.category)
+%h4=link_to model.columnist.full_name, columnists_url(model.columnist), class: :img
+/ %p.post_inf_values
+/   %span.comnts_num=model.try(:comments_count)

@@ -1,0 +1,21 @@
+= render 'backend/shared/blocks/subnav', model: 'categories'
+
+- if @categories && @categories.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th{width: '5%'}
+        %th{width:'1%'}
+        %th{width:'5%'} #
+        %th.centered{width:'10%'} Позиция
+        %th.centered
+          %span.glyphicon.glyphicon-eye-open
+        %th.centered Название
+        %th.centered Цвет
+        %th
+    %tbody#categories{data: {update: {url: sort_backend_categories_url}}}
+      =render @categories
+
+  = will_paginate(@categories, renderer: BootstrapPagination::Rails)
+- else
+  = render partial: "backend/shared/no_results_message"

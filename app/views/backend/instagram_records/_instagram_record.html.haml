@@ -1,0 +1,16 @@
+- instagram_data = JSON.load(instagram_record.data)
+%tr{class: instagram_record.is_published? ? '' : 'muted', data: {id: instagram_record.id}}
+  %td= instagram_record.id
+  %td
+    - unless instagram_data.nil?
+      = instagram_data['username']
+    - else
+      = 'Нет данных'
+  %td{width: '50%'}
+    - unless instagram_data.nil?
+      = link_to(instagram_record['link'], edit_backend_instagram_record_path(instagram_record))
+    - else
+      = link_to('Нет данных', edit_backend_instagram_record_path(instagram_record))
+  %td= dt(instagram_record.published_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: instagram_record, field: :is_published
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: instagram_record

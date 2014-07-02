@@ -1,0 +1,38 @@
+%section.team_transfer_pad
+  .ttl_pad
+    %h3.clrd_bg
+    .heading
+      %p.p1 ПРИШЛИ
+      %p.p2 УШЛИ
+      %p.p3 ИНТЕРЕСНЫ
+  .team_pad
+    %table
+      %tbody
+        %tr.even
+          %td
+            =link_to team, class: :team_logo do
+              =show_main_image(team, '65x65', team.title)
+              %span.name=team.title
+          %td
+            .list1
+              -transferes_to.each do |trans_to|
+                =link_to trans_to.person, class: :player do
+                  =show_main_image(trans_to.person, '68x68', trans_to.person.full_name)
+                  %strong.name=trans_to.person.full_name
+
+          %td
+            .list2
+              %ul
+                -transferes_from.each do |trans_from|
+                  %li
+                    =link_to trans_from.person do
+                      %strong
+                      =trans_from.person.full_name
+          %td
+            .list3
+              %ul
+                -transferes_interests.each do |trans_interes|
+                  %li
+                    =link_to trans_interes.person do
+                      %strong
+                      =trans_interes.person.full_name

@@ -1,0 +1,35 @@
+%section.comments
+  %h3.side_title
+    Комментарии
+    %a{href: "#", data: {filter: :new} } Новые
+    %a{href: "#", data: {filter: :best}} Лучшие
+  .js-comments
+.clearfix
+%section.main-comment-form
+  %h2 Ваш комментарий
+  .js-reply-form
+-unless user_signed_in?
+  .social-login-icons
+    %p Войти и ответить
+    =render 'shared/socials/social_login_icons'
+-if user_signed_in? and current_user.is_active?
+  %section.current_user_menu
+    .current-user-image=show_main_image(current_user, '60x60', current_user.full_name)
+    .current-user-name=current_user.full_name
+    .current-social-icon
+      -if current_user.provider == 'twitter'
+        =link_to user_omniauth_authorize_path(:twitter), class: 'btn-social btn-twitter' do
+          %span.fa.fa-twitter
+
+      -if current_user.provider == 'facebook'
+        =link_to user_omniauth_authorize_path(:facebook), class: 'btn-social btn-facebook' do
+          %span.fa.fa-facebook
+
+      -if current_user.provider == 'vkontakte'
+        =link_to user_omniauth_authorize_path(:vkontakte), class: 'btn-social btn-vk' do
+          %span.fa.fa-vk
+      .dropdown
+        =link_to '', '#', class: 'closed js-link'
+        .submenu
+          =link_to 'Выйти', destroy_user_session_path, method: :delete
+      .clearfix

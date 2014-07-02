@@ -1,0 +1,13 @@
+- column_render = get_render_column_element
+- if posts.size > Setting.min_blocks_count_in_grid
+  %section.news_list
+    - posts.each_with_index do |post, index|
+      - column_render.call index do |partial|
+        = render partial, popular_posts: @popular_posts, columnists_posts: @columnists_posts
+      =render(partial: 'posts/post', layout: false, locals: {post: post})
+- else
+  %section.news_list.lc
+    - posts.each_with_index do |post, index|
+      =render(partial: 'posts/post', layout: false, locals: {post: post})
+  %section.rc
+    =render 'shared/aside/aside'

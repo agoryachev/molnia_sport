@@ -1,0 +1,6 @@
+.shdw_wr
+  %section.clubs_list
+    -teams.each do |team|
+      =link_to transfer_path(team), class: params[:id].to_i == team.id && :active  do
+        =show_main_image(team, '65x65', team.title)
+    .clr

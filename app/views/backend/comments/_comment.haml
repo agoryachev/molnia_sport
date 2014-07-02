@@ -1,0 +1,25 @@
+%tr{data: { id: comment.id } }  
+  - unless comment.commentable.nil?
+    %td
+      .row
+        .col-md-1
+          =render "backend/shared/blocks/publish_checkbox", model: comment, field: :is_published
+        .col-md-4.comment-title-link-js
+          = link_to comment.commentable.title, '#', target: "_blank", class: comment.is_published && '' || 'text-muted'
+        - unless comment.user.nil?
+          .col-md-3
+            От:
+            = link_to comment.user.nickname, edit_backend_user_path(comment.user), target: "_blank"
+            = comment.user.email rescue nil
+        .col-md-2
+          = dt(comment.created_at)
+        .col-md-2
+          .btn-group.pull-right
+            %a.btn.btn-sm.btn-primary.w-c{ href: edit_backend_comment_path(comment) }
+              %span.glyphicon.glyphicon-pencil
+            %a.btn.btn-danger.btn-sm.w-c{ href: backend_comment_path(comment), data: { confirm: t("msg.confirm"), method: :delete } }
+              %span.glyphicon.glyphicon-trash 
+      .comment-body-js
+        %hr
+        %blockquote
+          = comment.content

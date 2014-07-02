@@ -1,0 +1,293 @@
+ru:
+  label:
+    add_photos:                 "Добавить фотографии"
+    answer:                     "Ответить"
+    back:                       "Назад"
+    close:                      "Закрыть"
+    controllers:                "Действия"
+    create_dir:                 "Создать директорию"
+    deferred:                   "Отложено"
+    delete:                     "Удалить"
+    exit:                       "Выйти без сохранения"
+    main_image:                 "Главная фотография"
+    models:                     "Атрибуты"
+    partials:                   "Блоки"
+    autocomplete:               "Для акивации 'автокомлита', введите первые символы"
+    publishing_properties:      "Свойства публикации"
+    save:                       "Сохранить"
+    save_and_exit:              "Сохранить и выйти"
+    teaser:                     "Тизер"
+    upload:                     "Загрузить"
+  search:
+    no_results: "По вашему запросу ничего не найдено"
+  msg:
+    create:                     "Успешно создано"
+    confirm:                    "Вы уверены?"
+    deleted:                    "Успешно удалено"
+    imported:                   "Импорт произведен"
+    locked:                     "Заблокировано. Находится на редактировании"
+    login_success:              "Успешный вход"
+    login_attempts_exceed:      "Слишком много неудачных попыток, попробуйте войти позже."
+    login_incorrect:            "Неверные данные для входа"
+    oauth_error:                "Ошибка авторизации"
+    oauth_success:              "Успешная авторизация"
+    omniauth_callbacks_success: "Успешный вход"
+    save_error:                 "Обнаружены ошибки в форме"
+    saved:                      "Успешно сохранено"
+    still_save:                 'Если Вы хотите сохранить запись несмотря на это, нажмите "Сохранить"'
+    success_action:             "Успешное действие"
+    undeleted:                  "Ошибки при удалении"
+    unsuccess_action:           "Действие неудачно"
+    user_not_activated:         "Ваша учетная запись еще не активирована"
+    wrong_datatype:             "Неверный тип данных"
+    now_allow_url:              "Не допускается размещение ссылок"
+  parameters:
+    side_bar_banner:            "Сайдбар-баннер"
+    match_live:                 "Сайдбар-match-live"
+    side_bar_main_news:         "Сайдбар главные новости"
+    side_bar_photo_video:       "Сайдбар фото и видео"
+    side_bar_socials:           "Сайдбар социальные сети"
+    side_bar_columnists:        "Сайдбар колумнистов"
+  controllers:
+    backend:
+      insides:                  "Инсайды"
+      authors:                  "Авторы"
+      categories:               "Категории"
+      characters:               "Амплуа"
+      columnists:               "Колумнисты"
+      columnist_posts:          "Публикации колумниста"
+      comments:                 "Комментарнии"
+      countries:                "Страны"
+      dashboard:                "Админ панель"
+      employees:                "Сотрудники"
+      galleries:                "Фотогалереи"
+      gallery_files:            "Изображения галереи"
+      groups:                   "Группы"
+      leagues:                  "Лиги"
+      leagues_groups:           "Группы / Туры"
+      matches:                  "Матчи"
+      menu:                     "Меню"
+      pages:                    "Страницы"
+      persons:                  "Игроки / Тренеры"
+      posts:                    "Новости"
+      publication_flags:        "Флаги публикаций"
+      settings:                 "Параметры сайта"
+      teams:                    "Команды"
+      users:                    "Пользователи"
+      videos:                   "Видеоролики"
+      transfers:                "Трансферы"
+      years:                    "Год"
+      persons:                  "Игроки / Тренеры"
+      gallery_files:            "Изображения галереи"
+      publication_flags:        "Флаги публикаций"
+      tweets:                   "Твиты"
+      instagram_records:        "Фото из Инстаграма"
+      tactical_schemes:         "Тактические схемы"
+  actions:
+    destroy:                    "Удалить"
+    edit:                       "Редакторовать"
+    index:                      "Список"
+    new:                        "Добавить"
+  colors:
+    green_page:                 "Зеленый"
+    red_page:                   "Красный"
+    blue_page:                  "Синий"
+
+  activerecord:
+    models:
+    attributes:
+      defaults: &defaults
+        authors:                "Авторы"
+        category_id:            "Категория"
+        created_at:             "Дата создания"
+        content:                "Содержание"
+        employee_id:            "Создатель"
+        is_top:                 "Топ"
+        is_published:           "Опубликовано"
+        is_deleted:             "Удален"
+        is_comments_enabled:    "Комментируемый"
+        is_exclusive:           "Эксклюзивно"
+        file:                   "Главное изображение"
+        main_image:             "Главное изображение"
+        placement_index:        "Позиция"
+        published_at:           "Дата публикации"
+        referee_id:             "Судья"
+        rubric_id:              "Рубрика"
+        searchable:             "Учитывать при поиске"
+        seo_alias:              "ЧПУ"
+        seo_description:        "SEO-описание"
+        seo_keywords:           "Ключевые слова"
+        subtitle:               "Вводный текст"
+        tag_list:               "Тэги"
+        title:                  "Заголовок"
+        updated_at:             "Дата обновления"
+        link:                   "Ссылка"
+      post:
+        <<: *defaults
+        country_id:             "Страна"
+        person_ids:             "Игроки"
+        team_ids:               "Команды"
+        is_top:                 "Главная новость"
+        is_breaknews:           "Срочная новость (в бегущую ленту)"
+        post_status_id:         "Статус новости"
+      columnist_post:
+        <<: *defaults
+      character:
+        title:                  "Название"
+      post/main_image:
+        file:                   "Главное изображение"
+        description:            "Описание"
+
+      gallery:
+        <<: *defaults
+        description:            "Описание"
+        person_ids:             "Игроки"
+        team_ids:               "Команды"
+        gallery_files:          "Изображения галереи"
+        add_gallery_files:      "Добавление изображений в галерею"
+      gallery/main_image:
+        file:                   "Главное изображение"
+
+      video:
+        <<: *defaults
+        person_ids:             "Игроки"
+        team_ids:               "Команды"
+
+      category:
+        <<: *defaults
+        parent_id:              "Категория родитель"
+        color:                  "Цвет"
+
+      comment:
+        <<: *defaults
+
+      page:
+        <<: *defaults
+
+      broadcast_message:
+        <<: *defaults
+        timestamp:              "Минута матча"
+
+      author:
+        <<: *defaults
+        name:                   "Имя"
+
+      country:
+        title:                  "Название"
+        category_ids:           "Категории"
+
+      league:
+        <<: *defaults
+        country_id:             "Страна"
+        date:                   "Год"
+        leagues_group_ids:      "Туры / Группы"
+        is_leagues_group_slider:   "Отображать в слайдере"
+
+      leagues_group:
+        <<: *defaults
+        date_at:                "Дата"
+        round_type:             "Тип турнира"
+        start_stage:            "Стартовая стадия турнира (только для плей-офф)"
+
+      team:
+        <<: *defaults
+        country_id:             "Страна"
+        person_ids:             "Игроки"
+        coach_id:               "Главный тренер"
+        year_of_foundation:     "Год основания"
+
+      transfer:
+        <<: *defaults
+        person_id:              "Игрок"
+        team_from_id:           "Откуда уходит"
+        team_to_id:             "Куда приходит"
+        start_at:               "Дата и время начала"
+        finish_at:              "Дата и время завершения"
+        state:                  "Завершен?"
+
+      match:
+        <<: *defaults
+        leagues_group_id:       "Тур / Группа"
+        team_guest_id:          "Команда играющая в гостях"
+        team_home_id:           "Команда играющая дома"
+        count_guest:            "Счет матча гостевой команды"
+        count_home:             "Счет матча принимащей команды"
+        start_at:               "Время начала матча"
+        finish_at:              "Время завершения матча"
+        date_at:                "Дата матча"
+        is_show_in_sidebar:     "Показывать матч блок в сайдбаре?"
+        side:                   "Группа в плей-офф (1 либо 2)"
+        stage:                  "Стадия турнира"
+        position_in_stage:      "Порядковый номер матча в его стадии турнира"
+
+      person:
+        <<: *defaults
+        name_first:             "Имя"
+        name_last:              "Фамилия"
+        name_v:                 "Отчество"
+        character_id:           "Амплуа"
+        number:                 "Номер игрока"
+        height:                 "Рост"
+        weight:                 "Вес"
+        birthday:               "Дата рождения"
+        citizenship:            "Гражданство"
+        cost:                   "Трансферная стоимость"
+
+      columnist:
+        <<: *defaults
+        name_first:             "Имя"
+        name_last:              "Фамилия"
+        name_v:                 "Отчество"
+      tweet:
+        <<: *defaults
+
+      seo:
+        keywords:               "Ключевые слова"
+        slug:                   "ЧПУ"
+        description:            "Описание"
+      year:
+        league_year:            "Год"
+        title:                  "Сезон"
+
+      employee:
+        nickname:               "Имя пользователя"
+        name_first:             "Имя"
+        name_last:              "Фамилия"
+        email:                  "Email"
+        is_active:              "Активен"
+        password:               "Пароль"
+        password_confirmation:  "Подтверждение пароля"
+        remember_me:            "Запомнить меня"
+        group_id:               "Группа"
+
+      user:
+        nickname:               "Никнейм"
+        name_first:             "Имя"
+        name_last:              "Фамилия"
+        email:                  "Email"
+        is_active:              "Активен"
+        password:               "Пароль"
+        password_confirmation:  "Подтверждение пароля"
+        current_password:       "Текущий пароль"
+        remember_me:            "Запомнить меня"
+        login:                  "Логин"
+      inside:
+        <<: *defaults
+        source:                 "Источник"
+        inside_status_id:       "Статус"
+        person_id:              "Игрок"
+      group:
+        title:                  "Название"
+        description:            "Описание"
+      setting:
+        <<: *defaults
+        match_selected_error:   "Ошибка выбора матча: "
+
+# Gems translations
+#=================================================================
+  will_paginate:
+    next_label:                 "Вперед »"
+    previous_label:             "« Назад"
+    page_gap:                   "..."
+    first_label:                "В начало"
+    last_label:                 "В конец"

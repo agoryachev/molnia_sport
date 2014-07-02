@@ -1,0 +1,25 @@
+%h4 Авторы:
+- unless f.object.authors.blank?
+  %table.table.table-condensed.table-striped
+    %tbody
+      = f.fields_for :authors do |author_form|
+        %tr
+          %td.col-md-1
+            .checkbox
+              %label
+                %span.glyphicon.glyphicon-trash
+                = author_form.check_box :_destroy
+          %td.col-md-9
+            %p.author= author_form.object.name
+      - f.object.author_ids.each do |a_id|
+        = hidden_field_tag "#{f.object.class.to_s.underscore}[author_ids][]", a_id
+- else
+  пока авторов нет
+%hr
+%h4 Добавить авторов:
+%table.table.table-condensed.table-striped#author-datatable{data: {source: backend_datatable_authors_path(f.object.new_record? ? 0 : f.object.id, f.object.class.to_s,  format: "json") }}
+  %thead
+    %th#th1{style: "width: 30px !important;"}
+      %span.glyphicon.glyphicon-ok-sign
+    %th{style: "width: 60px !important;"} #
+    %th Имя

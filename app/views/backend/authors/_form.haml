@@ -1,0 +1,20 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @author], html: {class: :form}) do |f|
+    .row
+      .col-md-6
+        %fieldset
+          .form-group
+            = f.label :name
+            = f.text_field :name, maxlength: 255, class: 'form-control'
+      .col-md-6
+        .form-group
+          = f.label :employee_id
+          = f.select :employee_id, @employees, {include_blank: 'Выберите сотрудника'},class: 'form-control'
+      .col-md-12
+        %hr/
+        .form-actions
+          = f.submit t('label.save'), class: 'btn btn-primary'
+          = f.submit t('label.save_and_exit'), class: 'btn btn-primary'
+          - unless @author.new_record?
+            = link_to "Удалить", backend_author_path(@author), data: { confirm: t('msg.confirm'), method: :delete }, class: 'btn btn-danger'

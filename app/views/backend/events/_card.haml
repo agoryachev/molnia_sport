@@ -1,0 +1,13 @@
+%br/
+= form.fields_for :card do |f|
+
+  .form-group
+    = f.label :player_id, "Игрок получивший карту"
+    %select#broadcast_message_card_player_id.form-control{name: "broadcast_message[card][player_id]"}
+      -select_option_with_optgroup(@match.team_home)
+      -select_option_with_optgroup(@match.team_guest)
+
+
+  .form-group
+    = f.label :card_type, "Тип карточки"
+    = f.select :card_type, Event::Card::CARD_COLORS.map(&:reverse), {}, class: 'form-control'

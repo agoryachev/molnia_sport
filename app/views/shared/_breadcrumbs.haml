@@ -1,0 +1,14 @@
+.breadcrumbs
+  %div
+    %a{href: "/"}
+      %span Главная
+    \/
+  -if model.respond_to?(:category) && model.category.present?
+    %div
+      %a{href: category_path(params[:category_id])}
+        %span=model.category.title
+      \/
+  -if model.respond_to?(:country) && model.country.present?
+    %div
+      %a{href: category_country_path(params[:category_id], model.country.id)}
+        %span=model.country.title

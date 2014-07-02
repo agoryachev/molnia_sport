@@ -1,0 +1,11 @@
+=render partial: "subnav"
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Страны', backend_countries_path
+      %li=link_to @year.try(:league).try(:country).try(:title), edit_backend_country_path(@year.try(:league).try(:country))
+      %li=link_to 'Лиги', backend_leagues_path
+      %li=link_to @year.try(:league).try(:title), edit_backend_league_path(@year.league)
+      %li.active Редактирование #{@year.league_year}
+
+=render 'form'

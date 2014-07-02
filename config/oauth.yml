@@ -1,0 +1,22 @@
+development: &defaults
+  facebook:
+    app_id: 694444577263857
+    app_secret: a8da99b6335c2417adb8f2330c360eb7
+  twitter:
+    consumer_key: xyIdRKDZEXYGF8LRqzy8rA0c7
+    consumer_secret: TqbVfYJQxxg6fTPns5daR6yIX2oSxZeF9bApQMyYs7Ps3hky3B
+  instagram:
+    client_id: 8f4cf8f57c9e424daea0e17e7bd70a29
+    client_secret: f96a60c7bc1c4345a40c58c7133684e6
+  vkontakte:
+    app_id: 4388681
+    app_secret: wgwwHkQDgQ6X2nfXHDSU
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults

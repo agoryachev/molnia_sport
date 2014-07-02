@@ -1,0 +1,38 @@
+.col-md-12
+  .panel.panel-default.match
+    .close.remove_match{aria: {hidden: "true"}}
+      &times;
+    =f.hidden_field :_destroy
+    .panel-body{style: 'margin-top:6px'}
+      .row
+        .col-md-12
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: 'form-control'
+
+        .col-md-6
+          .form-group
+            = f.label :start_at
+            .datetimepicker.input-group.date{data: {date: {format: "YYYY-MM-DD hh:mm"}}}
+              =f.text_field :start_at, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+
+        .col-md-6
+          .form-group
+            = f.label :finish_at
+            .datetimepicker.input-group.date{data: {date: {format: "YYYY-MM-DD hh:mm"}}}
+              =f.text_field :finish_at, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+
+        .col-md-6
+          .form-group
+            = f.label :team_home_id
+            = f.collection_select :team_home_id, Team.where(id: f.object.team_home.try(:id)), :id, :title, {}, class: 'form-control selectize-team'
+        .col-md-6
+          .form-group
+            = f.label :team_guest_id
+            = f.collection_select :team_guest_id, Team.where(id: f.object.team_guest.try(:id)), :id, :title, {}, class: 'form-control selectize-team'
+        .col-md-6
+          =link_to 'Перейти на страницу подробного редактирования', "/backend/matches/#{f.object.try(:id)}/edit", target: :_blank, class: 'btn btn-success' unless f.object.new_record?

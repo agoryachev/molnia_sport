@@ -1,0 +1,26 @@
+development: &defaults
+  sftp: 
+    host: "188.40.96.158"
+    url: "http://content.nnbs.ru/sport.ru"
+    path: "/home/content/www/sport.ru"
+    user: "content"
+    password: "0fy8CJl1OPC4"
+    media_path: "media"
+staging:
+  sftp: 
+    host: "188.40.96.158"
+    url: "http://content.nnbs.ru/sport.ru"
+    path: "/home/content/www/sport.ru"
+    user: "content"
+    password: "0fy8CJl1OPC4"
+    media_path: "media"
+production:
+  sftp: 
+    host: "188.40.96.158"
+    url: "http://content.nnbs.ru/molniasport.ru"
+    path: "/home/content/www/molniasport.ru"
+    user: "content"
+    password: "0fy8CJl1OPC4"
+    media_path: "media"
+test:
+  <<: *defaults

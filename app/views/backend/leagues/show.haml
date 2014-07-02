@@ -1,0 +1,38 @@
+%h3=@league.title
+= render 'subnav_show', league: @league
+
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Лиги', backend_leagues_path
+      %li.active=@league.title
+
+.row
+  .col-md-12
+    #accordion.panel-group
+      -@years.each do |year|
+        .panel.panel-primary
+          .panel-heading
+            %h5.pull-left=year.league_year
+            =link_to 'Редактировать год', edit_backend_year_path(year), class: 'btn btn-default pull-right'
+            .clearfix
+          .panel-body
+            -year.leagues_groups.each do |group|
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a.pull-left{data: {parent: "#accordion", toggle: "collapse"}, href: "#collapse#{group.id}"}
+                      =group.title
+                    =link_to 'Редактировать тур', edit_backend_leagues_group_path(group), class: 'pull-right'
+                    .clearfix
+                .panel-collapse.collapse{id: "collapse#{group.id}"}
+                  .panel-body
+                    -group.matches.each do |match|
+                      .list-group
+                        =link_to edit_backend_match_path(match), class: 'list-group-item' do
+                          %h4.list-group-item-heading
+                            =match.title + " - редактировать"
+                          %p.list-group-item-text
+                            #{match.team_home.title} - #{match.team_guest.title}
+                          %p.list-group-item-text
+                            =match.content

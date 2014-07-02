@@ -1,0 +1,13 @@
+.col-md-12
+  = render 'backend/shared/blocks/subnav', model: 'authors'
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th #
+        %th Имя
+        %th Работник
+        %th.centered Количество новостей
+    %tbody
+      =render @authors
+
+  = will_paginate(@authors, renderer: BootstrapPagination::Rails)

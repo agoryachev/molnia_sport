@@ -1,0 +1,21 @@
+%section.search_pad.padding2
+  .search_pad_wr
+    .calendar-filter.fl
+      =form_tag calendars_path, class: 'calendar search_form', method: :get do
+        %fieldset.fl
+          =label :league_id, 'Лига', class: 'fl'
+          = select_tag :league_id, options_from_collection_for_select( @leagues, :id, :title), class: 'fr'
+
+        %fieldset.fl
+          =label :year_id, 'Сезон', class: 'fl'
+          = select_tag :year_id, options_from_collection_for_select( @years, :id, :season_title, params[:year_id]), class: 'fr'
+    -#=render 'shared/search_form'
+
+/ Последний добавленный тур
+=render 'last_leagues_group'
+/ Турнирная таблица
+=render 'tournaiments_list'
+/ все туры лиги
+=render 'leagues_groups'
+- if Rails.env.test?
+  .calendars-for-specs

@@ -1,0 +1,19 @@
+.panel.panel-default.filter
+  .panel-body
+    %ul.nav.nav-pills
+      %li{class: params[:is_published] || params[:adjustment_state] ? '' : 'active'}= link_to 'Все', polymorphic_path([:backend, :leagues])
+      %li{class: muted_class(params[:is_published], 1)}= link_to 'Опубликованные', polymorphic_path([:backend, :leagues], is_published: 1)
+
+      %li
+        =form_tag backend_leagues_path, method: :get, class: 'form-inline' do
+          .form-group
+            =select_tag :year, options_from_collection_for_select(Year.select("distinct league_year"), :league_year, :league_year, params[:year]), prompt: 'Год', class: 'form-control'
+          .form-group
+            %select{name: 'category_id', class: 'form-control'}
+              %option{value: ''}
+                Категория
+              -Category.all.each do |category|
+                %option{value: category.id, selected: params[:category_id].to_i == category.id && true }
+                  =category.title
+          .form-group
+            =submit_tag 'Искать', class: 'btn btn-primary'

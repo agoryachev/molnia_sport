@@ -1,0 +1,19 @@
+%h3= t "controllers.backend.#{controller.controller_name}"
+.subnav
+  .navbar.navbar-default
+    .navbar-inner
+      %ul.nav.navbar-nav
+        %li{class: controller.controller_path == "backend/authors" && controller.action_name == "index" ? "active" : ""}
+          %a{href: backend_authors_path} 
+            %i.icon-list-alt
+            =t "actions.index"
+        %li{class: controller.controller_path == "backend/authors" && controller.action_name == "new" ? "active" : ""}
+          %a{href: new_backend_author_path} 
+            %i.icon-pencil
+            =t "actions.new"      
+      = form_tag(backend_authors_path, method: :get, class: "navbar-form navbar-right search") do
+        .form-group
+          = text_field_tag "search[name]", params[:search].try(:[], :name), placeholder:"поиск по имени", class: 'form-control'
+        .form-group
+          = text_field_tag "search[employee]",params[:search].try(:[], :employee), placeholder:"поиск по редактору", class: 'form-control'
+        = submit_tag "Найти", class: "btn btn-primary"

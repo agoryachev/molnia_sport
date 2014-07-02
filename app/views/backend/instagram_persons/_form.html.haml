@@ -1,0 +1,12 @@
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @instagram_person], html: {class: "form"}) do |f|
+    %fieldset
+      .row
+        .col-md-12
+          .form-group
+            = f.label :link
+            = f.text_field :link, class: 'form-control', maxlength: 255
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      = f.submit t("label.save_and_exit"), class: "btn btn-primary"

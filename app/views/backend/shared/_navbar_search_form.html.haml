@@ -1,0 +1,10 @@
+= form_tag(form_url, method: :get, class: 'navbar-form navbar-right search', remote: true) do
+  .form-group
+    = text_field_tag 'search', params[:search], placeholder: 'Поиск по названию и содержанию', class: 'form-control', style: 'width: 300px;'
+  = submit_tag 'Поиск', class: 'btn btn-default'
+  - if @total_count && @total_count > 0
+    .result_message.alert.alert-info
+      %button.close{type: 'button', data: {dismiss: 'alert'}}×
+      %span.glyphicon.glyphicon-search
+      Найдено #{@total_count} записей
+.clearfix

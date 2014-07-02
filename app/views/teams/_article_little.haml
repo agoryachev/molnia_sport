@@ -1,0 +1,7 @@
+%article.little
+  =link_to category_post_path(article_little.category, article_little), class: :img do
+    =show_main_image(article_little, '105x70', article_little.title)
+    .overlay
+  .post_inf
+    %time{datetime: article_little.published_at}=d(article_little.published_at)
+  %h3=link_to article_little.title, category_post_path(article_little.category, article_little)

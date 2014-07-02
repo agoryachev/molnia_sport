@@ -1,0 +1,21 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :subtitle
+      = f.text_area :subtitle, class: 'form-control', rows: 3, maxlength: 255
+    .form-group
+      =render 'backend/shared/form_partials/datetimepicker', f: f, field: :published_at, model: @columnist_post, format: "DD/MM/YYYY HH:mm"
+    .form-group
+      = f.label :category_id
+      %select{name: 'columnist_post[category_id]', class: 'form-control', id: 'columnist_post_category_id'}
+        %option{value: ''}
+          Выберите
+        -@categories.each do |category|
+          %option{value: category.id, selected: @columnist_post.category_id == category.id ? true : false }
+            =category.title
+
+=render 'backend/shared/form_partials/textarea', f: f

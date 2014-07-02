@@ -1,0 +1,7 @@
+%h3 ТРАНСФЕРНЫЕ НОВОСТИ
+%section.lc
+  %section.news_list2.nobd
+    =render 'big_post', post: last_post if last_post
+    .news_list
+      =render partial: 'post', collection: posts if posts
+    .clr

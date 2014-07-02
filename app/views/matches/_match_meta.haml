@@ -1,0 +1,6 @@
+.kybok= @match.leagues_group.try(:league).try(:title)
+.clock= dt(Time.parse("#{@match.date_at} #{@match.start_at}").localtime - 4.hours)
+= # .cart
+= #   = image_tag 'matches/english.png'
+= #   Уэмбли
+.svist= @match.referee.full_name if @match.referee.present?

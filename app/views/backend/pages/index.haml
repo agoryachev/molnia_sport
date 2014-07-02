@@ -1,0 +1,21 @@
+= render 'backend/shared/blocks/subnav', model: 'pages'
+= render 'backend/shared/blocks/filter', model: :pages
+- if @pages && @pages.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th #
+        %th Заголовок
+        %th.centered
+          %span.glyphicon.glyphicon-eye-open
+        %th.centered
+          %span.glyphicon.glyphicon-comment
+        %th
+    %tbody=render @pages
+  .help-block 
+    %small
+      %span.label.label-default &nbsp;&nbsp;&nbsp; 
+      Не опубликовано  
+  = will_paginate(@pages, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'

@@ -1,0 +1,23 @@
+- if model.class.to_s == 'Team'
+  - content_for :title, "#{model.subtitle} | #{Setting.site_name}"
+- elsif model.class.to_s == 'Match'
+  - content_for :title, "Live трансляция матч #{model.title} | #{Setting.site_name}"
+- elsif model.class.to_s == 'Inside'
+  - content_for :title, "Инсайд | #{Setting.site_name}"
+-else
+  -if model.respond_to?(:title)
+    - content_for :title, "#{model.title} | #{Setting.site_name}"
+  -elsif model.respond_to?(:full_name)
+    - content_for :title, "#{model.full_name} | #{Setting.site_name}"
+
+-if model.respond_to?(:seo) && model.seo.try(:keywords).presence
+  - content_for :keywords, model.seo.keywords
+-elsif model.respond_to?(:tag_list)
+  - content_for :keywords, model.tag_list
+
+-if model.respond_to?(:seo) && model.seo.try(:description).presence
+  - content_for :description, model.seo.description
+-elsif model.respond_to?(:subtitle)
+  - content_for :description, model.subtitle
+-elsif model.respond_to?(:content)
+  - content_for :description, strip_tags(truncate(model.content, length: 255))

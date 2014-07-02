@@ -1,0 +1,26 @@
+.play-off
+  -if @played_matches && @played_matches.count > 0
+    %section.calendar
+      %h2.last-results Результаты последних матчей
+      .soc-btns
+        =render 'shared/blocks/socials'
+      =render 'shared/played_matches'
+  .stages-titles
+    %span
+      1/8 финала
+    %span
+      1/4 финала
+    %span
+      Полуфинал
+    %span
+      Финал
+    %span
+      Полуфинал
+    %span
+      1/4 финала
+    %span
+      1/8 финала
+  .play-off-calendar{data: {leagues_groups_id: @play_off_group.try(:id), url: calendars_get_play_off_results_path}}
+  %section.calendar.group-results
+    %h2 Групповые результаты
+    =render 'calendars/tournaiments_block'

@@ -1,0 +1,7 @@
+%tr{class: columnist.is_published ? '' : 'muted'}
+  %td= main_image_backend columnist
+  %td=columnist.id
+  %td=link_to columnist.full_name, edit_backend_columnist_path(columnist)
+  %td=link_to 'Статьи', backend_columnist_columnist_posts_path(columnist)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: columnist, field: :is_published
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: columnist

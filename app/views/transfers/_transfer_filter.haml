@@ -1,0 +1,11 @@
+=form_tag photo_video_path, class: 'transfer search_form', method: :get do
+  %fieldset.fl
+    =label :category_id, 'Вид спорта', class: 'fl'
+    = select_tag :category_id, options_from_collection_for_select( Category.all, :id, :title, params[:category]), class: 'fr'
+
+  %fieldset.fl
+    =label :country_id, 'Страна', class: 'fl'
+    %select#country_id.fr{name: "country_id"}
+      %option{value: '' } Выберите
+      -Country.all.each do |country|
+        %option{value: country.id }=country.title

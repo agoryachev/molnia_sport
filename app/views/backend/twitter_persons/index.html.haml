@@ -1,0 +1,14 @@
+= render 'backend/shared/blocks/subnav', model: 'twitter_persons'
+- if @twitter_persons && @twitter_persons.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th #
+        %th Имя
+        %th Ссылка
+        %th Дата публикации
+    %tbody=render @twitter_persons
+  .help-block
+    = will_paginate(@twitter_persons, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'

@@ -1,0 +1,77 @@
+.col-md-12
+  .panel.panel-default.match
+    .close.remove_match{aria: {hidden: "true"}}
+      &times;
+    =f.hidden_field :_destroy
+    .panel-body{style: 'margin-top:6px'}
+      .row
+        .col-md-8
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: 'form-control'
+
+        .col-md-4
+          .checkbox
+            = f.label :is_show_in_sidebar
+            = f.check_box :is_show_in_sidebar
+      - if @leagues_group.try(:round_type) == 1
+        .row
+          .col-md-2
+            .form-group
+              = f.label :stage
+              = f.select :stage, options_for_select((LeaguesGroup::START_STAGE_KEYS).merge(LeaguesGroup::SPEC_STAGE_KEYS), f.object.try(:stage)), {:include_blank => 'Выберите...'}, class: 'form-control'
+          .col-md-5
+            .form-group
+              = f.label :side
+              = f.select :side, [['Слева (группа 1)', 1], ['Справа (группа 2)', 2]], {}, class: 'form-control'
+          .col-md-5
+            .form-group
+              = f.label :position_in_stage
+              = f.text_field :position_in_stage, class: 'form-control'
+      .row
+        .col-md-4
+          .form-group
+            = f.label :date_at
+            .datetimepicker.input-group.date{data: {date: {format: "YYYY-MM-DD"}}}
+              =f.text_field :date_at, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+        .col-md-4
+          .form-group
+            = f.label :start_at
+            .datetimepicker_time.input-group.date{data: {date: {format: "HH:mm"}}}
+              =f.text_field :start_at, class: 'form-control', value: (f.object.try(:start_at)) ? f.object.start_at.strftime("%H:%M") : ''
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-clock
+
+        .col-md-4
+          .form-group
+            = f.label :finish_at
+            .datetimepicker_time.input-group.date{data: {date: {format: "HH:mm"}}}
+              =f.text_field :finish_at, class: 'form-control', value: (f.object.try(:finish_at)) ? f.object.finish_at.strftime("%H:%M") : ''
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-clock
+      .row
+        .col-md-12
+          .form-group
+            = f.label :referee_id
+            = f.collection_select :referee_id, Person.where(id: f.object.referee.try(:id)), :id, :full_name, {}, class: 'form-control selectize-referee'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :team_home_id
+            = f.collection_select :team_home_id, Team.where(id: f.object.team_home.try(:id)), :id, :title, {}, class: 'form-control selectize-team'
+          .form-group
+            = f.label :count_home
+            = f.number_field :count_home, class: 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :team_guest_id
+            = f.collection_select :team_guest_id, Team.where(id: f.object.team_guest.try(:id)), :id, :title, {}, class: 'form-control selectize-team'
+          .form-group
+            = f.label :count_guest
+            = f.number_field :count_guest, class: 'form-control'
+        .col-md-6
+          =link_to 'Редактировать', "/backend/matches/#{f.object.try(:id)}/edit", target: :_blank, class: 'btn btn-success' unless f.object.new_record?
+        .col-md-6.text-right
+          =link_to 'Текстовая трансляция', "/backend/matches/#{f.object.try(:id)}", target: :_blank, class: 'btn btn-primary' unless f.object.new_record?

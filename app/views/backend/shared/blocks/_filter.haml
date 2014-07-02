@@ -1,0 +1,7 @@
+.panel.panel-default.filter
+  .panel-body
+    %ul.nav.nav-pills
+      %li{class: params[:is_published] || params[:adjustment_state] ? '' : 'active'}= link_to 'Все', polymorphic_path([:backend, model])
+      %li{class: muted_class(params[:is_published], 1)}= link_to 'Опубликованные', polymorphic_path([:backend, model], is_published: 1)
+
+      %li{class: muted_class(params[:is_published], 0)}= link_to 'Черновики', polymorphic_path([:backend, model], is_published: 0)

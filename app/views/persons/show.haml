@@ -1,0 +1,64 @@
+=render 'shared/meta/meta_block', model: @person
+-#=render 'shared/club_list', teams: @teams if @teams.presence
+%br/
+%section.lc
+  %article.sportsmen_detail
+    %section.inf_pad
+      .fll
+        %a.img{href: ""}
+          =show_main_image(@person, "150x150", @person.full_name)
+        .soc_links
+          %ul
+            -if @person.twitter.present?
+              %li
+                =link_to @person.twitter, target: :_blank do
+                  =image_tag 'soc001.png', size: '23x18'
+            -if @person.instagram.present?
+              %li
+                =link_to @person.instagram, target: :_blank do
+                  =image_tag 'soc002.png', size: '19x18'
+      .flr
+        %h1=@person.full_name
+        %h2 #{@person.full_name.strip.to_ascii}
+        .person_info
+          %ul
+            -if @person.number.present?
+              %li
+                %span Номер игрока:
+                #{@person.number}
+            -if @person.height.present?
+              %li
+                %span Рост:
+                #{@person.height} см;
+            -if @person.weight.present?
+              %li
+                %span Вес:
+                #{@person.weight} кг;
+            -if @person.birthday.present?
+              %li
+                %span Дата рождения:
+                #{@person.birthday};
+              %li
+                %span Возраст:
+                #{Person.age(@person.id)};
+            -if @person.citizenship.present?
+              %li
+                %span Гражданство:
+                #{@person.citizenship};
+            -if @person.cost.present?
+              %li
+                %span Трансферная стоимость:
+                #{@person.cost};
+        %br/
+        =simple_format(@person.content)
+        =render 'shared/blocks/socials', publication: @person
+      .clr
+  =render 'shared/articles_photo_video', model: @person
+
+%aside.rc
+  =render 'shared/aside/standings'
+  =render 'shared/calendar_results', matches: @matches, team: @team if @matches.present?
+  %section.accordion.soc_pad=render 'shared/aside/social_accordion'
+.clr
+- if Rails.env.test?
+  .persons-for-specs

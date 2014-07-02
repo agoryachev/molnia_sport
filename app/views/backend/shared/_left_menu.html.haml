@@ -1,0 +1,51 @@
+.sidebar-nav.fixed-left
+  %ul.nav.nav-pills.nav-stacked
+    %li.navbar-header
+      %span.glyphicon.glyphicon-plus
+      Добавить
+    %li{class: current_page?(new_backend_post_path) ? "active" : ""}
+      %a{href: new_backend_post_path}
+        %span.glyphicon.glyphicon-file
+        Новость
+    %li{class: current_page?(new_backend_gallery_path) ? "active" : ""}
+      %a{href: new_backend_gallery_path}
+        %span.glyphicon.glyphicon-camera
+        Фотогалерею
+    %li{class: current_page?(new_backend_video_path) ? "active" : ""}
+      %a{href: new_backend_video_path}
+        %span.glyphicon.glyphicon-film
+        Видеоролик
+    %li{class: current_page?(new_backend_tweet_path) ? "active" : ""}
+      %a{href: new_backend_tweet_path}
+        %span.glyphicon.glyphicon-send
+        Твит
+    %li{class: current_page?(new_backend_instagram_record_path) ? "active" : ""}
+      %a{href: new_backend_instagram_record_path}
+        %span.glyphicon.glyphicon-picture
+        Инстаграм
+    %li{class: current_page?(backend_twitter_persons_path) ? "active" : ""}
+      %a{href: backend_twitter_persons_path}
+        %span.glyphicon.glyphicon-send
+        Пользователи твиттера
+    %li{class: current_page?(backend_instagram_persons_path) ? "active" : ""}
+      %a{href: backend_instagram_persons_path}
+        %span.glyphicon.glyphicon-picture
+        Пользователи инстаграма
+    /%li
+    /  %a{href: new_backend_announce_path}
+    /    %i.icon-edit
+    /    Анонс
+    /%li
+    /  %a{href: new_backend_audio_path}
+    /    %i.icon-music
+    /    Аудиозапись
+    /%li
+    /  %a{href: new_backend_poll_path}
+    /    %i.icon-signal
+    /    Опрос
+  %hr
+  %ul.nav.nav-pills.nav-stacked
+    %li{class: current_page?(backend_media_root_path) ? "active" : ""}
+      %a{href: backend_media_root_path}
+        %span.glyphicon.glyphicon-folder-open
+        Менеджер файлов

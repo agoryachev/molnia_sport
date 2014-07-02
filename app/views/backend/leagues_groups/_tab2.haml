@@ -1,0 +1,6 @@
+%br
+.row.matches
+  = f.fields_for :matches do |builder|
+    = render 'match_fields', f: builder
+
+=link_to_add_dynamic_object 'Добавить матч', f, :matches

@@ -1,0 +1,11 @@
+%article
+  %figure
+    =link_to columnists_url(columnist_post.columnist), class: :img do
+      =show_main_image(columnist_post.columnist, "70x70", columnist_post.title)
+  %header
+    =render 'columnist_posts/info', model: columnist_post
+  .clearfix
+  %section
+    %h3=link_to truncate(columnist_post.title, length: 100), category_columnist_post_url(columnist_post.category, columnist_post)
+  %footer
+    %span.comnts_num=columnist_post.try(:comments_count)

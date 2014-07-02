@@ -1,0 +1,4 @@
+%tr
+  %td= character.id
+  %td= link_to character.title, edit_backend_character_path(character)
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: character

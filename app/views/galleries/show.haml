@@ -1,0 +1,15 @@
+=render 'shared/meta/meta_block', model: @gallery
+%section.search_pad
+  .search_pad_shadow
+%section.lc
+  =render 'gallery_slider', model: @gallery unless @gallery.gallery_files.empty?
+  %article.det_post
+    =render 'shared/model_header_content', model: @gallery
+    %br/
+    =render 'shared/authors', model: @gallery if @gallery.authors.present?
+    =render 'shared/blocks/socials', model: @gallery
+    =render 'shared/tags', model: @gallery if @gallery.tags.present?
+  =render 'shared/comments/comments', comments: @comments if @gallery.is_comments_enabled
+=render 'shared/aside/aside'
+- if Rails.env.test?
+  .galleries-for-specs

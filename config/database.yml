@@ -1,0 +1,40 @@
+development:
+  adapter: mysql2
+  database: sport_dev
+  reconnect: false
+  encoding: utf8
+  collation: utf8_general_ci
+  host: localhost
+  pool: 5
+  username: dev
+  password: "321321"
+test:
+  adapter: mysql2
+  database: sport_test
+  reconnect: false
+  encoding: utf8
+  collation: utf8_general_ci
+  host: localhost
+  pool: 5
+  username: dev
+  password: "321321"
+staging:
+  adapter: mysql2
+  database: sport_staging
+  reconnect: false
+  encoding: utf8
+  collation: utf8_general_ci
+  host: localhost
+  pool: 5
+  username: dev
+  password: "321321"
+production:
+  adapter: mysql2
+  database: molniasport
+  reconnect: false
+  encoding: utf8
+  collation: utf8_general_ci
+  host: localhost
+  pool: 5
+  username: molniasport
+  password: "7DU2G&yyh&6a"

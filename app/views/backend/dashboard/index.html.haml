@@ -1,0 +1,19 @@
+.row-fluid
+  .span12.well
+    %h4.heading
+      Последние новости
+      = image_tag "backend/icons/calendar.png", width:46
+      .clearfix
+    .content
+      %table.table.table-striped
+        - @posts.each do |post|
+          %tr{class: post.is_published? ? "" : "muted"}
+            %td{style:"text-align:center"}
+              - unless post.is_published?
+                %span.label.label-warning DRAFT
+            %td
+              = link_to post.title, edit_backend_post_path(post)
+            %td
+              - if post.employee
+                = link_to post.employee.full_name, backend_employee_path(post.employee)
+            %td= dt(post.created_at)

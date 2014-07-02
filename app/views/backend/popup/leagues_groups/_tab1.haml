@@ -1,0 +1,12 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+    .form-group
+      = f.label :date_at
+      #datetimepicker_time.input-group.date{data: {date: {format: "YYYY-MM-DD"}}}
+        =f.text_field :date_at, class: 'form-control'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar

@@ -1,0 +1,27 @@
+%section.news_list.news_list2
+  -if related_posts_last.present?
+    .big_post.little
+      %div
+        =link_to category_post_path(related_posts_last.category, related_posts_last), class: :img do
+          =show_main_image(related_posts_last, '300x200', related_posts_last.title)
+          .overlay
+      %div
+        .post_inf
+          %time{datetime: related_posts_last.published_at}=dt(related_posts_last.published_at)
+        %h3=link_to related_posts_last.title, category_post_path(related_posts_last.category, related_posts_last)
+        %p=raw truncate(related_posts_last.cut_depricated_tags_from_content, length: 200)
+        %p.detail=link_to 'Читать полностью', category_post_path(related_posts_last.category, related_posts_last)
+%section.news_list.news_list2
+  .fll
+    -if related_posts.present? && related_posts.length > 0
+      -related_posts.each do |post|
+        %article.little
+          =link_to category_post_path(post.category, post), class: :img do
+            =show_main_image(post, '105x70', post.title)
+            .overlay
+          .post_inf
+            %time{datetime: post.published_at}=d(post.published_at)
+          %h3=link_to post.title, category_post_path(post.category, post)
+.clr
+- if with_paginate
+  =render 'shared/infinite_button', content: related_posts

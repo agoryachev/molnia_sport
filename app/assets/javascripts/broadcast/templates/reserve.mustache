@@ -1,0 +1,38 @@
+<div class="pool">
+  {{#home}}
+    <div class="ranking one">
+      {{schema}}
+      {{#coach}}
+        <span class="coach">Гл. тренер{{coach}}</span>
+      {{/coach}}
+    </div>
+    <div class="team_name one">
+      <span>{{title}}</span>
+    </div>
+    <div class="team one">
+      <ol>
+        {{#reserve}}
+          {{> reserve_player}}
+        {{/reserve}}
+      </ol>
+    </div>
+  {{/home}}
+  {{#guest}}
+    <div class="team two">
+      <ol>
+        {{#reserve}}
+          {{> reserve_player}}
+        {{/reserve}}
+      </ol>
+    </div>
+    <div class="team_name two">
+      <span>{{title}}</span>
+    </div>
+    <div class="ranking two">
+      {{schema}}
+      {{#coach}}
+        <span class="coach">Гл.тренер {{coach}}</span>
+      {{/coach}}
+    </div>
+  {{/guest}}
+</div>

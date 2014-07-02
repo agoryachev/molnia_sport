@@ -1,0 +1,11 @@
+%tr{class: league.is_published? ? '' : 'muted'}
+  %td= league.id
+  %td.centered= league.leagues_groups.count
+  %td= link_to league.title, backend_league_path(league)
+  %td
+    %span{class: "badge #{league.category.color}"}
+      = link_to league.category.title, edit_backend_category_path(league.category), class: 'white-text'
+  %td= link_to league.country.try(:title), edit_backend_country_path(league.country) if league.country.present?
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: league, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: league, field: :is_comments_enabled
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: league

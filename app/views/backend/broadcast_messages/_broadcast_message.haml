@@ -1,0 +1,17 @@
+%tr
+  %td= broadcast_message.id
+  %td= broadcast_message.timestamp
+  - if broadcast_message.event_id?
+    %td.centered{width: '5%'}
+      -if broadcast_message.event.type == 'Event::Goal'
+        =image_tag 'matches/ball.png'
+      -if broadcast_message.event.type == 'Event::Card'
+        =image_tag "matches/"+Event::Card::CARD_COLORS[broadcast_message.event.card_type]+"_card.png"
+      -if broadcast_message.event.type == 'Event::Replacement'
+        =image_tag 'matches/replacement.png'
+  - else
+    %td
+  %td= simple_format broadcast_message.content
+  %td{width: '5%', data: {id: broadcast_message.id, url: "/backend/matches/#{@match.id}/broadcast_messages/#{broadcast_message.id}"}}
+    %a.btn.btn-danger.btn-sm.w-c
+      %span.glyphicon.glyphicon-trash

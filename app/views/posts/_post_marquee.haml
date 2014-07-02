@@ -1,0 +1,6 @@
+- text = post.content
+- text[200..-1] = '...' if text.length > 200
+%span.news
+  %a{href: category_post_path(post.category_id, post.id)}
+    = text
+%span.space

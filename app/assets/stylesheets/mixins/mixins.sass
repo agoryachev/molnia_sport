@@ -1,0 +1,85 @@
+=size($width, $height: null)
+  @if $height == null
+    $height: $width
+  width: $width
+  height: $height
+
+=user-select($type: none)
+  -moz-user-select: $type
+  -khtml-user-select: $type
+  -ms-user-select: $type
+  -webkit-user-select: $type
+  user-select: $type
+
+  @if $type == none
+    cursor: default
+
+
+=border-radius($radius: 3px)
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  -o-border-radius: $radius
+
+=box-shadow($params)
+  box-shadow: $params
+  -webkit-box-shadow: $params
+  -moz-box-shadow: $params
+  -o-box-shadow: $params
+
+=box-sizing()
+  box-sizing: border-box
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  -o-box-sizing: border-box
+
+=transition($property, $duration, $timing-function: ease-in-out, $delay: 0)
+  -webkit-transition:
+    property: $property
+    duration: $duration
+    timing-function: $timing-function
+    delay: $delay
+
+  -moz-transition:
+    property: $property
+    duration: $duration
+    timing-function: $timing-function
+    delay: $delay
+
+  -o-transition:
+    property: $property
+    duration: $duration
+    timing-function: $timing-function
+    delay: $delay
+
+  transition:
+    property: $property
+    duration: $duration
+    timing-function: $timing-function
+    delay: $delay
+
+
+=transform($deg)
+  transform: rotate($deg)
+  -webkit-transform: rotate($deg)
+  -moz-transform: rotate($deg)
+  -o-transform: rotate($deg)
+
+
+
+
+=gradient($from, $to)
+  background-image: -webkit-linear-gradient($from, $to)
+  background-image: linear-gradient($from, $to)
+  background-image: -o-linear-gradient($from, $to)
+  background-image: -moz-linear-gradient($from, $to)
+  background-image: -ms-linear-gradient($from, $to)
+
+
+=font($font, $size, $color, $weight:normal, $text-transform: normal)
+  font:
+    family: $font
+    size: $size
+    weight: $weight
+  color: $color
+  text-transform: $text-transform

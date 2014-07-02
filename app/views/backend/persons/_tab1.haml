@@ -1,0 +1,54 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :name_first
+      = f.text_field :name_first, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :name_last
+      = f.text_field :name_last, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :name_v
+      = f.text_field :name_v, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :character_id
+      = f.collection_select :character_id, Character.select([:id, :title]), :id, :title, {}, class: 'form-control'
+
+    .form-group
+      = f.label :twitter
+      = f.text_field :twitter, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :instagram
+      = f.text_field :instagram, class: 'form-control', maxlength: 255
+    
+  .col-md-6
+
+    .form-group
+      = f.label :number
+      = f.text_field :number, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :height
+      = f.text_field :height, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :weight
+      = f.text_field :weight, class: 'form-control', maxlength: 255
+
+    .form-group
+      = render 'backend/shared/form_partials/datetimepicker', f: f, field: :birthday, model: @person, format: "DD/MM/YYYY"
+
+    .form-group
+      = f.label :citizenship
+      = f.text_field :citizenship, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :cost
+      = f.text_field :cost, class: 'form-control', maxlength: 255
+
+
+=render 'backend/shared/form_partials/textarea', f: f

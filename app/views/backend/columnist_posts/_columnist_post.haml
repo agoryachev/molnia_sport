@@ -1,0 +1,12 @@
+%tr{class: columnist_post.is_published? ? '' : 'muted', data: {id: columnist_post.id}}
+  %td= columnist_post.id
+  %td
+    = publication_options(columnist_post)
+    = link_to columnist_post.title, edit_backend_columnist_columnist_post_path(columnist_post.columnist, columnist_post)
+  %td
+    %span{class: "badge #{columnist_post.category.color}"}
+      = link_to columnist_post.category.title, edit_backend_category_path(columnist_post.category), class: 'white-text'
+  %td= dt(columnist_post.published_at)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: columnist_post, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: columnist_post, field: :is_comments_enabled
+  %td=render 'delete_edit_buttons', model: columnist_post.columnist, submodel: columnist_post

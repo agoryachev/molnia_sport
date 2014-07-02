@@ -1,0 +1,9 @@
+var $items = $("#{j render(@posts)}");
+$('.news_list').append($items)
+
+-if @posts.next_page
+  $('.pagination').replaceWith("#{j will_paginate(@posts)}");
+  $('.pagination').hide()
+-else
+  $('.pagination').remove();
+  $('.more').remove();

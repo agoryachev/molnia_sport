@@ -1,0 +1,82 @@
+=render 'shared/meta/meta_block', model: @match
+=content_for :head do
+  %link{:rel => "image_src", :href => "/assets/prev-slide.png"}/
+
+%main.translation
+  .share-button
+    .views= @match.hits
+    .comments= @match.comments_count
+  .social= render 'shared/blocks/socials'
+  %h2= @match.title
+  %section.conteiner
+    .left-block
+      .math-info
+        =render 'score'
+      .math-info
+        =render 'match_meta'
+      #developments.developments
+        =render 'goals'
+      .section-players
+        %ul.tabs
+          %li Основной состав
+          %li Запасные игроки
+        .box.visible
+          .gridiron
+        .box
+          .reserve
+      / .section
+    .right-block
+      = # #slider-wrap=render 'slider'
+      %h4.title-right-block Текст трансляции
+      .event-wrap
+        =render 'messages'
+  %section.timeline
+    =render 'timeline'
+
+-if @match.is_comments_enabled
+  %section.lc{style: 'width: 630px;'}
+    %section.comments{style: 'width: 630px;'}
+      %h3.side_title
+        Комментарии
+        %a{href: "#", data: {filter: :new} } Новые
+        %a{href: "#", data: {filter: :best}} Лучшие
+      .js-comments
+    .clearfix
+    %section.main-comment-form
+      %h2 Ваш комментарий
+      .js-reply-form
+    -unless user_signed_in?
+      .social-login-icons
+        %p Войти и ответить
+        =render 'shared/socials/social_login_icons'
+    -if user_signed_in? and current_user.is_active?
+      %section.current_user_menu
+        .current-user-image=show_main_image(current_user, '60x60', current_user.full_name)
+        .current-user-name=current_user.full_name
+        .current-social-icon
+          -if current_user.provider == 'twitter'
+            =link_to user_omniauth_authorize_path(:twitter), class: 'btn-social btn-twitter' do
+              %span.fa.fa-twitter
+
+          -if current_user.provider == 'facebook'
+            =link_to user_omniauth_authorize_path(:facebook), class: 'btn-social btn-facebook' do
+              %span.fa.fa-facebook
+
+          -if current_user.provider == 'vkontakte'
+            =link_to user_omniauth_authorize_path(:vkontakte), class: 'btn-social btn-vk' do
+              %span.fa.fa-vk
+          .dropdown
+            =link_to '', '#', class: 'closed js-link'
+            .submenu
+              =link_to 'Выйти', destroy_user_session_path, method: :delete
+          .clearfix
+
+.banner{style: 'margin-left: 10px; margin-right: -4px; float: right;'}
+  =link_to post_status_path(post_status: 'Infographics') do
+    =image_tag 'banner.jpg', size: '300x465'
+=content_for :scripts do
+  %script{src: "//platform.twitter.com/widgets.js", charset: "utf-8"}
+  :javascript
+    window.initial_teams = #{@match.formations_hash.map { |key, value| value[:id] = key; value }.to_json}
+    window.initial_events = #{@match.broadcast_messages.map(&:to_hash).to_json}
+  = javascript_include_tag 'matches_page_slider'

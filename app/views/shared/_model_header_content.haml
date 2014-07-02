@@ -1,0 +1,8 @@
+.published_date
+  =dt(model.try(:published_at) || model.try(:created_at))
+=render 'shared/content_title', model: @post
+.clr
+%h1=model.title
+%p.p1=model.subtitle if model.respond_to?(:subtitle)
+- content = model.content.gsub(/&lt;!--.+?&mdash;&gt;/,'').gsub('\n','<br/>').gsub('&nbsp;</p>','</p>').sub(/<div id="vk_poll"><\/div>/) { |div| "</br>#{div}</br>" }
+=raw content

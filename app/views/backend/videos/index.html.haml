@@ -1,0 +1,28 @@
+= render partial: "subnav"
+= render 'backend/shared/blocks/filter', model: :videos
+- if @videos && @videos.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th
+        %th #
+        %th Видео
+        %th Категория
+        %th Автор
+        %th Дата публикации
+        %th.centered
+          %span.glyphicon.glyphicon-eye-open
+        %th.centered
+          %span.glyphicon.glyphicon-comment
+        %th
+    %tbody
+      =render @videos
+
+  %hr
+  .help-block 
+    %small
+      %span.label &nbsp;&nbsp;&nbsp; 
+      Не опубликовано
+  = will_paginate(@videos, renderer: BootstrapPagination::Rails)
+- else
+  = render partial: "backend/shared/no_results_message"

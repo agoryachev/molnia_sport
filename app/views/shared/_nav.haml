@@ -1,0 +1,23 @@
+%nav
+  %ul
+    %li.first-level-js=link_to 'ЧМ-2014', root_path, class: current_page?(root_path) && :active
+    %li.first-level-js=link_to 'Сборные', national_teams_path, class: current_page?(controller: 'teams', action: 'get_national_teams') && :active
+    %li.first-level-js=link_to 'Календарь', calendars_path, class: current_page?(calendars_path) && :active
+    %li.first-level-js=link_to 'Инсайд', insides_path, class: current_page?(insides_path) && :active
+    %li.first-level-js=link_to 'Инфографика', post_status_path(post_status: 'Infographics'), class: current_page?(post_status_path(post_status: 'Infographics')) && :active
+    %li.first-level-js=link_to 'Twitter', twitter_records_path, class: current_page?(twitter_records_path) && :active
+    %li.first-level-js=link_to 'Instagram', instagram_records_path, class: current_page?(instagram_records_path) && :active
+    -# %li.first-level-js=link_to 'Главная', root_path, class: current_page?(root_path) && :active
+    -# -@categories.each do |category|
+    -#   %li.first-level-js
+    -#     =link_to category.title, category_path(category), class: active_nav(category)
+    -#     %section.submenu-box
+    -#       %section.menu-slider
+    -#         -menu_slider(category)
+    -#       %article.main-article
+    -#         -menu_last_post(category)
+    -#       %section.last-articles
+    -#         -menu_last_articles(category)
+    -#       .clearfix
+    -#       %section.tag-list-box
+    -#         =simple_format menu_tags(category)

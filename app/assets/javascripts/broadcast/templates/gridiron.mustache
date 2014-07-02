@@ -1,0 +1,104 @@
+<div class="pool">
+  {{#home}}
+    <div class="ranking one">
+      {{schema}}
+      {{#coach}}
+        <span class="coach">Гл. тренер{{coach}}</span>
+      {{/coach}}
+    </div>
+    <span class="team_name one">
+      <span>{{title}}</span>
+    </span>
+    <div class="team one">
+    {{#formation}}
+      <div class="goalkeeper">
+        {{#goalkeeper}}
+          {{> player}}
+        {{/goalkeeper}}
+      </div>
+      <div>
+        {{#defender}}
+          {{> player}}
+        {{/defender}}
+      </div>
+      {{^halfback}}
+        <div>
+          {{#defender_halfback}}
+            {{> player}}
+          {{/defender_halfback}}
+        </div>
+        <div>
+          {{#forward_halfback}}
+            {{> player}}
+          {{/forward_halfback}}
+        </div>
+      {{/halfback}}
+      {{^forward_halfback}}
+        <div class='empty-line'>&nbsp;
+        </div>
+        <div>
+          {{#halfback}}
+            {{> player}}
+          {{/halfback}}
+        </div>
+      {{/forward_halfback}}
+      <div>
+        {{#forward}}
+          {{> player}}
+        {{/forward}}
+      </div>
+    {{/formation}}
+    </div>
+  {{/home}}
+  {{#guest}}
+    <div class="team two">
+    {{#formation}}
+      <div>
+        {{#forward}}
+          {{> player}}
+        {{/forward}}
+      </div>
+      {{^halfback}}
+        <div>
+          {{#forward_halfback}}
+            {{> player}}
+          {{/forward_halfback}}
+        </div>
+        <div>
+          {{#defender_halfback}}
+            {{> player}}
+          {{/defender_halfback}}
+        </div>
+      {{/halfback}}
+      {{^forward_halfback}}
+        <div class='empty-line'>&nbsp;
+        </div>
+        <div>
+          {{#halfback}}
+            {{> player}}
+          {{/halfback}}
+        </div>
+      {{/forward_halfback}}
+      <div>
+        {{#defender}}
+          {{> player}}
+        {{/defender}}
+      </div>
+      <div class="goalkeeper">
+        {{#goalkeeper}}
+          {{> player}}
+        {{/goalkeeper}}
+      </div>
+    {{/formation}}
+    </div>
+    <span class="team_name two">
+      <span>{{title}}</span>
+    </span>
+    <div class="ranking two">
+      {{schema}}
+      {{#coach}}
+        <span class="coach">Гл.тренер {{coach}}</span>
+      {{/coach}}
+    </div>
+  {{/guest}}
+</div>

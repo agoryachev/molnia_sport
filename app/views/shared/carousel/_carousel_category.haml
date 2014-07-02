@@ -1,0 +1,8 @@
+%section.match_car.match_car2.with_day_name
+  .jcarousel-skin-default
+    #jcarousel.jcarousel
+      %ul
+        -matches.each do |match|
+          %li=render 'shared/carousel/carousel_match', match: match
+    %a.car_btn.lbtn{href: "#", onclick: "$(this).parent().children('.jcarousel').jcarousel('scroll', '-=1'); return false;"}
+    %a.car_btn.rbtn{href: "#", onclick: "$(this).parent().children('.jcarousel').jcarousel('scroll', '+=1'); return false;"}

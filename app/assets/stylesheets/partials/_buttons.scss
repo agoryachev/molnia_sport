@@ -1,0 +1,68 @@
+.btn-social{
+  width: 186px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 5px;
+  @include box-shadow(0 1px 1px rgba(0,0,0,.4));
+  @include transition(box-shadow, .3s);
+  text-decoration: none;
+  &:hover{
+    box-shadow: none;
+  }
+  &.btn-twitter{
+    background: #72c7f3;
+    margin-right: 25px;
+    .text{
+      border-left: 1px solid #8ecdf6;
+    }
+  }
+  &.btn-facebook{
+    background: #506da2;
+    margin-right: 25px;
+    .text{
+      border-left: 1px solid #6881a3;
+    }
+  }
+  &.btn-vk{
+    background: #52729b;
+    .text{
+      border-left: 1px solid #6881a3;
+    }
+  }
+  .text{
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    height: 40px;
+    width: 136px;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+
+    text-shadow: 0 1px 0px rgba(0,0,0,.4);
+  }
+}
+.fa{
+  box-sizing: border-box;
+  float: left;
+  width: 40px;
+  font-size: 20px;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  text-shadow: 0 1px 0px rgba(0,0,0,.4);
+}
+.fa-twitter{
+  border-right: 1px solid #65afdb;
+}
+
+.fa-facebook{
+  border-right: 1px solid #476091;
+}
+
+.fa-vk{
+  border-right: 1px solid #47638b;
+}

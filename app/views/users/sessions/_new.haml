@@ -1,0 +1,16 @@
+%h2 Войти по логину
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'sign_in_form login_form'}) do |f|
+  .show_errors
+  %fieldset._400
+    = f.label :login, 'Логин или e-mail'
+    %br
+    = f.text_field :login, autofocus: true
+  %fieldset._400
+    = f.label :password
+    %br
+    = f.password_field :password
+    %br
+  %fieldset
+    = f.submit "Готово", class: :submit_registration
+
+%p.sign_in_text Нет логина на сайте Sportcup? #{link_to 'Зарегистрируйтесь', new_session_path(resource_name), class: 'show_registration_form'}

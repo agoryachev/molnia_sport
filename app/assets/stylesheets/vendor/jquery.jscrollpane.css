@@ -1,0 +1,185 @@
+/*
+
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+
+ *
+
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+
+ * may not operate correctly without them.
+
+ */
+
+.jspScrollable {	outline:none;}
+
+.jspContainer{	overflow: hidden;	position: relative;}
+
+.jspPane{	position: absolute;}
+
+.jspVerticalBar{
+/*	background:url(../images/scroll_bg.png) 0 0 repeat-y;*/
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 11px;
+	background:#fff;
+	height: 100%;
+}
+
+.jspVerticalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: block;height:0px;
+}
+
+.jspHorizontalBar{width:100%;position:absolute;bottom:19px;left:0;}
+
+.jspHorizontalBar .jspTrack{/*background:url(../images/scroll_bg.png) 0 0 repeat-x;*/height:7px;}
+
+.jspHorizontalBar .jspDrag{/*background:url(../images/scroll_pad.png) 0 0 no-repeat;*/width:87px;height:16px;top:-4px;}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack, .jspVerticalBar .jspArrow
+{
+	position: relative;
+	width:11px;
+	height:25px;
+}
+
+
+
+.jspTrack {
+	z-index:9;
+}
+
+.jspDrag, .jspDragTop, .jspDragBottom {
+background:transparent;	
+}
+
+.jspDrag
+{
+	background:#f1f1f1;
+	position: relative;
+	top: 0px;
+	left:0px;
+	cursor: pointer;
+	width:9px;
+	margin:0;
+	z-index:9;
+	box-shadow:1px 1px 3px rgba(0,0,0,0.21);
+}
+
+.translation_det .jspDrag{background:#c4c4c4;}
+
+.jspVerticalBar .jspDrag{left:2px;}
+
+.jspDragTop, .jspDragBottom {
+	position:absolute;
+	width:6px;
+	height:0px;
+}
+
+.jspDragTop {
+/*	top:-4px;background:url(../images/scroll_bgn.png) 0 0 no-repeat;*/
+}
+
+.jspDragBottom {
+/*	background:url(../images/scroll_end.png) 0 0 no-repeat;*/
+	bottom:-4px;
+}
+
+.jspArrow
+
+{
+
+	text-indent: -20000px;
+
+	display: block;
+
+	cursor: pointer;
+	
+	z-index:11;
+
+}
+
+
+
+
+
+
+.jspArrow.jspDisabled
+
+{
+
+	cursor: default;
+
+}
+
+
+/*
+.jspVerticalBar .jspArrowUp {
+
+background:url(../images/scroll_tarw.png) 0 0 no-repeat;
+
+}
+
+.jspVerticalBar .jspArrowDown {
+
+background:url(../images/scroll_barw.png) 0 0 no-repeat;
+
+}
+
+.results .jspVerticalBar .jspArrowUp {
+
+background:url(../images/scroll_tarw2.png) 0 0 no-repeat;
+
+}
+
+.results .jspVerticalBar .jspArrowDown {
+
+background:url(../images/scroll_barw2.png) 0 0 no-repeat;
+
+}*/
+
+.jspVerticalBar .jspArrow:focus
+
+{
+
+	outline: none;
+
+}
+
+
+
+.jspCorner
+
+{
+
+	background: #eeeef4;
+
+	float: left;
+
+	height: 100%;
+
+}
+
+
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+
+* html .jspCorner
+
+{
+
+	margin: 0 -3px 0 0;
+
+}

@@ -1,0 +1,8 @@
+.post_inf
+  %p{class: "p1 #{model.category_color}"}=link_to model.category_title, category_path(model.category)
+  %time{datetime: model.created_at}
+    \/
+    =model.created_at.strftime('%d.%m')
+  %p.post_inf_values
+    %span.views_num=model.try(:hits)
+    %span.comnts_num=model.try(:comments_count)

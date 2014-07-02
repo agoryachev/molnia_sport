@@ -1,0 +1,33 @@
+= render 'backend/shared/messages'
+= form_for [:backend, @gallery], html: {class: :form, multipart: true} do |f|
+  .container-content
+    %fieldset
+      .row
+        .col-md-12
+          %ul.nav.nav-tabs.tabs
+            %li.active
+              %a{href:'#tab1', data: {toggle: 'tab'}}
+                Общие
+            %li
+              %a{href:'#tab2', data: {toggle: 'tab'}}
+                Фотографии галереи
+            %li
+              %a{href:'#tab3', data: {toggle: 'tab'}}
+                Авторы
+            %li
+              %a{href:'#tab4', data: {toggle: 'tab'}}
+                Сео
+          .tab-content
+            #tab1.tab-pane.active
+              = render 'tab1', f: f
+            #tab2.tab-pane
+              = render 'tab2', f: f
+            #tab3.tab-pane
+              #tab3.tab-pane= render 'backend/shared/nested/author_form', f: f
+            #tab4.tab-pane
+              #tab4.tab-pane= render 'backend/shared/nested/seo', f: f
+
+    .form-actions
+      = f.submit t('label.save'), class: 'btn btn-primary'
+      = f.submit t('label.save_and_exit'), class: 'btn btn-primary'
+      = link_to "Удалить #{@gallery.is_published ? 'галерею' : 'черновик'}", backend_gallery_path(@gallery), data: { confirm: t('msg.confirm'), method: :delete }, class: 'btn btn-danger'

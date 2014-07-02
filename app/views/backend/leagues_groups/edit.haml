@@ -1,0 +1,15 @@
+=render 'subnav'
+
+/ breadcrumbs
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Страны', backend_countries_path
+      %li=link_to @leagues_group.try(:league).try(:country).try(:title), edit_backend_country_path(@leagues_group.try(:league).try(:country))
+      %li=link_to 'Лиги', backend_leagues_path
+      %li=link_to @leagues_group.try(:league).try(:title), edit_backend_league_path(@leagues_group.league)
+      %li=link_to @leagues_group.try(:year).try(:league_year), edit_backend_year_path(@leagues_group.year)
+      %li.active=@leagues_group.title
+/ end breadcrumbs
+
+=render 'form'

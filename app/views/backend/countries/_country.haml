@@ -1,0 +1,5 @@
+%tr
+  %td= country.id
+  %td= link_to country.title, edit_backend_country_path(country)
+  %td=formatted_categories(country.categories)
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: country

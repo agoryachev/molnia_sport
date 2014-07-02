@@ -1,0 +1,14 @@
+.row
+  %br/
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+
+    .form-group
+      = f.label :placement_index
+      = f.number_field :placement_index, class: 'form-control'
+
+    .form-group
+      = f.label :color
+      = f.select :color, options_for_select(Category::colors, @category.color), {}, class: 'form-control'

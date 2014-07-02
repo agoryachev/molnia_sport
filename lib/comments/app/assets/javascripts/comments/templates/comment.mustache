@@ -1,0 +1,21 @@
+<figure>
+  <img alt="{{model.username}}" src="{{model.user_image}}">
+</figure>
+<header>
+  <h5>{{model.username}} <time>{{model.added_time}}</time></h5>
+  <section class="rating">
+    {{^model.user_comment}}
+      <a href="#" class="up">{{text.up}}</a>
+      <a href="#" class="down">{{text.down}}</a>
+    {{/model.user_comment}}
+    
+    <div class="score">{{model.likes}}</div>
+  </section>
+</header>
+<section>
+  <p>{{model.content}}</p>
+  <a href="#" class="reply">{{text.reply}}</a>
+</section>
+<div class="clearfix"></div>
+<footer></footer>
+<div class="clearfix"></div>

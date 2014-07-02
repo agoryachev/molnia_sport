@@ -1,0 +1,26 @@
+%aside.rc
+  -# - if Setting.side_bar_banner == "1" and !no_banner
+  -#  .banner
+  -#    =link_to post_status_path(post_status: 'Infographics') do
+  -#      =image_tag 'banner.jpg', size: '300x465'
+  - if Setting.side_bar_main_news == "1"
+    =render 'shared/aside/top_news', popular_posts: @popular_posts if @popular_posts.present?
+  - if Setting.side_bar_photo_video == "1"
+    =render 'shared/aside/photo_video_box'
+  - if Setting.side_bar_socials == "1"
+    =render 'shared/aside/social_accordion'
+  - if Setting.side_bar_columnists == "1"
+    %section.columnists
+      %h3.side_title Колумнисты
+      .columnists-box
+        =render @columnists_posts
+    .clr
+  =render 'shared/aside/sport_today'
+.clr
+
+=content_for :templates do
+  %script{type:'text/template', id: 'top-post-template'}
+    %li
+      %a{href: "{{url}}"}
+        %span.time {{published_at}}
+        %span.txt {{title}}

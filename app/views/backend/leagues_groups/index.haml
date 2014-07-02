@@ -1,0 +1,17 @@
+= render 'backend/shared/blocks/subnav', model: 'leagues_groups'
+- if @leagues_groups && @leagues_groups.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th #
+        %th.centered Заголовок
+        %th.centered Лига
+        %th
+    %tbody=render @leagues_groups
+  .help-block 
+    %small
+      %span.label.label-default &nbsp;&nbsp;&nbsp; 
+      Не опубликовано  
+  = will_paginate(@leagues_groups, renderer: BootstrapPagination::Rails)
+- else
+  = render 'backend/shared/no_results_message'

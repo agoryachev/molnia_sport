@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /search/
+Disallow: /tag/
+Disallow: /backend/
+Disallow: /employees/sign_in
+Disallow: /users/
+
+User-agent: Yandex
+Disallow: /search/
+Disallow: /tag/
+Disallow: /backend/
+Disallow: /employees/sign_in
+Disallow: /users/
+Host: molniasport.ru

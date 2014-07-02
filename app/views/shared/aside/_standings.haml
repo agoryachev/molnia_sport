@@ -1,0 +1,22 @@
+-if @tour_table.present?
+  %section.tournaiment_table.side_pad
+    %h3.side_title
+      %strong ТУРНИРНАЯ ТАБЛИЦА
+    .table_wr
+      .heading
+        %p.p1{title: "Место в турнирной таблице"}
+          М
+        %p.p2 Команда
+        %p.p3{title: "Сыграно матчей"}
+          M
+        %p.p4{title: "Набрано очков"}
+          O
+        .clr
+      .list
+        - total = 0
+        - @tour_table.each do |line|
+          %a{href: team_path(line.team)}
+            %span.p1= total += 1
+            %span.p2=line.team.title
+            %span.p3=line.matches
+            %span.p4=line.points

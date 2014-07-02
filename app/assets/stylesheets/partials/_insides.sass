@@ -1,0 +1,129 @@
+$red: #9a0000
+$hover-red: #b13431
+$black: #151515
+$gray: #555555
+$light-gray: #f8f8f8
+$blue: #3366cc
+$box-shadow: #e8e8e8
+$font-roboto: Roboto, sans-serif
+$font-pt-sans: 'PT Sans'
+$green: #4f9b45
+
+section.inside
+  width: 980px
+  margin: 0 auto 0px -20px
+
+  +box-sizing()
+  > header
+    height: 1px
+    padding: 0 20px
+    height: 35px
+    background: $red
+
+    h1
+      margin: 0
+      padding: 0
+      +font($font-roboto, 14px, white, 600, uppercase)
+      line-height: 35px
+
+  section.insides
+    header
+      background: url(/assets/shdw01.png) center 0 no-repeat #f8f8f8
+      padding: 0 20px
+      height: 33px
+      +box-shadow(0 3px 4px -2px $box-shadow)
+      margin-bottom: 12px
+
+    article
+      +box-sizing()
+      width: 100%
+      min-height: 85px
+      overflow: hidden
+      padding: 14px 20px
+      position: relative
+      &:nth-child(even)
+        background: $light-gray
+      &:hover
+        +box-shadow(0 3px 4px -2px $box-shadow)
+        z-index: 2
+  div
+    float: left
+    +font($font-roboto, 14px, $black, 600)
+    line-height: 33px
+
+    &.player
+      width: 220px
+      margin-right: 25px
+
+      .date
+        +font($font-roboto, 11px, $gray, lighter)
+        float: left
+        margin-right: 27px
+        span
+          display: block
+          height: 16px
+          text-align: center
+          &:first-child
+            font-size: 24px
+            height: 18px
+
+      .image
+        margin-right: 16px
+        float: left
+        img
+          +size(60px)
+          +border-radius(1000px)
+      .name
+        width: 77px
+        float: left
+        line-height: 15px
+        a
+          +font($font-pt-sans, 15px, $black, bold)
+          text-decoration: none
+          line-height: 20px
+          margin: 0
+          padding: 0
+          &:hover
+            color: $hover-red
+            cursor: pointer
+        span
+          font-weight: normal
+          font-size: 14px
+
+    &.article
+      width: 310px
+      margin-right: 29px
+
+      p
+        margin: 0
+        line-height: 19px
+        +font($font-pt-sans, 14px, $black)
+        color: $black
+
+    &.status
+      width: 145px
+      margin-right: 60px
+
+      span
+        margin: 0
+        line-height: 19px
+        +font($font-pt-sans, 14px, white)
+        display: inline-block
+        background: $red
+        +border-radius(2px)
+        text-align: center
+        padding: 1px 7px
+
+        &.green
+          background: $green
+
+    &.source
+      width: 150px
+
+      a
+        text-decoration: none
+        +font($font-pt-sans, 16px, $blue)
+        +user-select(text)
+
+        &:hover
+          color: $hover-red

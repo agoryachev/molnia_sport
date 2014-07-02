@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{http: {equiv: "X-UA-Compatible"}, content: "IE=Edge,chrome=1"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    = favicon_link_tag 'favicons/favicon.ico', rel: 'shortcut icon'
+    %title
+    = csrf_meta_tags
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = javascript_include_tag "backend"
+    = stylesheet_link_tag "devise", media: "all"
+  %body
+    %ul.notice-bar
+    .container.container-center
+      = yield
+    = render partial: 'backend/shared/backend', formats: :js

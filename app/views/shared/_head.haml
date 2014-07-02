@@ -1,0 +1,18 @@
+%head
+  %title= content_for?(:title) ? (yield :title) : Setting.site_name
+  %meta{name: "description", content: content_for?(:description) ? (yield :description) : Setting.site_description}
+  %meta{name: 'twitter:widgets:csp', content: 'on'}
+  %meta{name: "keywords", content: content_for?(:keywords) ? (yield :keywords) : Setting.site_keywords}
+  =yield :head
+
+  = favicon_link_tag "favicons/favicon.ico", rel: 'shortcut icon'
+  =yield :head
+  %link{href: "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin,cyrillic", rel: "stylesheet", type: "text/css"}
+  %link{href: "http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic", rel: "stylesheet", type: "text/css"}
+  %link{href: "http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&subset=latin,cyrillic", rel: "stylesheet", type: "text/css"}
+  %link{href: "http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=latin,cyrillic", rel: "stylesheet", type: "text/css"}
+  %link{href: "/rss.xml", rel: "alternate", type: "application/rss+xml", title: "#{Setting.site_name} RSS Канал"}
+  = stylesheet_link_tag 'application', media: 'all'
+  = csrf_meta_tags
+  /[if lt IE 9]
+    %script{src: "http://html5shiv.googlecode.com/svn/trunk/html5.js"}

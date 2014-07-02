@@ -1,0 +1,80 @@
+-team_home_score = match.count_home || 0
+-team_home_image = show_main_image(match.team_home, '70x40', match.team_home.title)
+-team_home_title = match.team_home.title
+-team_guest_score = match.count_guest || 0
+-team_guest_title = match.team_guest.title
+-team_guest_image = show_main_image(match.team_guest, '70x40', match.team_guest.title)
+
+-league_title = match.leagues_group.try(:league).try(:title)
+-datetime     = dt(Time.parse("#{match.date_at} #{match.start_at}").localtime - 4.hours)
+-referee = match.referee.full_name if match.referee.present?
+
+%section.match-live
+  %header
+    %h2 Матч-Live
+    %span.comments-count=match.comments_count
+    %span.views-count=match.try(:hits)
+
+  %section.teams
+    .team-home
+      =team_home_image
+      %h4
+        %a{href: national_teams_path(match.team_home.id)}
+          =team_home_title
+    .teams-count #{team_home_score}:#{team_guest_score}
+    .team-guest
+      =team_guest_image
+      %h4
+        %a{href: national_teams_path(match.team_guest.id)}
+          =team_guest_title
+
+  %section.vote-buttons
+    .team-home
+      -vote_for_link(match, :team_home)
+    .team-guest
+      -vote_for_link(match, :team_guest)
+
+  %section.about-match
+    .league=league_title
+    .datetime=datetime
+    -#.stadium
+    -#  =image_tag 'flag38_22_04.png', size: '25x15'
+    -#  %h5 Уэмбли
+    -#.referee
+    -#  %h5=referee
+  %section.live-button=link_to 'Смотреть', match
+
+=content_for :scripts do
+  %script{src: 'http://vk.com/js/api/share.js?90'}
+  %script{src: 'https://platform.twitter.com/widgets.js'}
+  %script{src: 'https://connect.facebook.net/ru_RU/all.js'}
+  :javascript
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); 
+      js.id = id;
+      js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=694444577263857";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    document.querySelector('.vk-share-button').innerHTML = VK.Share.button({url: "#{root_url}matches/#{match.id}"},{type: "round_nocount", text: "Опубликовать"})
+
+
+=content_for :templates do
+  #share-modal.modal-content{style: "display: none;"}
+    .modal-header
+      %button.close{onclick: "$.fn.custombox('close');", type: "button"} &times;
+      %h2 Поделиться
+    .modal-body
+      =link_to "https://twitter.com/intent/tweet?url=#{root_url}matches/#{match.id}&text=#{match.title}&via=molnia_sport", class: 'btn-social btn-twitter share-twitter' do
+        %span.fa.fa-twitter
+        %span.text Twitter
+
+      =link_to '', class: 'btn-social btn-facebook share-facebook', data: {match_url: "#{root_url}matches/#{match.id}", match_title: match.title} do
+        %span.fa.fa-facebook
+        %span.text Facebook
+        
+      =link_to "http://vk.com/share.php?title=#{match.title}&url=#{root_url}matches/#{match.id}", class: 'btn-social btn-vk share-vk', data: {match_url: "#{root_url}matches/#{match.id}", match_title: match.title} do
+        %span.fa.fa-vk
+        %span.text Вконтакте

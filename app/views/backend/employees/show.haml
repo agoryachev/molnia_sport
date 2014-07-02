@@ -1,0 +1,26 @@
+= render partial: "subnav"
+%h4
+  = @employee.full_name
+  (#{@employee.group.title})
+.row
+  .span2{style:"text-align:center;"}
+    -# = image_tag "backend/icons/user.png"
+  .span5
+    %table.table.table-striped
+      %tr
+        %td
+          %strong Имя: 
+        %td
+          = @employee.name_first
+          = @employee.name_last
+      %tr
+        %td
+          %strong Никнейм:
+        %td
+          = @employee.nickname
+      %tr
+        %td
+          %strong Email:
+        %td
+          = @employee.email
+      

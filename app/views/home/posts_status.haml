@@ -1,0 +1,13 @@
+= content_for :title do
+  = "#{params['cyrillic_post_status']} | #{Setting.site_name}"
+-if @leagues_groups.present?
+  %section.search_pad
+    .search_pad_wr
+      .brasil-image
+        -leagues_groups_title_for_slider
+-else
+  %section.search_pad
+    .search_pad_shadow
+=render partial: 'shared/news_list', locals: {posts: @posts}
+.clr
+=render 'shared/infinite_button', content: @posts

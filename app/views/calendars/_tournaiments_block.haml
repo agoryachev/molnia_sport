@@ -1,0 +1,46 @@
+.tournaments-block
+  -@leagues_groups.each do |league_group|
+    .tournaments-block-left
+      %span.groups
+        %span.letter=league_group.title
+        %span.group группа
+      .calendar-tour-block
+        %table
+          %tr.one
+            %th М
+            %th Команда
+            %th И
+            %th В
+            %th Н
+            %th П
+            %th Заб/Проп
+            %th О
+          -league_group.leagues_statistics.order("points DESC, goals_diff DESC").each_with_index do |statistic, index|
+            %tr.two
+              %td=index + 1
+              %td
+                =show_main_image statistic.team, '30x17', statistic.team.title
+                =statistic.team.title
+              %td=statistic.matches
+              %td=statistic.matches_win
+              %td=statistic.matches_draw
+              %td=statistic.matches_fail
+              %td #{statistic.goals_win} / #{statistic.goals_fail}
+              %td=statistic.points
+        .seporator
+        %table.tour-time
+          -league_group.matches.each do |match|
+            %tr
+              %td
+                -if match.date_at
+                  =match.date_at.strftime("%d.%m")
+              %td
+                -if match.start_at
+                  =match.start_at.strftime("%H.%M")
+              %td
+                =match.team_home.title
+                =show_main_image(match.team_home, '30x17', match.team_home.title)
+              %td #{match.count_home || '-'}:#{match.count_guest || '-'}
+              %td
+                =show_main_image(match.team_guest, '30x17', match.team_guest.title)
+                =match.team_guest.title

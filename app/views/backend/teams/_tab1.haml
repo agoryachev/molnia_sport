@@ -1,0 +1,27 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :subtitle
+      = f.text_field :subtitle, class: 'form-control', maxlength: 255
+
+    .form-group
+      = f.label :category_id
+      =f.collection_select :category_id, Category.all, :id, :title, {}, class: 'form-control'
+
+
+    .form-group{data:{team_id: @team.country.try(:id)}}
+      = f.label :country_id
+      =f.collection_select :country_id, Country.all, :id, :title, {}, class: 'form-control'
+
+    .form-group
+      = f.label :year_of_foundation
+      = f.text_field :year_of_foundation, class: 'form-control', maxlength: 255
+
+    =render 'backend/shared/form_partials/coach_select', f: f
+
+=render 'backend/shared/form_partials/textarea', f: f

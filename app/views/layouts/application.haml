@@ -1,0 +1,27 @@
+!!!
+%html
+  =render 'shared/head'
+  %body{id: 'red_page'}
+    / {id: @category && @category.color || 'red_page'}
+    %ul.notice-bar
+    =render 'shared/flash_messages'
+    .wrapper
+      =render 'shared/header'
+      .content
+        -# TODO check this style?
+        .wrap{ style: 'overflow: hidden;' }
+          %a#up_btn{href: '#'}
+          =render 'shared/top_news'
+          = yield
+      =render 'shared/breaking_news'
+      =render 'shared/footer'
+    = javascript_include_tag 'application'
+    %script{type:"text/javascript", src:"//vk.com/js/api/openapi.js?111"}
+    :javascript
+      VK.init({apiId: 4388681, onlyWidgets: true});
+      if ($('#vk_groups').length) {
+        VK.Widgets.Group("vk_groups", {mode: 0, width: "300", height: "253", color1: 'FFFFFF', color2: '2B587A', color3: '253b68'}, 72127161);
+      }
+    =yield :scripts
+    =yield :templates
+    = render 'shared/seo'

@@ -1,0 +1,7 @@
+%tr{id: leagues_group.id}
+  %td= leagues_group.id
+  %td= link_to leagues_group.title, polymorphic_path([:edit, :backend, :popup, leagues_group]), data: { league_id: leagues_group.league.id}, class: 'edit-group'
+  %td= dt(leagues_group.date_at)
+  %td
+    %a.btn.btn-danger.btn-sm.w-c{ href: polymorphic_path([:backend, :popup, leagues_group]), data: { confirm: t('msg.confirm'), method: :delete } }
+      %span.glyphicon.glyphicon-trash

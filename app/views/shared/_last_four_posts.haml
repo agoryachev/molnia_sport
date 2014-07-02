@@ -1,0 +1,24 @@
+%section.top-four-news
+  %article.main.big_post
+    .post_inf_values
+      %span.views_num=post.try(:hits)
+      %span.comnts_num=post.try(:comments_count)
+    %figure
+      =link_to [post.category, post], class: :img do
+        =show_main_image(post, "620x345", post.title)
+        .first-overlay
+        .second-overlay
+    %h3=link_to post.title, polymorphic_url([post.category, post])
+
+  %section.three-posts
+    -last_four_posts.each do |post|
+      %article
+        .post_inf_values
+          %span.views_num=post.try(:hits)
+          %span.comnts_num=post.try(:comments_count)
+        %figure
+          =link_to [post.category, post], class: :img do
+            =show_main_image(post, "200x112", post.title)
+            .first-overlay
+            .second-overlay
+        %h3=link_to truncate(post.title, length: 40), polymorphic_url([post.category, post])

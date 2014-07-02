@@ -1,0 +1,16 @@
+%h3= t "controllers.backend.#{controller.controller_name}"
+
+/ breadcrumbs
+.panel.panel-default.filter
+  .panel-body
+    %ol.breadcrumb{style: 'margin-bottom: 1px;'}
+      %li=link_to 'Страны', backend_countries_path
+      %li=link_to @match.leagues_group.league.country.title, edit_backend_country_path(@match.leagues_group.league.country)
+      %li=link_to 'Лиги', backend_leagues_path
+      %li=link_to @match.leagues_group.league.title, edit_backend_league_path(@match.leagues_group.league)
+      %li=link_to @match.leagues_group.year.league_year, edit_backend_year_path(@match.leagues_group.year)
+      %li=link_to @match.leagues_group.title, edit_backend_leagues_group_path(@match.leagues_group)
+      %li.active=@match.title
+/ end breadcrumbs
+
+=render 'form'

@@ -1,0 +1,4 @@
+=form_tag "/search", class: 'search_form', method: :get do
+  %fieldset.fr
+    %input{type: "text", placeholder: 'Что ищем?', name: :query, value: CGI::unescape(params[:query].to_s)}
+    %input{type: 'submit', value: ""}

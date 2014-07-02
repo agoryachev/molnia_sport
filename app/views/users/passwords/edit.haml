@@ -1,0 +1,15 @@
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: :sign_in_form }) do |f|
+  %h2 Сменить пароль
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  %fieldset
+    = f.label :password, 'New password'
+    %br/
+    = f.password_field :password, autofocus: true
+  %fieldset
+    = f.label :password_confirmation, 'Confirm new password'
+    %br/
+    = f.password_field :password_confirmation
+  %fieldset
+    = f.submit "Сменить пароль"
+= render "users/shared/links"

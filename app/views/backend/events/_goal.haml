@@ -1,0 +1,12 @@
+%br/
+= form.fields_for :goal do |f|
+  .form-group
+    = f.label :team_id, "Команда забившая гол"
+    = f.select :team_id, @match.teams.map { |team| [team.title, team.id] }, {}, class: 'form-control'
+
+  .form-group
+    = f.label :player_id, "Игрок забивший гол"
+    %select#broadcast_message_goal_player_id.form-control{name: "broadcast_message[goal][player_id]"}
+
+      -select_option_with_optgroup(@match.team_home)
+      -select_option_with_optgroup(@match.team_guest)

@@ -1,0 +1,44 @@
+=content_for :head do
+  %link{href: "http://fonts.googleapis.com/css?family=Open+Sans:400,300&subset=latin,cyrillic", rel: "stylesheet", type: "text/css"}
+%section.user_info
+  .avatar
+    =show_main_image(current_user, '100x100', current_user.full_name)
+    -if user_signed_in?
+      =form_for @user do |f|
+        =f.fields_for :main_image do |image|
+          .fileUpload
+            %span Обновить
+            =image.file_field :file, class: :upload
+  .info
+    %h2=current_user.full_name
+    .social_links
+      .vk=link_to current_user.full_name, '#'
+    .time_in_site
+      %span.clock.icon
+      - monthes = ((DateTime.now.to_i - current_user.created_at.to_i) / (30*86400))
+      - if monthes.zero?
+        менее месяца
+      -else
+        =monthes
+        =Russian.p(monthes, "месяц", "месяца", "месяцев")
+      на сайте
+  .user_statistic
+    .comments_count
+      %p=current_user.comments.count
+      %p.uppercase комментариев
+  -#
+  -#  .rating
+  -#    %p + #{current_user.comments.count}
+  -#    %p.uppercase рейтинг
+  .clr
+
+%section.user_search_title
+  %h3.uppercase Комментарии
+  =render 'shared/search_form'
+  .clr
+
+%section.user_comments
+  =render partial: 'users/comment', collection: @comments
+
+
+=render 'shared/infinite_button', content: @comments

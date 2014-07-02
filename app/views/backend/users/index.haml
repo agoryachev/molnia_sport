@@ -1,0 +1,18 @@
+= render 'backend/shared/blocks/subnav', model: 'users'
+
+- if @users && @users.length > 0
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th
+        %th.span1 #
+        %th.centered Имя Фамилия
+        %th.centered Email
+        %th.centered Последний вход
+        %th.centered Активен?
+        %th.span1
+    %tbody
+      = render partial: 'backend/users/user', collection: @users
+  = will_paginate(@users, renderer: BootstrapPagination::Rails)
+- else
+  = render partial: "backend/shared/no_results_message"

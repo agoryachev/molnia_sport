@@ -1,0 +1,15 @@
+=render 'shared/meta/meta_block', model: @columnist_post
+%section.search_pad.nobg
+  .search_pad_wr
+    =render 'title', model: @columnist_post
+%section.lc
+  %article.det_post
+    .text
+      =show_main_image(@columnist_post.columnist, '150x150', @columnist_post.title)
+      =render 'shared/model_header_content', model: @columnist_post
+      %br/
+      =render 'shared/blocks/socials', model: @columnist_post
+    .clr
+  =render 'shared/comments/comments', comments: @comments if @columnist_post.is_comments_enabled
+
+=render 'shared/aside/aside'

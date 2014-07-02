@@ -1,0 +1,8 @@
+%tr{class: person.is_published ? '' : 'muted'}
+  %td= main_image_backend person
+  %td=person.id
+  %td=link_to person.full_name, edit_backend_person_path(person)
+  %td=person.character.try(:title)
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: person, field: :is_published
+  %td.centered=render "backend/shared/blocks/publish_checkbox", model: person, field: :is_comments_enabled
+  %td=render "backend/shared/blocks/delete_edit_buttons", model: person

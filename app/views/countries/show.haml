@@ -1,0 +1,16 @@
+=render 'shared/club_list', teams: @teams if @teams.present?
+%section.search_pad
+  .search_pad_shadow
+%section.match_car=render 'shared/carousel/carousel_category', matches: @matches if @matches.present?
+
+%section.lc
+  =render 'shared/last_four_posts', post: @last_post, last_four_posts: @last_four_posts if @last_post && @last_four_posts
+  %section.news_list
+    .loading
+=render 'shared/aside/country_aside'
+.clr
+%section.news_list_wide
+.clr
+=render 'shared/infinite_button', content: @posts if @posts.present?
+- if Rails.env.test?
+  .countries-for-specs

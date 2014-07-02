@@ -1,0 +1,20 @@
+%br
+.row
+  .col-md-6
+    .form-group
+      = f.label :person_id
+      = f.select :person_id, [[@transfer.person.try(:full_name), @transfer.person.try(:id)]], {}, class: 'form-control'
+    .form-group
+      = f.label :team_from_id
+      = f.select :team_from_id, [[@transfer.team_from.try(:title), @transfer.team_from.try(:id)]], {}, class: 'form-control'
+    .form-group
+      = f.label :team_to_id
+      = f.select :team_to_id, [[@transfer.team_to.try(:title), @transfer.team_to.try(:id)]], {}, {name: 'transfer[team_to_id]', class: 'form-control'}
+    .form-group
+      =render 'backend/shared/form_partials/datetimepicker', f: f, field: :start_at, model: @transfer, format: "DD/MM/YYYY HH:mm"
+    .form-group
+      =render 'backend/shared/form_partials/datetimepicker', f: f, field: :finish_at, model: @transfer, format: "DD/MM/YYYY HH:mm"
+
+  .col-md-6
+    =render 'backend/shared/form_partials/checkbox', f: f, field: :state
+=render 'backend/shared/form_partials/textarea', f: f

@@ -1,0 +1,16 @@
+=render 'shared/meta/meta_block', model: @video
+%section.search_pad
+  .search_pad_shadow
+%section.lc
+  %article.det_post
+    =render 'shared/model_header_content', model: @video
+    %br
+    - unless @video.clip.nil?
+      .js-video{data: {file: @video.clip.file, poster: @video.main_image.try(:file)}} 
+    =render 'shared/authors', model: @video if @video.authors.present?
+    =render 'shared/blocks/socials', model: @video
+    =render 'shared/tags', model: @video if @video.tags.present?
+  =render 'shared/comments/comments', comments: @comments if @video.is_comments_enabled
+=render 'shared/aside/aside'
+- if Rails.env.test?
+  .videos-for-specs

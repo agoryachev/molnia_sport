@@ -1,0 +1,5 @@
+.btn-group.pull-right
+  %a.btn.btn-sm.btn-primary.w-c{ href: polymorphic_path([:edit, :backend, model]) }
+    %span.glyphicon.glyphicon-pencil
+  %a.btn.btn-danger.btn-sm.w-c{ href: polymorphic_path([:backend, model]), data: { confirm: t('msg.confirm'), method: :delete } }
+    %span.glyphicon.glyphicon-trash

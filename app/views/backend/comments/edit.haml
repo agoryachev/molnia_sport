@@ -1,0 +1,28 @@
+= render 'subnav'
+= render 'backend/shared/messages'
+.container-content
+  = form_for([:backend, @comment], html: {class: :form}) do |f|
+    .row
+      .col-md-6
+        .row
+          .col-md-6
+            %fieldset
+              .panel.panel-default
+                .panel-body
+
+                  %p
+                    Имя пользователя
+                    = link_to @comment.user.nickname, edit_backend_user_path(@comment.user), target: "_blank"
+                  %p
+                    Email
+                    = @comment.user.email rescue nil
+      .col-md-12
+        %fieldset
+          .form-group
+            = f.label :content
+            =f.text_area :content, class: 'form-control', rows: 5
+    %fieldset
+      .form-actions
+      = f.submit t('label.save'), class: 'btn btn-primary'
+      = f.submit t('label.save_and_exit'), class: 'btn btn-primary'
+      = link_to 'Удалить комментарий', backend_comment_path(@comment), data: { confirm: t('msg.confirm'), method: :delete }, class: 'btn btn-danger'

@@ -1,0 +1,7 @@
+$('.more_btn').before("#{j render(@comments)}");
+- if @comments.next_page
+  $('.pagination').replaceWith("#{j will_paginate(@comments)}");
+  $('.pagination').hide()
+- else
+  $('.pagination').remove();
+  $('.more').remove();

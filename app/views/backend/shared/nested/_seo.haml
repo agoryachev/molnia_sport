@@ -1,0 +1,11 @@
+%br/
+=f.fields_for :seo do |seo|
+  .form-group
+    = seo.label :keywords
+    = seo.text_field :keywords, class: "form-control", maxlength: 255
+  .form-group
+    = seo.label :slug
+    = seo.text_field :slug, class: "form-control", maxlength: 255
+  .form-group
+    = seo.label :description
+    = seo.text_area :description, class: "form-control", rows: 4

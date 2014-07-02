@@ -1,0 +1,20 @@
+= render 'backend/shared/messages'
+
+.container-content
+  = form_for([:backend, @country], html: {class: "form"}) do |f|
+    %fieldset
+      %br
+      .row
+        .col-md-6
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: 'form-control', maxlength: 255
+
+          .form-group
+            = f.label :category_ids
+            =f.collection_select :category_ids, Category.select([:id, :title, :color]), :id, :title, {}, {multiple: true, class: 'form-control'}
+
+    .form-actions
+      = f.submit t("label.save"), class: "btn btn-primary"
+      = f.submit t("label.save_and_exit"), class: "btn btn-primary"
+      = link_to "Удалить страну", backend_country_path(@country), data: { confirm: t("msg.confirm"), method: :delete }, class: "btn btn-danger" unless @country.new_record?

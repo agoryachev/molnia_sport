@@ -1,0 +1,20 @@
+%section.search_pad
+  .search_pad_shadow
+- if @matches.present?
+  %section.match_car=render 'shared/carousel/carousel', matches: @matches
+- if @publications.size.zero?
+  %section.lc
+    %section.news_list
+      %h2
+        = I18n.t("search.no_results")
+    .clr
+  %section.rc
+    =render 'shared/aside/aside'
+-else
+  =render partial: 'shared/news_list', locals: {posts: @publications}
+.clr
+.pagination{style: "display: none;"}
+  %span.previous_page.disabled « Назад
+  =link_to '#', search_ajax_path(params[:query], 2), class: 'next_page'
+= link_to 'ПОКАЗАТЬ ЕЩЕ', '#', class: 'more more_btn' if @is_more
+

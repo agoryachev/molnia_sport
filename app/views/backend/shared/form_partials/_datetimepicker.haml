@@ -1,0 +1,5 @@
+= f.label field
+.datetimepicker.input-group.date{data: { date: {format: format}}}
+  =f.text_field field, class: 'form-control', value: (model.try(field)) ? datepicker_dt(model.send(field)) : ''
+  %span.input-group-addon
+    %span.glyphicon.glyphicon-calendar

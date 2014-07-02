@@ -1,0 +1,122 @@
+.row
+  %h3= "Матч #{@match.team_home.title} - #{@match.team_guest.title}"
+  .col-md-12
+    .container-content
+      .panel.panel-primary
+        .panel-body
+          = form_for [:backend, @match], html: {class: :form} do |form|
+            %fieldset
+              .col-md-6
+                .panel.panel-primary
+                  .panel-heading
+                    ="Хозяева (#{@match.team_home.title})"
+                  .panel-body
+                    .form-group
+                      = form.label :team_home_scheme_id, "Расстановка хозяев (#{@match.team_home.title})"
+                      = form.select :team_home_scheme_id,  @tactical_schemes, {}, {class: 'form-control'}
+                    #team_home_accordion
+                      .panel.panel-default
+                        .panel-heading
+                          %h4.panel-title
+                            %a.accordion-toggle.collapsed{"data-parent" => "#team_home_accordion", "data-toggle" => "collapse", href: "#team_home_persons"} Состав
+                        #team_home_persons.panel-collapse.collapse
+                          .panel-body
+                            - team_home_persons = @match.team_home.persons.order(:name_first)
+                            - team_home_id = @match.team_home.id
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'forward', label: 'Нападающие', data: team_home_persons}
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'halfback', label: 'Полузащитники', data: team_home_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'forward_halfback', label: 'Атакующие полузащитники', data: team_home_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'defender_halfback', label: 'Опорные полузащитники', data: team_home_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'defender', label: 'Защитники', data: team_home_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'goalkeeper', label: 'Вратарь', data: team_home_persons }
+                            %p.help-block=t('label.autocomplete')
+                    #reserve_home_accordion
+                      .panel.panel-default
+                        .panel-heading
+                          %h4.panel-title
+                            %a.accordion-toggle.collapsed{"data-parent" => "#reserve_home_accordion", "data-toggle" => "collapse", href: "#reserve_home_persons"} Запасные
+                        #reserve_home_persons.panel-collapse.collapse
+                          .panel-body
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_home_id, match_id: @match.id, side: 'team_home', key: 'reserve', label: 'Запасные', data: team_home_persons}
+                            %p.help-block=t('label.autocomplete')
+              .col-md-6
+                .panel.panel-primary
+                  .panel-heading
+                    ="Гости (#{@match.team_guest.title})"
+                  .panel-body
+                    .form-group
+                      = form.label :team_guest_scheme_id, "Расстановка гостей (#{@match.team_guest.title})"
+                      = form.select :team_guest_scheme_id, @tactical_schemes, {}, {class: 'form-control'}
+                    #team_guest_accordion
+                      .panel.panel-default
+                        .panel-heading
+                          %h4.panel-title
+                            %a.accordion-toggle.collapsed{"data-parent" => "#team_guest_accordion", "data-toggle" => "collapse", href: "#team_guest_persons"} Состав
+                        #team_guest_persons.panel-collapse.collapse
+                          .panel-body
+                            - team_guest_persons = @match.team_guest.persons.order(:name_first)
+                            - team_guest_id = @match.team_guest.id
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'forward', label: 'Нападающие', data: team_guest_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'halfback', label: 'Полузащитники', data: team_guest_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'forward_halfback', label: 'Атакующие полузащитники', data: team_guest_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'defender_halfback', label: 'Опорные полузащитники', data: team_guest_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'defender', label: 'Защитники', data: team_guest_persons }
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'goalkeeper', label: 'Вратарь', data: team_guest_persons }
+                            %p.help-block=t('label.autocomplete')
+                    #reserve_guest_accordion
+                      .panel.panel-default
+                        .panel-heading
+                          %h4.panel-title
+                            %a.accordion-toggle.collapsed{"data-parent" => "#reserve_guest_accordion", "data-toggle" => "collapse", href: "#reserve_guest_persons"} Запасные
+                        #reserve_guest_persons.panel-collapse.collapse
+                          .panel-body
+                            = render partial: 'backend/shared/form_partials/team_formation_select', locals: { team_id: team_guest_id, match_id: @match.id, side: 'team_guest', key: 'reserve', label: 'Запасные', data: team_guest_persons}
+                            %p.help-block=t('label.autocomplete')
+            .form-actions
+              = form.submit 'Сохранить', class: "btn btn-primary"
+
+  .col-md-6
+    .container-content
+      .panel.panel-primary
+        .panel-body
+          = form_for [:backend, @match, @message], html: {class: :form} do |form|
+            %fieldset
+              %input.hidden.event_type{name: 'broadcast_message[event_type]', type: 'text'}
+              .form-group
+                = form.label :content
+                = form.text_area :content, class: 'form-control', required: true, style: 'height: 200px; resize: none;'
+              .form-group
+                = form.label :timestamp
+                = form.text_field :timestamp, class: 'form-control', required: true, placeholder: '42'
+              %ul.nav.nav-tabs.tabs
+                %li.active
+                  %a.event{href:'#none', data: {toggle: 'tab', event_type: 'none'} } Нет события
+                %li
+                  %a.event{href:'#goal', data: {toggle: 'tab', event_type: 'goal'} } Гол
+                %li
+                  %a.event{href:'#card', data: {toggle: 'tab', event_type: 'card'} } Карточка
+                %li
+                  %a.event{href:'#replacement', data: {toggle: 'tab', event_type: 'replacement'} } Замена
+              .tab-content
+                #none.tab-pane.active
+                #goal.tab-pane= render 'backend/events/goal', form: form
+                #card.tab-pane= render 'backend/events/card', form: form
+                #replacement.tab-pane= render 'backend/events/replacement', form: form
+            .form-actions
+              = form.submit 'Опубликовать', class: "btn btn-primary"
+
+  .col-md-6
+    .panel.panel-primary{style: 'height: 622px'}
+      .panel-body.message-line{style: 'height: 622px; overflow-x: hidden'}
+        %table.table{id: 'messages'}
+          %thead
+            %tr
+              %th #
+              %th Время
+              %th Событие
+              %th Содержание
+              %th.manage
+          - if @match.broadcast_messages.any?
+            = render @match.broadcast_messages.order("timestamp DESC")
+          - else
+            %tbody

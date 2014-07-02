@@ -1,0 +1,56 @@
+%article.section.stars-socials
+  %ul.stars-socials-menu
+    %li.current
+      %span.twit-img.fa.fa-twitter
+      %span Twitter
+    %li
+      %span.in-img.fa.fa-instagram
+      %span Instagram
+    =link_to 'Смотреть все', twitter_records_path
+
+  .box.visible.tweet-container.stars-socials-tab
+    - tweets.each do |tweet|
+      .tweet-box
+        .tweet-user-info
+          %a{href: "https://twitter.com/#{tweet['user']['screen_name']}", target: "_blank"}
+            .tweet-user-ava{style: "background-image: url(#{tweet['user']['profile_image_url']})"}
+          %a{href: "https://twitter.com/#{tweet['user']['screen_name']}", target: "_blank"}
+            .tweet-user
+              .tweet-user-name
+                = truncate(tweet['user']['name'], length: 20)
+              .tweet-user-screenname
+                = "@#{tweet['user']['screen_name']}"
+        .tweet-text
+          =simple_format tweet['text']
+        - media = tweet['media']
+        - unless media.nil?
+          .tweet-btn-show-media
+            Показать каринку
+          %a.hid{href: "https://twitter.com/#{tweet['user']['screen_name']}/status/#{tweet['id']}", target: "_blank"}
+            .tweet-image.hidden
+              =image_tag media[0]['media_url'], width: 188
+        .tweet-box-separator
+        .action-btn-social
+          %a{:href => "https://twitter.com/intent/favorite?tweet_id=#{tweet['id']}"}
+            %button.btn-stars-social
+          %a{:href => "https://twitter.com/intent/tweet?in_reply_to=#{tweet['id']}"}
+            %button.btn-share-social
+          %a{:href => "https://twitter.com/intent/retweet?tweet_id=#{tweet['id']}"}
+            %button.btn-reload-social
+
+
+  .box.instagram-container.stars-socials-tab
+    - instagrams.each do |instagram|
+      .instagram-box
+        %a{:href => "#{instagram['link']}", target: "_blank"}
+          .instagram-image
+            =image_tag instagram['url'], size: '180x180'
+          .instagram-footer
+            .instagram-user-name
+              =instagram['username']
+            .instagram-likes
+              - likes = (instagram['likes'].nil?) ? 0 : instagram['likes']
+              - likes = (likes > 1000) ? "#{likes.fdiv(1000).round 1}K" : likes
+              = likes
+              .likes_instatop
+/ .section
