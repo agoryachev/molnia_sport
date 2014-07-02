@@ -43,7 +43,7 @@ gem 'acts-as-taggable-on'
 gem 'unidecode'
   
 # Cron-tasks (config/schedule.rb)
-gem 'whenever'  
+gem 'whenever'
 
 # Управление загружаемым контентом (изображения, видео)
 gem 'paperclip'
